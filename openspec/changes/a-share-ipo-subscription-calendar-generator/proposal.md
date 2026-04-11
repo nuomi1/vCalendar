@@ -1,36 +1,41 @@
 ## Why
 
-当前目标是尽快产出可订阅的打新日历文件，不在本阶段处理交易所抓取与解析。已有上游数据可直接提供 `stocks` / `bonds` / `reits` 三组记录，因此本次收敛到"把输入数据稳定映射为 ICS/JSON 导出"。
+当前代码存在以下问题需要优化：
 
-市场与标的类型通过代码自动推断，简化输入契约。
+1. `StockRecord`、`BondRecord`、`REITsRecord` 三个类型字段完全相同，存在重复
+2. 日期字段当前为 `string` 类型，应该改为 `Date` 类型以获得更强的类型检查，仅在输出时格式化为字符串
+3. `CalendarEvent` 类型与输入记录字段几乎一致，可以简化处理流程
+4. `ExportConfig` 的 `outputDir` 固定为根目录，`jsonIndent` 固定为 2，无需配置
+5. 当前使用 Node.js `fs.writeFileSync`，应改用 Bun 原生 API (`Bun.file().write()`)
 
 ## What Changes
 
-- 输入约束：仅接收 `stocks` / `bonds` / `reits` 三个数组，分别处理，不做合并。
-- 市场推断：由代码前缀自动推断市场（SH/SZ/BJ）和类型简称（上/科/深/创/北/债/REITs）。
-- 事件约束：每条记录仅生成一个发行事件；发行价、公布日、上市日写入 `DESCRIPTION`。
-- 时间约束：事件固定为非全天 `09:30-10:00`，使用系统时区（运行环境保证 `Asia/Shanghai`）。
-- 校验约束：发行日缺失抛异常；同一导出流中 UID 重复抛异常。
-- UID 规则：`UID = 证券代码.市场`。
-- 缺失字段展示：描述中任一缺失字段统一填 `--`。
-- SUMMARY 格式：`【类型简称】名称 代码.市场`，如 `【深】福恩股份 001312.SZ`。
-- 导出能力：生成 `zh_CN.(stocks|bonds|reits).(ics|json)` 六个文件。
+### 类型简化
+
+- 合并 `StockRecord`、`BondRecord`、`REITsRecord` 为单一的 `IPORecord` 接口
+- 日期字段（`issuanceDate`、`publicationDate`、`listingDate`）改为 `Date` 类型
+- 移除 `CalendarEvent` 类型，事件创建时直接通过 `IPORecord` 处理
+- 移除 `ExportConfig` 类型，导出配置直接内联
+
+### 导出配置
+
+- JSON 输出固定使用 2 空格缩进
+- 导出文件固定放在项目根目录（`./zh_CN.{stocks,bonds,reits}.{ics,json}`）
+
+### 文件写入
+
+- 使用 Bun 原生 API `Bun.file(path).write(content)` 替代 `fs.writeFileSync`
 
 ## Capabilities
 
-### New Capabilities
-
-- `a-share-ipo-ingestion`: 接收并校验上游提供的三类输入数组（stocks/bonds/reits），并从代码推断市场与类型。
-- `ipo-calendar-event-generation`: 按"每条记录一个发行事件"规则生成事件，固定时间窗口与描述补位，SUMMARY 包含类型前缀。
-- `ics-calendar-export`: 使用 `ical.js` 导出三类 ICS 与 JSON 文件，并执行 UID 唯一性校验。
-
 ### Modified Capabilities
 
-- 无
+- `a-share-ipo-ingestion`: 输入模型简化为单一 `IPORecord` 接口
+- `ipo-calendar-event-generation`: 事件创建时直接处理 `IPORecord`，无需中间 `CalendarEvent` 类型
+- `ics-calendar-export`: 使用 Bun API 写入文件，内联固定配置
 
 ## Impact
 
-- Affected code: 输入模型、事件映射器、ICS/JSON 导出器、导出任务入口。
-- APIs: 导出入口接收三类数组输入并分别产出文件。
-- Dependencies: 仅强依赖 `ical.js` 进行 ICS 结构编辑与序列化。
-- Systems: 错误处理重点为"发行日缺失"和"UID 重复"两类硬失败。
+- Affected code: `types.ts`、`index.ts`、`utils.ts`
+- APIs: 入口函数签名可能略微调整（移除 config 参数）
+- Dependencies: 移除 `fs` 依赖，改用 Bun API

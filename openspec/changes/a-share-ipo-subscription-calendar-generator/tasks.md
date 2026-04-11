@@ -1,48 +1,27 @@
-## 1. 主入口 (index.ts)
+## 1. 类型定义修改 (types.ts)
 
-- [x] 1.1 搭建 index.ts 骨架：导入、类型声明、入口函数
-- [x] 1.2 实现参数解析与环境校验
+- [x] 1.1 合并 `StockRecord`、`BondRecord`、`REITsRecord` 为单一的 `IPORecord` 接口
+- [x] 1.2 将 `issuanceDate`、`publicationDate`、`listingDate` 字段类型从 `string` 改为 `Date`
+- [x] 1.3 移除 `CalendarEvent` 类型定义
+- [x] 1.4 移除 `ExportConfig` 类型定义
+- [x] 1.5 更新 `InputData` 使用统一的 `IPORecord` 类型
 
-## 2. 输入与校验
+## 2. 工具函数修改 (utils.ts)
 
-- [x] 2.1 定义三路输入契约：`stocks` / `bonds` / `reits`，并明确独立处理边界
-- [x] 2.2 定义必填字段与校验规则（ issuanceDate 必填）
-- [x] 2.3 实现发行日缺失即抛异常的失败路径与错误信息规范
-- [x] 2.4 实现代码推断市场与类型逻辑（代码 → 市场 + 类型简称）
+- [x] 2.1 添加日期格式化函数 `formatDate(date: Date): string`，输出格式为 `YYYY-MM-DD`，使用 day.js
+- [x] 2.2 更新 `formatDescription` 函数，接受 `Date` 类型并格式化为字符串
+- [x] 2.3 更新 `recordToEvent` 返回类型，直接处理记录而非通过中间类型
+- [x] 2.4 更新类型导入，移除不再使用的类型
 
-## 3. 模型定义 (types.ts)
+## 3. 主入口修改 (index.ts)
 
-- [x] 3.1 定义输入接口：`StockRecord`、`BondRecord`、`REITsRecord`
-- [x] 3.2 定义输出接口：`CalendarEvent`、`ExportConfig`
-- [x] 3.3 定义工具类型：`Market`、`InstrumentType`
+- [x] 3.1 移除 `fs` 导入，改为使用 Bun API
+- [x] 3.2 更新 `generateCalendar` 函数签名，移除 `config` 参数
+- [x] 3.3 使用 `Bun.file(filename).write(content)` 写入 ICS 和 JSON 文件
+- [x] 3.4 更新示例数据，使用 `Date` 对象
 
-## 4. 工具函数 (utils.ts)
+## 4. 测试验证
 
-- [x] 4.1 市场推断函数：`inferMarket(code: string): Market`
-- [x] 4.2 类型推断函数：`inferInstrumentType(code: string, category: string): InstrumentType`
-- [x] 4.3 SUMMARY 格式化：`formatSummary(name, code, market, instrumentType): string`
-- [x] 4.4 DESCRIPTION 格式化：`formatDescription(record): string`
-- [x] 4.5 JSON 序列化：`serializeJSON(events, indent): string`（字母排序 + 2 空格）
-
-## 5. 发行事件映射
-
-- [x] 5.1 设计单事件模型：每条记录仅生成一个发行 `VEVENT`
-- [x] 5.2 固定事件时间窗口为 `09:30-10:00`（非全天，系统时区）
-- [x] 5.3 实现 `SUMMARY` 模板：`【类型简称】名称 代码.市场`
-- [x] 5.4 实现 `DESCRIPTION` 模板：发行价、公布日、上市日，缺失值统一替换为 `--`
-
-## 6. 导出能力
-
-- [x] 6.1 基于 `ical.js` 生成并序列化 ICS（VCALENDAR/VEVENT）
-- [x] 6.2 实现 UID 规则：`UID = 代码.市场`
-- [x] 6.3 实现 ICS 三路文件导出：`zh_CN.stocks|bonds|reits.ics`
-- [x] 6.4 实现 JSON 三路文件导出：`zh_CN.stocks|bonds|reits.json`
-- [x] 6.5 确保空数组场景仍产出对应空内容文件
-
-## 7. 测试与文档
-
-- [x] 7.1 增加校验测试：发行日缺失、代码推断逻辑
-- [x] 7.2 增加事件测试：SUMMARY 格式、DESCRIPTION 占位符
-- [x] 7.3 增加导出测试：文件命名、三路独立输出、空输入输出
-- [x] 7.4 增加 JSON 测试：字母排序、2 空格缩进
-- [x] 7.5 更新 README/变更说明，明确本阶段"不含抓取与解析"
+- [x] 4.1 运行 `bun test` 确保现有测试通过
+- [x] 4.2 验证输出文件格式与修改前一致
+- [x] 4.3 验证日期格式为 `YYYY-MM-DD`

@@ -1,6 +1,6 @@
 import { test, expect, describe } from 'bun:test';
-import { inferMarket, inferInstrumentType, formatSummary, formatDescription, serializeJSON, getUID, recordToEvent } from './utils';
-import type { StockRecord, BondRecord, REITsRecord, CalendarEvent } from './types';
+import { inferMarket, inferInstrumentType, formatSummary, formatDescription, serializeJSON, getUID, formatDate } from './utils';
+import type { IPORecord } from './types';
 import { writeFileSync, unlinkSync, existsSync, readFileSync } from 'fs';
 
 describe('2.4 - inferMarket', () => {
@@ -31,14 +31,14 @@ describe('4.3 - formatSummary', () => {
 
 describe('4.4 - formatDescription', () => {
   test('全字段', () => {
-    const record: StockRecord = { name: '测试', code: '001', issuanceDate: '2026-04-15', issuancePrice: 10.5, publicationDate: '2026-04-10', listingDate: '2026-04-20' };
+    const record: IPORecord = { name: '测试', code: '001', issuanceDate: new Date('2026-04-15'), issuancePrice: 10.5, publicationDate: new Date('2026-04-10'), listingDate: new Date('2026-04-20') };
     const desc = formatDescription(record);
     expect(desc).toContain('发行价：10.5 元');
     expect(desc).toContain('公布日：2026-04-10');
     expect(desc).toContain('上市日：2026-04-20');
   });
   test('缺失字段 -> --', () => {
-    const record: StockRecord = { name: '测试', code: '001', issuanceDate: '2026-04-15' };
+    const record: IPORecord = { name: '测试', code: '001', issuanceDate: new Date('2026-04-15') };
     const desc = formatDescription(record);
     expect(desc).toContain('发行价：--');
     expect(desc).toContain('公布日：--');
@@ -48,18 +48,29 @@ describe('4.4 - formatDescription', () => {
 
 describe('4.5 - serializeJSON', () => {
   test('字母排序', () => {
-    const events: CalendarEvent[] = [
-      { name: '测试', code: '001', market: 'SZ', instrumentType: '深', issuanceDate: '2026-04-15', issuancePrice: 10, publicationDate: null, listingDate: null }
+    const records: IPORecord[] = [
+      { name: '测试', code: '001', issuanceDate: new Date('2026-04-15'), issuancePrice: 10, publicationDate: undefined, listingDate: undefined }
     ];
-    const json = serializeJSON(events, 2);
+    const json = serializeJSON(records, 'stocks', 2);
     expect(json).toContain('"code"');
     expect(json).toContain('"issuanceDate"');
     expect(json).toContain('"market"');
     expect(json).toContain('"name"');
   });
   test('2空格缩进', () => {
-    const json = serializeJSON([], 2);
+    const json = serializeJSON([], 'stocks', 2);
     expect(json).toBe('[]');
+  });
+});
+
+describe('formatDate', () => {
+  test('YYYY-MM-DD格式', () => {
+    const date = new Date('2026-04-15');
+    expect(formatDate(date)).toBe('2026-04-15');
+  });
+  test('个位数月日补零', () => {
+    const date = new Date('2026-01-05');
+    expect(formatDate(date)).toBe('2026-01-05');
   });
 });
 
@@ -70,7 +81,7 @@ describe('6.2 - getUID', () => {
 
 describe('校验 - 发行日缺失', () => {
   test('缺少issuanceDate应抛异常', () => {
-    const record = { name: '测试', code: '001' } as unknown as StockRecord;
+    const record = { name: '测试', code: '001' } as unknown as IPORecord;
     expect(() => {
       if (!record.issuanceDate) throw new Error(`发行日缺失：${record.code}`);
     }).toThrow();
@@ -92,7 +103,7 @@ describe('导出 - 文件命名', () => {
 
 describe('导出 - 空输入', () => {
   test('空数组导出空内容', () => {
-    const events: CalendarEvent[] = [];
+    const records: IPORecord[] = [];
     const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//A-Share IPO Calendar//EN\r\nEND:VCALENDAR`;
     expect(ics).toContain('BEGIN:VCALENDAR');
     expect(ics).toContain('END:VCALENDAR');

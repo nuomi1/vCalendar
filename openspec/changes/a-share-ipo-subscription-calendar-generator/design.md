@@ -1,119 +1,85 @@
 ## Context
 
-当前变更聚焦导出层：上游已提供最近两个月范围内的结构化记录，输入为 `stocks`、`bonds`、`reits` 三个数组。市场与标的类型由代码推断，无需上游提供。本阶段不处理交易所抓取、解析、分页、重试或标准化管道，只负责把输入数据稳定映射为可订阅 ICS 与对应 JSON 文件。
+当前变更聚焦于简化代码结构，主要针对以下方面：
+
+1. 类型定义冗余：三个重复的记录类型
+2. 日期类型处理：需要从字符串改为 Date，仅在输出时格式化
+3. 中间类型简化：移除不必要的 CalendarEvent
+4. 配置简化：移除 ExportConfig，固定输出格式
+5. 文件写入：使用 Bun 原生 API
 
 ## Goals / Non-Goals
 
 **Goals:**
 
-- 接收 `stocks` / `bonds` / `reits` 三个数组并独立处理。
-- 市场与标的类型简称由代码自动推断（SH/SZ/BJ + 上/科/深/创/北/债/REITs）。
-- 每条记录只生成一个"发行事件"。
-- 事件时间固定为发行日当天 `09:30-10:00`（非全天事件）。
-- 事件 UID 固定为 `证券代码.市场`。
-- 发行日缺失时抛异常，禁止生成不完整事件。
-- 描述字段（如发行价、公布日、上市日）缺失时统一显示 `--`。
-- 输出 `zh_CN.(stocks|bonds|reits).(ics|json)` 六个文件。
+- 合并 `StockRecord`、`BondRecord`、`REITsRecord` 为单一的 `IPORecord` 接口
+- 日期字段（`issuanceDate`、`publicationDate`、`listingDate`）改为 `Date` 类型
+- 输出 ICS/JSON 时使用 `YYYY-MM-DD` 格式化为字符串
+- 移除 `CalendarEvent` 中间类型，事件创建时直接通过 `IPORecord` 处理
+- 移除 `ExportConfig` 配置类型，内联固定配置（JSON 2 空格，根目录输出）
+- 使用 `Bun.file().write()` API 写入文件
 
 **Non-Goals:**
 
-- 不实现任何交易所数据抓取、接口封装、重试策略与解析逻辑。
-- 不实现 `ofetch` 抽象封装与相关网络层能力。
-- 不实现多里程碑事件拆分（如单独的公布事件、上市事件）。
-- 不实现跨数组合并、跨品种联合排序或统一事件池。
+- 不修改核心业务逻辑（市场推断、类型推断、事件生成规则）
+- 不修改 SUMMARY/DESCRIPTION 格式
+- 不修改文件命名规范
 
 ## Decisions
 
-1. 采用"输入校验 -> 事件映射 -> 分流导出"最小流水线。
-   Rationale: 当前输入已具备可用结构，优先保障导出一致性和交付速度。
-   Alternative: 保留完整采集与规范化分层；缺点是超出本阶段范围。
-
-2. 市场与标的类型由代码推断，不依赖输入字段。
-   | 代码前缀 | 市场 | 类型简称 |
-   |---------|------|----------|
-   | 6（不含688） | SH | 上 |
-   | 688 | SH | 科 |
-   | 000/001 | SZ | 深 |
-   | 300 | SZ | 创 |
-   | 8/4 | BJ | 北 |
-   | 可转债 | - | 债 |
-   | REITs | - | REITs |
-
-   Rationale: 上游数据不含市场字段，由代码自动推断简化输入契约。
-   Alternative: 上游提供市场字段；缺点是增加传输冗余。
-
-3. 每条记录仅生成一个发行事件。
-   Rationale: 用户明确只关心发行日作为提醒触发点，其余日期作为描述信息即可。
-   Alternative: 拆分多事件（发行/公布/上市）；缺点是复杂度上升且非当前需求。
-
-4. 事件时间固定为发行日 `09:30-10:00`，非全天。
-   Rationale: 统一时间语义，避免不同客户端对全天事件的差异化展示。
-   Alternative: 使用全天事件；缺点是与当前显式时间提醒目标不一致。
-
-5. UID 规则固定为 `证券代码.市场`。
-   Rationale: 在"每条记录一个事件"的前提下，规则简单且可读性高。
-   Alternative: 引入事件类型或哈希 UID；缺点是增加复杂度且当前无必要。
-
-6. 同一导出流内 UID 冲突直接抛异常。
-   Rationale: 当前已限定近两个月范围，出现冲突可视为数据质量问题，应快速失败。
-   Alternative: 自动覆盖或重命名 UID；缺点是隐藏数据问题。
-
-7. 描述中缺失字段统一填 `--`。
-   Rationale: 保持描述模板完整，避免空值导致可读性不一致。
-   Alternative: 省略缺失字段行；缺点是不同事件描述结构不一致。
-
-8. SUMMARY 格式为 `【类型简称】名称 代码.市场`。
-   示例：`【深】福恩股份 001312.SZ`
-
-   Rationale: 符合用户指定格式，类型简称前置便于识别。
-   Alternative: 其他格式；缺点是不符合需求。
-
-9. DESCRIPTION 包含发行价、公布日、上市日。
+1. 统一记录类型
    ```
-   发行价：X 元
-   公布日：XXXX-XX-XX 或 --
-   上市日：XXXX-XX-XX 或 --
+   interface IPORecord {
+     name: string;
+     code: string;
+     issuanceDate: Date;
+     issuancePrice?: number;
+     publicationDate?: Date;
+     listingDate?: Date;
+   }
    ```
 
-   Rationale: 用户指定字段，含发行价是关键信息。
-   Alternative: 其他字段；缺点是非当前需求。
+   Rationale: 三个类型的字段完全相同，合并可以减少代码冗余。
 
-10. `stocks` / `bonds` / `reits` 三路数据独立导出，不做合并。
-    Rationale: 与目标文件命名一一对应，边界清晰，便于定位错误。
-    Alternative: 先合并后分流；缺点是增加不必要中间复杂度。
+2. 日期类型为 Date，输出时格式化
+   - 内部存储使用 `Date` 类型，获得更强的类型检查
+   - 输出 ICS/JSON 时使用 `YYYY-MM-DD` 格式化为字符串
+
+   Rationale: Date 类型可以避免输入格式不一致的问题，输出时统一格式化。
+
+3. 移除 CalendarEvent 中间类型
+   - 事件创建时直接通过 IPORecord 生成 ICS/JSON
+   - 不再需要 CalendarEvent 作为中间转换层
+
+   Rationale: CalendarEvent 与 IPORecord 字段几乎一致，可以简化处理流程。
+
+4. 移除 ExportConfig，内联固定配置
+   - JSON 固定输出 2 空格缩进
+   - 文件固定输出到根目录
+
+   Rationale: 当前需求固定，无需配置灵活性。
+
+5. 使用 Bun API 写入文件
+   ```typescript
+   Bun.write(Bun.file(filename), content)
+   // 或
+   Bun.file(filename).write(content)
+   ```
+
+   Rationale: Bun 原生 API 性能更好，且项目已使用 Bun。
 
 ## Code Organization
 
 ```
 根目录/
-├── index.ts         # 主要流程：入口、编排、导出
-├── types.ts        # 模型定义：接口与类型
-└── utils.ts       # 工具函数：代码推断、格式化、JSON 序列化
+├── index.ts         # 主要流程：入口、编排、导出（使用 Bun API）
+├── types.ts        # 模型定义：单一 IPORecord 接口
+└── utils.ts       # 工具函数：代码推断、格式化、日期处理
 ```
-
-- `index.ts` 包含主流程逻辑、输入校验、三路分流、ICS/JSON 导出调用。
-- `types.ts` 包含输入/输出接口定义、事件模型、配置类型。
-- `utils.ts` 包含代码推断市场与类型、日志格式、JSON 序列化（含字母排序、2 空格缩进）。
-
-Rationale: 按用户指定扁平结构，无需 src 目录。
-Alternative: 使用 src/ 子目录；缺点是增加路径层级。
-
-## Risks / Trade-offs
-
-- [同一流 UID 冲突导致整批失败] -> 在导出前先做 UID 去重预检并输出冲突明细。
-- [发行日缺失导致导出中断] -> 明确输入契约并在入口阶段优先校验，快速返回错误记录。
-- [描述字段大量缺失影响可读性] -> 固定模板+`--` 占位，确保格式稳定。
-- [不同日历客户端对时区展示差异] -> 输出明确本地时区时间并补充回归样例。
-- [代码推断规则边界情况] -> 明确各代码前缀的适用范围，确保全覆盖。
-- [JSON 格式不一致] -> 按 spec 要求严格实现字母排序 + 2 空格缩进。
 
 ## Migration Plan
 
-1. 先落地三路输入到三路导出的最小闭环（含校验与占位规则）。
-2. 交付后再评估是否恢复抓取/解析层的后续变更。
-3. 回滚策略：保留旧导出入口，按开关切换到新映射器。
-
-## Open Questions
-
-- [RESOLVED] JSON 导出已明确：Key 按字母排序 + 2 空格缩进（见 json-export/spec.md）。
-- 未来若恢复多事件模型，UID 规则是否需升级为 `证券代码.市场.事件类型`。
+1. 修改 types.ts：合并记录类型，日期改为 Date
+2. 修改 utils.ts：添加日期格式化函数，更新 recordToEvent
+3. 修改 index.ts：使用 Bun API 写入，移除 config 参数
+4. 验证导出结果与修改前一致
