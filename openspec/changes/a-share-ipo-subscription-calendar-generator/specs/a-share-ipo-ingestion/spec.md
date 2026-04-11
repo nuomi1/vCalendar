@@ -31,9 +31,9 @@ The system MUST use a consistent model structure for instrument records.
   - `name`: string (required) - 证券简称
   - `code`: string (required) - 证券代码
   - `issuanceDate`: date (required) - 发行日
-  - `issuancePrice`: number? (optional) - 发行价
-  - `publicationDate`: date? (optional) - 公布日
-  - `listingDate`: date? (optional) - 上市日
+  - `issuancePrice`: number | null - 发行价
+  - `publicationDate`: Date | null - 公布日
+  - `listingDate`: Date | null - 上市日
 
 Note: `market` and `instrumentType` are derived from code prefix, not stored in the model.
 

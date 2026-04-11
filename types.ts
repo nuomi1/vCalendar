@@ -29,11 +29,11 @@ export interface IPORecord {
   /** 发行日（申购日） */
   issuanceDate: Date;
   /** 发行价（元） */
-  issuancePrice?: number;
+  issuancePrice: number | null;
   /** 公布日（中签结果公布日） */
-  publicationDate?: Date;
+  publicationDate: Date | null;
   /** 上市日 */
-  listingDate?: Date;
+  listingDate: Date | null;
 }
 
 /**
