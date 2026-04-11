@@ -1,5 +1,5 @@
-import dayjs from 'dayjs';
-import type { Market, InstrumentType, IPORecord } from './types';
+import dayjs from "dayjs";
+import type { InstrumentType, IPORecord, Market } from "./types";
 
 /**
  * 根据证券代码推断所属交易所市场。
@@ -7,9 +7,9 @@ import type { Market, InstrumentType, IPORecord } from './types';
  * @returns 市场标识：'SH' 沪市、'SZ' 深市、'BJ' 北交所
  */
 export function inferMarket(code: string): Market {
-  if (code.startsWith('8') || code.startsWith('4')) return 'BJ';
-  if (code.startsWith('6') || code.startsWith('688')) return 'SH';
-  return 'SZ';
+  if (code.startsWith("8") || code.startsWith("4")) return "BJ";
+  if (code.startsWith("6") || code.startsWith("688")) return "SH";
+  return "SZ";
 }
 
 /**
@@ -18,15 +18,18 @@ export function inferMarket(code: string): Market {
  * @param category - 资产类别（stocks/bonds/reits）
  * @returns 证券类型标识：'上' 沪市、'科' 科创板、'深' 深市、'创' 创业板、'北' 北交所、'债' 债券、'REITs' REITs
  */
-export function inferInstrumentType(code: string, category: string): InstrumentType {
-  if (category === 'bonds') return '债';
-  if (category === 'reits') return 'REITs';
-  if (code.startsWith('688')) return '科';
-  if (code.startsWith('300')) return '创';
-  if (code.startsWith('8') || code.startsWith('4')) return '北';
-  if (code.startsWith('6')) return '上';
-  if (code.startsWith('000') || code.startsWith('001')) return '深';
-  return '深';
+export function inferInstrumentType(
+  code: string,
+  category: string,
+): InstrumentType {
+  if (category === "bonds") return "债";
+  if (category === "reits") return "REITs";
+  if (code.startsWith("688")) return "科";
+  if (code.startsWith("300")) return "创";
+  if (code.startsWith("8") || code.startsWith("4")) return "北";
+  if (code.startsWith("6")) return "上";
+  if (code.startsWith("000") || code.startsWith("001")) return "深";
+  return "深";
 }
 
 /**
@@ -35,7 +38,7 @@ export function inferInstrumentType(code: string, category: string): InstrumentT
  * @returns 格式化后的日期字符串
  */
 export function formatDate(date: Date): string {
-  return dayjs(date).format('YYYY-MM-DD');
+  return dayjs(date).format("YYYY-MM-DD");
 }
 
 /**
@@ -46,7 +49,12 @@ export function formatDate(date: Date): string {
  * @param instrumentType - 证券类型
  * @returns 格式化的摘要，如【科】海光信息 688865.SH
  */
-export function formatSummary(name: string, code: string, market: Market, instrumentType: InstrumentType): string {
+export function formatSummary(
+  name: string,
+  code: string,
+  market: Market,
+  instrumentType: InstrumentType,
+): string {
   return `【${instrumentType}】${name} ${code}.${market}`;
 }
 
@@ -56,9 +64,12 @@ export function formatSummary(name: string, code: string, market: Market, instru
  * @returns 多行描述字符串，包含发行价、公布日、上市日
  */
 export function formatDescription(record: IPORecord): string {
-  const price = record.issuancePrice !== undefined ? `${record.issuancePrice} 元` : '--';
-  const pubDate = record.publicationDate ? formatDate(record.publicationDate) : '--';
-  const listDate = record.listingDate ? formatDate(record.listingDate) : '--';
+  const price =
+    record.issuancePrice !== undefined ? `${record.issuancePrice} 元` : "--";
+  const pubDate = record.publicationDate
+    ? formatDate(record.publicationDate)
+    : "--";
+  const listDate = record.listingDate ? formatDate(record.listingDate) : "--";
   return `发行价：${price}\n公布日：${pubDate}\n上市日：${listDate}`;
 }
 
@@ -70,8 +81,12 @@ export function formatDescription(record: IPORecord): string {
  * @param indent - JSON 缩进空格数
  * @returns 格式化的 JSON 字符串
  */
-export function serializeJSON(records: IPORecord[], category: string, indent: number = 2): string {
-  const sorted = records.map(r => {
+export function serializeJSON(
+  records: IPORecord[],
+  category: string,
+  indent: number = 2,
+): string {
+  const sorted = records.map((r) => {
     const obj: Record<string, unknown> = {
       name: r.name,
       code: r.code,
@@ -101,24 +116,29 @@ export function serializeJSON(records: IPORecord[], category: string, indent: nu
  */
 export function recordToICS(record: IPORecord, category: string): string {
   const dateStr = formatDate(record.issuanceDate);
-  const [year, month, day] = dateStr.split('-').map(Number);
-  const dtStart = `${year}${String(month).padStart(2, '0')}${String(day).padStart(2, '0')}T093000`;
-  const dtEnd = `${year}${String(month).padStart(2, '0')}${String(day).padStart(2, '0')}T100000`;
+  const [year, month, day] = dateStr.split("-").map(Number);
+  const dtStart = `${year}${String(month).padStart(2, "0")}${String(day).padStart(2, "0")}T093000`;
+  const dtEnd = `${year}${String(month).padStart(2, "0")}${String(day).padStart(2, "0")}T100000`;
   const market = inferMarket(record.code);
   const uid = `${record.code}.${market}`;
   const instrumentType = inferInstrumentType(record.code, category);
-  const summary = formatSummary(record.name, record.code, market, instrumentType);
-  const description = formatDescription(record).split('\n').join('\\n');
-  
+  const summary = formatSummary(
+    record.name,
+    record.code,
+    market,
+    instrumentType,
+  );
+  const description = formatDescription(record).split("\n").join("\\n");
+
   return [
-    'BEGIN:VEVENT',
+    "BEGIN:VEVENT",
     `UID:${uid}`,
     `DTSTART:${dtStart}`,
     `DTEND:${dtEnd}`,
     `SUMMARY:${summary}`,
     `DESCRIPTION:${description}`,
-    'END:VEVENT'
-  ].join('\r\n');
+    "END:VEVENT",
+  ].join("\r\n");
 }
 
 /**

@@ -1,5 +1,9 @@
-import type { IPORecord, InputData } from './types';
-import { formatSummary, formatDescription, serializeJSON, recordToICS, getUID } from './utils';
+import type { IPORecord, InputData } from "./types";
+import {
+  getUID,
+  recordToICS,
+  serializeJSON,
+} from "./utils";
 
 /**
  * 验证 IPO 记录的发行日是否存在。
@@ -20,7 +24,7 @@ function validateIssuanceDate(record: IPORecord, code: string): void {
  * @throws 存在重复 UID 时抛出 Error
  */
 function checkDuplicateUID(records: IPORecord[], category: string): void {
-  const uids = records.map(r => getUID(r.code, inferMarket(r.code)));
+  const uids = records.map((r) => getUID(r.code, inferMarket(r.code)));
   const seen = new Set<string>();
   for (const uid of uids) {
     if (seen.has(uid)) {
@@ -37,9 +41,9 @@ function checkDuplicateUID(records: IPORecord[], category: string): void {
  * @example '688001' => 'SH', '000001' => 'SZ', '830001' => 'BJ'
  */
 function inferMarket(code: string): "SH" | "SZ" | "BJ" {
-  if (code.startsWith('8') || code.startsWith('4')) return 'BJ';
-  if (code.startsWith('6') || code.startsWith('688')) return 'SH';
-  return 'SZ';
+  if (code.startsWith("8") || code.startsWith("4")) return "BJ";
+  if (code.startsWith("6") || code.startsWith("688")) return "SH";
+  return "SZ";
 }
 
 /**
@@ -50,18 +54,18 @@ function inferMarket(code: string): "SH" | "SZ" | "BJ" {
  */
 function createICS(records: IPORecord[], category: string): string {
   const lines: string[] = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//A-Share IPO Calendar//EN',
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//A-Share IPO Calendar//EN",
   ];
-  
+
   for (const record of records) {
     const vevent = recordToICS(record, category);
     lines.push(vevent);
   }
-  
-  lines.push('END:VCALENDAR');
-  return lines.join('\r\n');
+
+  lines.push("END:VCALENDAR");
+  return lines.join("\r\n");
 }
 
 /**
@@ -70,9 +74,12 @@ function createICS(records: IPORecord[], category: string): string {
  * @param filename - 输出文件路径
  * @throws UID 重复时抛出 Error
  */
-async function exportICS(records: IPORecord[], filename: string): Promise<void> {
-  checkDuplicateUID(records, '');
-  const ics = createICS(records, '');
+async function exportICS(
+  records: IPORecord[],
+  filename: string,
+): Promise<void> {
+  checkDuplicateUID(records, "");
+  const ics = createICS(records, "");
   await Bun.file(filename).write(ics);
 }
 
@@ -82,7 +89,11 @@ async function exportICS(records: IPORecord[], filename: string): Promise<void> 
  * @param filename - 输出文件路径
  * @param category - 资产类别
  */
-async function exportJSON(records: IPORecord[], filename: string, category: string): Promise<void> {
+async function exportJSON(
+  records: IPORecord[],
+  filename: string,
+  category: string,
+): Promise<void> {
   const json = serializeJSON(records, category, 2);
   await Bun.file(filename).write(json);
 }
@@ -96,7 +107,7 @@ async function exportJSON(records: IPORecord[], filename: string, category: stri
  */
 function processRecords(
   records: IPORecord[],
-  category: 'stocks' | 'bonds' | 'reits'
+  category: "stocks" | "bonds" | "reits",
 ): IPORecord[] {
   for (const r of records) {
     validateIssuanceDate(r, r.code);
@@ -117,34 +128,41 @@ function processRecords(
  */
 export async function generateCalendar(
   data: InputData,
-  outputDir: string
+  outputDir: string,
 ): Promise<void> {
-  const stocks = processRecords(data.stocks, 'stocks');
-  const bonds = processRecords(data.bonds, 'bonds');
-  const reits = processRecords(data.reits, 'reits');
-  
-  const fullDir = outputDir || '.';
-  
+  const stocks = processRecords(data.stocks, "stocks");
+  const bonds = processRecords(data.bonds, "bonds");
+  const reits = processRecords(data.reits, "reits");
+
+  const fullDir = outputDir || ".";
+
   await exportICS(stocks, `${fullDir}/zh_CN.stocks.ics`);
   await exportICS(bonds, `${fullDir}/zh_CN.bonds.ics`);
   await exportICS(reits, `${fullDir}/zh_CN.reits.ics`);
-  
-  await exportJSON(stocks, `${fullDir}/zh_CN.stocks.json`, 'stocks');
-  await exportJSON(bonds, `${fullDir}/zh_CN.bonds.json`, 'bonds');
-  await exportJSON(reits, `${fullDir}/zh_CN.reits.json`, 'reits');
-  
-  console.log('Export complete: 6 files generated');
+
+  await exportJSON(stocks, `${fullDir}/zh_CN.stocks.json`, "stocks");
+  await exportJSON(bonds, `${fullDir}/zh_CN.bonds.json`, "bonds");
+  await exportJSON(reits, `${fullDir}/zh_CN.reits.json`, "reits");
+
+  console.log("Export complete: 6 files generated");
 }
 
 if (import.meta.main) {
   const sampleStocks: IPORecord[] = [
-    { name: '测试股份', code: '001312', issuanceDate: new Date('2026-04-15'), issuancePrice: 10.5, publicationDate: new Date('2026-04-10'), listingDate: new Date('2026-04-20') }
+    {
+      name: "测试股份",
+      code: "001312",
+      issuanceDate: new Date("2026-04-15"),
+      issuancePrice: 10.5,
+      publicationDate: new Date("2026-04-10"),
+      listingDate: new Date("2026-04-20"),
+    },
   ];
   const sampleBonds: IPORecord[] = [];
   const sampleREITs: IPORecord[] = [];
-  
+
   generateCalendar(
     { stocks: sampleStocks, bonds: sampleBonds, reits: sampleREITs },
-    '.'
+    ".",
   );
 }
