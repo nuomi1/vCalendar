@@ -1,12 +1,24 @@
 import type { IPORecord, InputData } from './types';
 import { formatSummary, formatDescription, serializeJSON, recordToICS, getUID } from './utils';
 
+/**
+ * 验证 IPO 记录的发行日是否存在。
+ * @param record - IPO 记录
+ * @param code - 证券代码（用于错误信息）
+ * @throws 发行日缺失时抛出 Error
+ */
 function validateIssuanceDate(record: IPORecord, code: string): void {
   if (!record.issuanceDate) {
     throw new Error(`发行日缺失：${code}`);
   }
 }
 
+/**
+ * 检查是否存在重复的 UID（证券代码+市场）。
+ * @param records - IPO 记录数组
+ * @param category - 资产类别（当前未使用，保留参数）
+ * @throws 存在重复 UID 时抛出 Error
+ */
 function checkDuplicateUID(records: IPORecord[], category: string): void {
   const uids = records.map(r => getUID(r.code, inferMarket(r.code)));
   const seen = new Set<string>();
@@ -18,12 +30,24 @@ function checkDuplicateUID(records: IPORecord[], category: string): void {
   }
 }
 
+/**
+ * 根据证券代码推断所属交易所市场。
+ * @param code - 证券代码
+ * @returns 市场标识：'SH' 沪市、'SZ' 深市、'BJ' 北交所
+ * @example '688001' => 'SH', '000001' => 'SZ', '830001' => 'BJ'
+ */
 function inferMarket(code: string): "SH" | "SZ" | "BJ" {
   if (code.startsWith('8') || code.startsWith('4')) return 'BJ';
   if (code.startsWith('6') || code.startsWith('688')) return 'SH';
   return 'SZ';
 }
 
+/**
+ * 将 IPO 记录数组转换为 iCalendar 格式字符串。
+ * @param records - IPO 记录数组
+ * @param category - 资产类别（用于推断证券类型）
+ * @returns 完整的 VCALENDAR 字符串（未包含 END:VCALENDAR）
+ */
 function createICS(records: IPORecord[], category: string): string {
   const lines: string[] = [
     'BEGIN:VCALENDAR',
@@ -40,17 +64,36 @@ function createICS(records: IPORecord[], category: string): string {
   return lines.join('\r\n');
 }
 
+/**
+ * 将 IPO 记录导出为 ICS 日历文件。
+ * @param records - IPO 记录数组
+ * @param filename - 输出文件路径
+ * @throws UID 重复时抛出 Error
+ */
 async function exportICS(records: IPORecord[], filename: string): Promise<void> {
   checkDuplicateUID(records, '');
   const ics = createICS(records, '');
   await Bun.file(filename).write(ics);
 }
 
+/**
+ * 将 IPO 记录导出为格式化 JSON 文件。
+ * @param records - IPO 记录数组
+ * @param filename - 输出文件路径
+ * @param category - 资产类别
+ */
 async function exportJSON(records: IPORecord[], filename: string, category: string): Promise<void> {
   const json = serializeJSON(records, category, 2);
   await Bun.file(filename).write(json);
 }
 
+/**
+ * 对 IPO 记录进行数据验证和预处理。
+ * @param records - IPO 记录数组
+ * @param category - 资产类别
+ * @returns 验证后的记录数组
+ * @throws 发行日缺失时抛出 Error
+ */
 function processRecords(
   records: IPORecord[],
   category: 'stocks' | 'bonds' | 'reits'
@@ -61,6 +104,17 @@ function processRecords(
   return records;
 }
 
+/**
+ * 生成 A 股 IPO 日历文件（ICS + JSON）。
+ * 同时输出股票、债券、REITs 三个类别的日历。
+ * @param data - 包含 stocks、bonds、reits 数组的输入数据
+ * @param outputDir - 输出目录路径（默认当前目录）
+ * @example
+ * await generateCalendar(
+ *   { stocks: [...], bonds: [...], reits: [...] },
+ *   './output'
+ * );
+ */
 export async function generateCalendar(
   data: InputData,
   outputDir: string
