@@ -7,7 +7,6 @@ import {
   serializeJSON,
   getUID,
   formatDate,
-  recordToICS,
   createICS,
 } from "./utils";
 import type { IPORecord } from "./types";
@@ -160,7 +159,7 @@ describe("ical-generator - ical-generator 输出格式验证", () => {
     const ics = createICS([], "stocks");
     expect(ics).toContain("BEGIN:VCALENDAR");
     expect(ics).toContain("VERSION:2.0");
-    expect(ics).toContain("PRODID:-//A-Share IPO Calendar//EN");
+    expect(ics).toContain("PRODID:-//sebbo.net//ical-generator//EN");
   });
   test("VEVENT 包含所有必需字段", () => {
     const record: IPORecord = {

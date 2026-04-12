@@ -1,14 +1,9 @@
 import type { IPORecord, InputData } from "./types";
 import {
-  formatDate,
-  formatDescription,
-  formatSummary,
-  getUID,
-  inferInstrumentType,
-  inferMarket,
-  recordToICS,
-  serializeJSON,
   createICS,
+  getUID,
+  inferMarket,
+  serializeJSON,
 } from "./utils";
 
 /**
@@ -38,18 +33,6 @@ function checkDuplicateUID(records: IPORecord[], category: string): void {
     }
     seen.add(uid);
   }
-}
-
-/**
- * 根据证券代码推断所属交易所市场。
- * @param code - 证券代码
- * @returns 市场标识：'SH' 沪市、'SZ' 深市、'BJ' 北交所
- * @example '688001' => 'SH', '000001' => 'SZ', '830001' => 'BJ'
- */
-function inferMarket(code: string): "SH" | "SZ" | "BJ" {
-  if (code.startsWith("8") || code.startsWith("4")) return "BJ";
-  if (code.startsWith("6") || code.startsWith("688")) return "SH";
-  return "SZ";
 }
 
 /**

@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import ical, { ICalCalendar } from "ical-generator";
+import { ICalCalendar } from "ical-generator";
 import type { InstrumentType, IPORecord, Market } from "./types";
 
 /**
@@ -108,95 +108,32 @@ export function serializeJSON(
   return JSON.stringify(sorted, null, indent);
 }
 
-/**
- * 将单条 IPO 记录转换为 iCalendar VEVENT 格式。
- * 使用 ical-generator 构建 VEVENT 组件。
- * 事件时间固定为发行日 09:30-10:00（非全天事件）。
- * @param record - IPO 记录
- * @param category - 资产类别
- * @returns VEVENT 字符串块
- */
-export function recordToICS(record: IPORecord, category: string): string {
-  const calendar = new ICalCalendar();
-  calendar.name("A-Share IPO Calendar");
-  calendar.prodId("//A-Share IPO Calendar//EN");
-
-  const market = inferMarket(record.code);
-  const uid = `${record.code}.${market}`;
-
-  const startDate = new Date(
-    record.issuanceDate.getFullYear(),
-    record.issuanceDate.getMonth(),
-    record.issuanceDate.getDate(),
-    9,
-    30,
-    0
-  );
-  const endDate = new Date(
-    record.issuanceDate.getFullYear(),
-    record.issuanceDate.getMonth(),
-    record.issuanceDate.getDate(),
-    10,
-    0,
-    0
-  );
-
-  const event = calendar.createEvent({
-    start: startDate,
-    end: endDate,
-    floating: true,
-    summary: formatSummary(
-      record.name,
-      record.code,
-      market,
-      inferInstrumentType(record.code, category)
-    ),
-    description: formatDescription(record),
-  });
-  event.uid(uid);
-
-  return calendar.toString();
-}
-
 export function createICS(records: IPORecord[], category: string): string {
   const calendar = new ICalCalendar();
-  calendar.name("A-Share IPO Calendar");
-  calendar.prodId("//A-Share IPO Calendar//EN");
+  calendar.name("新股申购");
 
   for (const record of records) {
     const market = inferMarket(record.code);
-    const uid = `${record.code}.${market}`;
+    const uid = getUID(record.code, market);
 
-    const startDate = new Date(
-      record.issuanceDate.getFullYear(),
-      record.issuanceDate.getMonth(),
-      record.issuanceDate.getDate(),
-      9,
-      30,
-      0
+    const startDate = dayjs(record.issuanceDate).hour(9).minute(30).second(0);
+    const endDate = dayjs(record.issuanceDate).hour(10).minute(0).second(0);
+    const summary = formatSummary(
+      record.name,
+      record.code,
+      market,
+      inferInstrumentType(record.code, category),
     );
-    const endDate = new Date(
-      record.issuanceDate.getFullYear(),
-      record.issuanceDate.getMonth(),
-      record.issuanceDate.getDate(),
-      10,
-      0,
-      0
-    );
+    const description = formatDescription(record);
 
-    const event = calendar.createEvent({
+    calendar.createEvent({
+      id: uid,
       start: startDate,
       end: endDate,
       floating: true,
-      summary: formatSummary(
-        record.name,
-        record.code,
-        market,
-        inferInstrumentType(record.code, category)
-      ),
-      description: formatDescription(record),
+      summary: summary,
+      description: description,
     });
-    event.uid(uid);
   }
 
   return calendar.toString();
