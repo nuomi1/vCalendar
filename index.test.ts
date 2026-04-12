@@ -155,7 +155,7 @@ describe("导出 - 空输入", () => {
   });
 });
 
-describe("ical.js - ical.js 输出格式验证", () => {
+describe("ical-generator - ical-generator 输出格式验证", () => {
   test("VCALENDAR 包含正确头部", () => {
     const ics = createICS([], "stocks");
     expect(ics).toContain("BEGIN:VCALENDAR");

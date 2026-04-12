@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import ICAL from "ical.js";
+import ical, { ICalCalendar } from "ical-generator";
 import type { InstrumentType, IPORecord, Market } from "./types";
 
 /**
@@ -110,106 +110,98 @@ export function serializeJSON(
 
 /**
  * 将单条 IPO 记录转换为 iCalendar VEVENT 格式。
- * 使用 ical.js 构建 VEVENT 组件。
+ * 使用 ical-generator 构建 VEVENT 组件。
  * 事件时间固定为发行日 09:30-10:00（非全天事件）。
  * @param record - IPO 记录
  * @param category - 资产类别
  * @returns VEVENT 字符串块
  */
 export function recordToICS(record: IPORecord, category: string): string {
-  // 创建 VEVENT 组件
-  const vevent = new ICAL.Component("vevent");
+  const calendar = new ICalCalendar();
+  calendar.name("A-Share IPO Calendar");
+  calendar.prodId("//A-Share IPO Calendar//EN");
 
-  // 使用 ICAL.Event 包装，获取便捷属性接口
-  const event = new ICAL.Event(vevent);
-
-  // 设置属性
   const market = inferMarket(record.code);
-  event.uid = `${record.code}.${market}`;
-  event.summary = formatSummary(
-    record.name,
-    record.code,
-    market,
-    inferInstrumentType(record.code, category),
+  const uid = `${record.code}.${market}`;
+
+  const startDate = new Date(
+    record.issuanceDate.getFullYear(),
+    record.issuanceDate.getMonth(),
+    record.issuanceDate.getDate(),
+    9,
+    30,
+    0
   );
-  event.description = formatDescription(record);
+  const endDate = new Date(
+    record.issuanceDate.getFullYear(),
+    record.issuanceDate.getMonth(),
+    record.issuanceDate.getDate(),
+    10,
+    0,
+    0
+  );
 
-  // 使用 ICAL.Time 构造日期时间（不指定时区，使用系统默认）
-  const dateStr = formatDate(record.issuanceDate);
-  const [year, month, day] = dateStr.split("-").map(Number);
-  event.startDate = new ICAL.Time({
-    year,
-    month,
-    day,
-    hour: 9,
-    minute: 30,
-  });
-  event.endDate = new ICAL.Time({
-    year,
-    month,
-    day,
-    hour: 10,
-    minute: 0,
-  });
-
-  return vevent.toString();
-}
-
-/**
- * 将 IPO 记录数组转换为 iCalendar 格式字符串。
- * 使用 ical.js 构建 VCALENDAR 组件。
- * @param records - IPO 记录数组
- * @param category - 资产类别（用于推断证券类型）
- * @returns 完整的 VCALENDAR 字符串
- */
-export function createICS(records: IPORecord[], category: string): string {
-  const vcalendar = new ICAL.Component("vcalendar");
-  vcalendar.updatePropertyWithValue("version", "2.0");
-  vcalendar.updatePropertyWithValue("prodid", "-//A-Share IPO Calendar//EN");
-
-  for (const record of records) {
-    const vevent = new ICAL.Component("vevent");
-    const event = new ICAL.Event(vevent);
-
-    const market = inferMarket(record.code);
-    event.uid = `${record.code}.${market}`;
-    event.summary = formatSummary(
+  const event = calendar.createEvent({
+    start: startDate,
+    end: endDate,
+    floating: true,
+    summary: formatSummary(
       record.name,
       record.code,
       market,
-      inferInstrumentType(record.code, category),
-    );
-    event.description = formatDescription(record);
+      inferInstrumentType(record.code, category)
+    ),
+    description: formatDescription(record),
+  });
+  event.uid(uid);
 
-    const dateStr = formatDate(record.issuanceDate);
-    const [year, month, day] = dateStr.split("-").map(Number);
-    event.startDate = new ICAL.Time({
-      year,
-      month,
-      day,
-      hour: 9,
-      minute: 30,
-    });
-    event.endDate = new ICAL.Time({
-      year,
-      month,
-      day,
-      hour: 10,
-      minute: 0,
-    });
-
-    vcalendar.addSubcomponent(vevent);
-  }
-
-  return vcalendar.toString();
+  return calendar.toString();
 }
 
-/**
- * 生成日历事件的唯一标识符。
- * @param code - 证券代码
- * @param market - 市场标识
- * @returns UID 字符串，如 '688865.SH'
- */
+export function createICS(records: IPORecord[], category: string): string {
+  const calendar = new ICalCalendar();
+  calendar.name("A-Share IPO Calendar");
+  calendar.prodId("//A-Share IPO Calendar//EN");
+
+  for (const record of records) {
+    const market = inferMarket(record.code);
+    const uid = `${record.code}.${market}`;
+
+    const startDate = new Date(
+      record.issuanceDate.getFullYear(),
+      record.issuanceDate.getMonth(),
+      record.issuanceDate.getDate(),
+      9,
+      30,
+      0
+    );
+    const endDate = new Date(
+      record.issuanceDate.getFullYear(),
+      record.issuanceDate.getMonth(),
+      record.issuanceDate.getDate(),
+      10,
+      0,
+      0
+    );
+
+    const event = calendar.createEvent({
+      start: startDate,
+      end: endDate,
+      floating: true,
+      summary: formatSummary(
+        record.name,
+        record.code,
+        market,
+        inferInstrumentType(record.code, category)
+      ),
+      description: formatDescription(record),
+    });
+    event.uid(uid);
+  }
+
+  return calendar.toString();
+}
+
 export function getUID(code: string, market: Market): string {
   return `${code}.${market}`;
 }

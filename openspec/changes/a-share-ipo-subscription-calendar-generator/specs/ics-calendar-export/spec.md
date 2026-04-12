@@ -40,20 +40,20 @@ The system MUST export each VEVENT as non-all-day with fixed local time window `
 - **WHEN** a VEVENT is serialized
 - **THEN** DTSTART/DTEND represent issuance date at `09:30` and `10:00` in system timezone
 
-### Requirement: Use ical.js for ICS editing and serialization
-The system MUST use `ical.js` to create, edit, and serialize VCALENDAR/VEVENT components.
+### Requirement: Use ical-generator for ICS editing and serialization
+The system MUST use `ical-generator` to create, edit, and serialize VCALENDAR/VEVENT components.
 
-#### Scenario: Event update serialization
-- **WHEN** an event is generated from input record
-- **THEN** the system uses `ical.js` component construction/editing and serializes a valid ICS output
+#### Scenario: Calendar creation with ical-generator
+- **WHEN** a VCALENDAR is created
+- **THEN** use `ical({ name: '...', prodId: '...' })` to instantiate the calendar
 
-#### Scenario: Use ICAL.Event with direct property access
+#### Scenario: Event creation using createEvent() API
 - **WHEN** creating a VEVENT component
-- **THEN** use `new ICAL.Event(vevent)` to get the Event wrapper and set properties directly (`event.summary = ...`, `event.description = ...`) instead of using `addProperty` API
+- **THEN** use `calendar.createEvent({ ... })` with object properties (uid, summary, description, start, end)
 
-#### Scenario: Time handling uses system timezone
-- **WHEN** ICAL.Time is created for DTSTART/DTEND
-- **THEN** do NOT specify timezone, allowing the system default timezone to be used
+#### Scenario: Time handling uses JavaScript Date objects
+- **WHEN** creating event with start/end times
+- **THEN** use JavaScript `Date` objects directly (e.g., `new Date('2026-04-15T09:30:00')`)
 
 ### Requirement: Export ICS files by instrument
 The system MUST export ICS files using names `zh_CN.stocks.ics`, `zh_CN.bonds.ics`, and `zh_CN.reits.ics`.

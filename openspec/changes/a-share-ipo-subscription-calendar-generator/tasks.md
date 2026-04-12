@@ -26,13 +26,14 @@
 - [x] 4.2 验证输出文件格式与修改前一致
 - [x] 4.3 验证日期格式为 `YYYY-MM-DD`
 
-## 5. 使用 ical.js 处理日历事件 (utils.ts)
+## 5. 使用 ical-generator 处理日历事件 (utils.ts)
 
-- [x] 5.1 导入 `ical.js` 模块 (import ICAL from 'ical.js')
-- [x] 5.2 重构 `recordToICS()` 使用 `ICAL.Component('vevent')` + `ICAL.Event(vevent)`
-- [x] 5.3 使用 ICAL.Time 构造 DTSTART/DTEND (不指定时区，使用系统默认)
-- [x] 5.4 直接设置 event.summary, event.description, event.uid, event.startDate, event.endDate
-- [x] 5.5 重构 `createICS()` 使用 `ICAL.Component('vcalendar')` 添加子组件后序列化
+- [x] 5.1 导入 `ical-generator` 模块 (import ical, { ICalCalendar } from 'ical-generator')
+- [x] 5.2 重构 `recordToICS()` 使用 `new ICalCalendar()` + `calendar.createEvent()`
+- [x] 5.3 使用 `calendar.prodId("//A-Share IPO Calendar//EN")` 设置 PRODID
+- [x] 5.4 使用 `event.uid(uid)` 设置自定义 UID（不是构造函数参数）
+- [x] 5.5 使用 `floating: true` 确保时间不转换为 UTC
+- [x] 5.6 重构 `createICS()` 使用相同的 ICalCalendar API
 
 ## 6. 测试验证
 

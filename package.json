@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "dayjs": "^1.11.20",
-    "ical.js": "^2.2.1",
+    "ical-generator": "^7.0.0",
     "ofetch": "^1.5.1"
   }
 }
