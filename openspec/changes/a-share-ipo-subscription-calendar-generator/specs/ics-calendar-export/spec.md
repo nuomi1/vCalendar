@@ -47,6 +47,14 @@ The system MUST use `ical.js` to create, edit, and serialize VCALENDAR/VEVENT co
 - **WHEN** an event is generated from input record
 - **THEN** the system uses `ical.js` component construction/editing and serializes a valid ICS output
 
+#### Scenario: Use ICAL.Event with direct property access
+- **WHEN** creating a VEVENT component
+- **THEN** use `new ICAL.Event(vevent)` to get the Event wrapper and set properties directly (`event.summary = ...`, `event.description = ...`) instead of using `addProperty` API
+
+#### Scenario: Time handling uses system timezone
+- **WHEN** ICAL.Time is created for DTSTART/DTEND
+- **THEN** do NOT specify timezone, allowing the system default timezone to be used
+
 ### Requirement: Export ICS files by instrument
 The system MUST export ICS files using names `zh_CN.stocks.ics`, `zh_CN.bonds.ics`, and `zh_CN.reits.ics`.
 
@@ -90,3 +98,18 @@ The system MUST format SUMMARY as `【类型简称】名称 代码.市场`.
 #### Scenario: REITs summary format
 - **WHEN** a reits event is generated
 - **THEN** SUMMARY starts with `【REITs】` followed by name, code, and market
+
+### Requirement: ICS output validation
+The system MUST verify ICS output matches expected format through string comparison.
+
+#### Scenario: Output string format verification
+- **WHEN** recordToICS generates ICS content
+- **THEN** the output string contains required VCALENDAR/VEVENT structure with correct field values
+
+#### Scenario: VCALENDAR header verification
+- **WHEN** ICS is generated
+- **THEN** output contains "BEGIN:VCALENDAR", "VERSION:2.0", and "PRODID:-//A-Share IPO Calendar//EN"
+
+#### Scenario: VEVENT field verification
+- **WHEN** VEVENT is generated from IPORecord
+- **THEN** output contains BEGIN:VEVENT, UID, DTSTART, DTEND, SUMMARY, DESCRIPTION, END:VEVENT

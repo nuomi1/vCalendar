@@ -1,8 +1,14 @@
 import type { IPORecord, InputData } from "./types";
 import {
+  formatDate,
+  formatDescription,
+  formatSummary,
   getUID,
+  inferInstrumentType,
+  inferMarket,
   recordToICS,
   serializeJSON,
+  createICS,
 } from "./utils";
 
 /**
@@ -44,28 +50,6 @@ function inferMarket(code: string): "SH" | "SZ" | "BJ" {
   if (code.startsWith("8") || code.startsWith("4")) return "BJ";
   if (code.startsWith("6") || code.startsWith("688")) return "SH";
   return "SZ";
-}
-
-/**
- * 将 IPO 记录数组转换为 iCalendar 格式字符串。
- * @param records - IPO 记录数组
- * @param category - 资产类别（用于推断证券类型）
- * @returns 完整的 VCALENDAR 字符串（未包含 END:VCALENDAR）
- */
-function createICS(records: IPORecord[], category: string): string {
-  const lines: string[] = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//A-Share IPO Calendar//EN",
-  ];
-
-  for (const record of records) {
-    const vevent = recordToICS(record, category);
-    lines.push(vevent);
-  }
-
-  lines.push("END:VCALENDAR");
-  return lines.join("\r\n");
 }
 
 /**

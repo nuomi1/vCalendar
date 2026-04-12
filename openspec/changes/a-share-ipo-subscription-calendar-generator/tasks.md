@@ -25,3 +25,18 @@
 - [x] 4.1 运行 `bun test` 确保现有测试通过
 - [x] 4.2 验证输出文件格式与修改前一致
 - [x] 4.3 验证日期格式为 `YYYY-MM-DD`
+
+## 5. 使用 ical.js 处理日历事件 (utils.ts)
+
+- [x] 5.1 导入 `ical.js` 模块 (import ICAL from 'ical.js')
+- [x] 5.2 重构 `recordToICS()` 使用 `ICAL.Component('vevent')` + `ICAL.Event(vevent)`
+- [x] 5.3 使用 ICAL.Time 构造 DTSTART/DTEND (不指定时区，使用系统默认)
+- [x] 5.4 直接设置 event.summary, event.description, event.uid, event.startDate, event.endDate
+- [x] 5.5 重构 `createICS()` 使用 `ICAL.Component('vcalendar')` 添加子组件后序列化
+
+## 6. 测试验证
+
+- [x] 6.1 添加 ICS 输出格式验证测试 (VCALENDAR 头部)
+- [x] 6.2 添加 VEVENT 字段验证测试 (UID, DTSTART, DTEND, SUMMARY, DESCRIPTION)
+- [x] 6.3 验证 ICS 输出包含正确的 CRLF 行尾
+- [x] 6.4 运行 `bun test` 确保所有测试通过

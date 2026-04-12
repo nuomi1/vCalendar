@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import ICAL from "ical.js";
 import type { InstrumentType, IPORecord, Market } from "./types";
 
 /**
@@ -109,36 +110,98 @@ export function serializeJSON(
 
 /**
  * 将单条 IPO 记录转换为 iCalendar VEVENT 格式。
+ * 使用 ical.js 构建 VEVENT 组件。
  * 事件时间固定为发行日 09:30-10:00（非全天事件）。
  * @param record - IPO 记录
  * @param category - 资产类别
  * @returns VEVENT 字符串块
  */
 export function recordToICS(record: IPORecord, category: string): string {
-  const dateStr = formatDate(record.issuanceDate);
-  const [year, month, day] = dateStr.split("-").map(Number);
-  const dtStart = `${year}${String(month).padStart(2, "0")}${String(day).padStart(2, "0")}T093000`;
-  const dtEnd = `${year}${String(month).padStart(2, "0")}${String(day).padStart(2, "0")}T100000`;
+  // 创建 VEVENT 组件
+  const vevent = new ICAL.Component("vevent");
+
+  // 使用 ICAL.Event 包装，获取便捷属性接口
+  const event = new ICAL.Event(vevent);
+
+  // 设置属性
   const market = inferMarket(record.code);
-  const uid = `${record.code}.${market}`;
-  const instrumentType = inferInstrumentType(record.code, category);
-  const summary = formatSummary(
+  event.uid = `${record.code}.${market}`;
+  event.summary = formatSummary(
     record.name,
     record.code,
     market,
-    instrumentType,
+    inferInstrumentType(record.code, category),
   );
-  const description = formatDescription(record).split("\n").join("\\n");
+  event.description = formatDescription(record);
 
-  return [
-    "BEGIN:VEVENT",
-    `UID:${uid}`,
-    `DTSTART:${dtStart}`,
-    `DTEND:${dtEnd}`,
-    `SUMMARY:${summary}`,
-    `DESCRIPTION:${description}`,
-    "END:VEVENT",
-  ].join("\r\n");
+  // 使用 ICAL.Time 构造日期时间（不指定时区，使用系统默认）
+  const dateStr = formatDate(record.issuanceDate);
+  const [year, month, day] = dateStr.split("-").map(Number);
+  event.startDate = new ICAL.Time({
+    year,
+    month,
+    day,
+    hour: 9,
+    minute: 30,
+  });
+  event.endDate = new ICAL.Time({
+    year,
+    month,
+    day,
+    hour: 10,
+    minute: 0,
+  });
+
+  return vevent.toString();
+}
+
+/**
+ * 将 IPO 记录数组转换为 iCalendar 格式字符串。
+ * 使用 ical.js 构建 VCALENDAR 组件。
+ * @param records - IPO 记录数组
+ * @param category - 资产类别（用于推断证券类型）
+ * @returns 完整的 VCALENDAR 字符串
+ */
+export function createICS(records: IPORecord[], category: string): string {
+  const vcalendar = new ICAL.Component("vcalendar");
+  vcalendar.updatePropertyWithValue("version", "2.0");
+  vcalendar.updatePropertyWithValue("prodid", "-//A-Share IPO Calendar//EN");
+
+  for (const record of records) {
+    const vevent = new ICAL.Component("vevent");
+    const event = new ICAL.Event(vevent);
+
+    const market = inferMarket(record.code);
+    event.uid = `${record.code}.${market}`;
+    event.summary = formatSummary(
+      record.name,
+      record.code,
+      market,
+      inferInstrumentType(record.code, category),
+    );
+    event.description = formatDescription(record);
+
+    const dateStr = formatDate(record.issuanceDate);
+    const [year, month, day] = dateStr.split("-").map(Number);
+    event.startDate = new ICAL.Time({
+      year,
+      month,
+      day,
+      hour: 9,
+      minute: 30,
+    });
+    event.endDate = new ICAL.Time({
+      year,
+      month,
+      day,
+      hour: 10,
+      minute: 0,
+    });
+
+    vcalendar.addSubcomponent(vevent);
+  }
+
+  return vcalendar.toString();
 }
 
 /**
