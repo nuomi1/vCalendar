@@ -1,3 +1,4 @@
+import stringify from "canonical-json";
 import dayjs from "dayjs";
 import { ICalCalendar } from "ical-generator";
 import type { InstrumentType, IPORecord, Market } from "./types";
@@ -76,36 +77,14 @@ export function formatDescription(record: IPORecord): string {
 
 /**
  * 将 IPO 记录数组序列化为格式化的 JSON 字符串。
+ * 使用 canonical-json 库输出 RFC 8785 兼容的确定性 JSON。
  * 输出字段按字母排序，包含推断的市场和证券类型。
  * @param records - IPO 记录数组
  * @param category - 资产类别
- * @param indent - JSON 缩进空格数
- * @returns 格式化的 JSON 字符串
+ * @returns 格式化的 JSON 字符串（2 空格缩进）
  */
-export function serializeJSON(
-  records: IPORecord[],
-  category: string,
-  indent: number = 2,
-): string {
-  const sorted = records.map((r) => {
-    const obj: Record<string, unknown> = {
-      name: r.name,
-      code: r.code,
-      market: inferMarket(r.code),
-      instrumentType: inferInstrumentType(r.code, category),
-      issuanceDate: formatDate(r.issuanceDate),
-      issuancePrice: r.issuancePrice ?? null,
-      publicationDate: r.publicationDate ? formatDate(r.publicationDate) : null,
-      listingDate: r.listingDate ? formatDate(r.listingDate) : null,
-    };
-    const keys = Object.keys(obj).sort();
-    const sortedObj: Record<string, unknown> = {};
-    for (const k of keys) {
-      sortedObj[k] = obj[k];
-    }
-    return sortedObj;
-  });
-  return JSON.stringify(sorted, null, indent);
+export function createJSON(records: IPORecord[], category: string): string {
+  return stringify(records, undefined, 2) || "";
 }
 
 export function createICS(records: IPORecord[], category: string): string {

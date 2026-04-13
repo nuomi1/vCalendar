@@ -4,7 +4,7 @@ import {
   inferInstrumentType,
   formatSummary,
   formatDescription,
-  serializeJSON,
+  createJSON,
   getUID,
   formatDate,
   createICS,
@@ -84,7 +84,7 @@ describe("4.4 - formatDescription", () => {
   });
 });
 
-describe("4.5 - serializeJSON", () => {
+describe("4.5 - createJSON", () => {
   test("字母排序", () => {
     const records: IPORecord[] = [
       {
@@ -96,14 +96,14 @@ describe("4.5 - serializeJSON", () => {
         listingDate: undefined,
       },
     ];
-    const json = serializeJSON(records, "stocks", 2);
+    const json = createJSON(records, "stocks");
     expect(json).toContain('"code"');
     expect(json).toContain('"issuanceDate"');
     expect(json).toContain('"market"');
     expect(json).toContain('"name"');
   });
   test("2空格缩进", () => {
-    const json = serializeJSON([], "stocks", 2);
+    const json = createJSON([], "stocks");
     expect(json).toBe("[]");
   });
 });

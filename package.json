@@ -9,6 +9,7 @@
     "typescript": "^6.0.2"
   },
   "dependencies": {
+    "canonical-json": "^0.4.0",
     "dayjs": "^1.11.20",
     "ical-generator": "^10.1.0",
     "ofetch": "^1.5.1"

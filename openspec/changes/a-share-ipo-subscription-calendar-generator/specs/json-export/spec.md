@@ -1,7 +1,18 @@
 ## ADDED Requirements
 
+### Requirement: Use canonical-json library for serialization
+The system MUST use the `canonical-json` library for JSON serialization, which provides deterministic output compliant with RFC 8785 (JSON Canonicalization Scheme).
+
+#### Scenario: Library usage
+- **WHEN** JSON serialization is required
+- **THEN** use `canonical-json` library with `space: 2` for 2-space indentation
+
+#### Scenario: RFC 8785 compliance
+- **WHEN** a JSON file is generated
+- **THEN** the output is RFC 8785 compliant with keys sorted in UTF-16 code unit order
+
 ### Requirement: Export JSON with alphabetical key sorting
-The system MUST export JSON with all keys sorted in alphabetical order.
+The system MUST export JSON with all keys sorted in alphabetical order (handled by canonical-json).
 
 #### Scenario: Key ordering
 - **WHEN** a JSON file is generated
@@ -12,11 +23,15 @@ The system MUST export JSON with all keys sorted in alphabetical order.
 - **THEN** each object's keys are independently sorted alphabetically
 
 ### Requirement: Use 2-space indentation
-The system MUST use exactly 2 spaces for JSON indentation.
+The system MUST use exactly 2 spaces for JSON indentation (fixed internally, not configurable).
 
 #### Scenario: Indentation check
 - **WHEN** a JSON file is serialized
 - **THEN** each indentation level uses exactly 2 spaces
+
+#### Scenario: Internal configuration
+- **WHEN** the JSON serialization function is called
+- **THEN** indentation is fixed at 2 spaces, no indent parameter accepted
 
 ### Requirement: Export JSON files by instrument
 The system MUST export JSON files using names `zh_CN.stocks.json`, `zh_CN.bonds.json`, and `zh_CN.reits.json`.

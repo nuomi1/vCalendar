@@ -1,9 +1,9 @@
 import type { IPORecord, InputData } from "./types";
 import {
   createICS,
+  createJSON,
   getUID,
   inferMarket,
-  serializeJSON,
 } from "./utils";
 
 /**
@@ -61,7 +61,7 @@ async function exportJSON(
   filename: string,
   category: string,
 ): Promise<void> {
-  const json = serializeJSON(records, category, 2);
+  const json = createJSON(records, category);
   await Bun.file(filename).write(json);
 }
 
