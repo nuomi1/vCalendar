@@ -84,7 +84,20 @@ export function formatDescription(record: IPORecord): string {
  * @returns 格式化的 JSON 字符串（2 空格缩进）
  */
 export function createJSON(records: IPORecord[], category: string): string {
-  return stringify(records, undefined, 2) || "";
+  const mapped = records.map((r) => {
+    const obj: Record<string, unknown> = {
+      name: r.name,
+      code: r.code,
+      market: inferMarket(r.code),
+      instrumentType: inferInstrumentType(r.code, category),
+      issuanceDate: formatDate(r.issuanceDate),
+      issuancePrice: r.issuancePrice ?? null,
+      publicationDate: r.publicationDate ? formatDate(r.publicationDate) : null,
+      listingDate: r.listingDate ? formatDate(r.listingDate) : null,
+    };
+    return obj;
+  });
+  return stringify(mapped, undefined, 2) || "";
 }
 
 export function createICS(records: IPORecord[], category: string): string {
