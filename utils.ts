@@ -1,7 +1,10 @@
 import stringify from "canonical-json";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import { ICalCalendar } from "ical-generator";
 import type { InstrumentType, IPORecord, Market } from "./types";
+
+dayjs.extend(utc);
 
 /**
  * 根据证券代码推断所属交易所市场。
@@ -185,18 +188,14 @@ export function formatDate(date: Date): string {
 
 /**
  * 生成日历事件的摘要标题。
- * @param name - 证券名称
- * @param code - 证券代码
- * @param market - 市场标识
- * @param instrumentType - 证券类型
+ * @param record - IPO 记录
  * @returns 格式化的摘要，如【科】海光信息 688865.SH
  */
-export function formatSummary(
-  name: string,
-  code: string,
-  market: Market,
-  instrumentType: InstrumentType,
-): string {
+export function formatSummary(record: IPORecord): string {
+  const name = record.name;
+  const code = record.code;
+  const market = inferMarket(code);
+  const instrumentType = inferInstrumentType(code);
   return `【${instrumentType}】${name} ${code}.${market}`;
 }
 
@@ -244,23 +243,18 @@ export function createICS(records: IPORecord[]): string {
   calendar.name("新股申购");
 
   for (const record of records) {
-    const market = inferMarket(record.code);
-    const uid = getUID(record.code, market);
-
-    const startDate = dayjs(record.issuanceDate).hour(9).minute(30).second(0);
-    const endDate = dayjs(record.issuanceDate).hour(10).minute(0).second(0);
-    const summary = formatSummary(
-      record.name,
-      record.code,
-      market,
-      inferInstrumentType(record.code),
-    );
+    const id = getUID(record);
+    const start = dayjs(record.issuanceDate).hour(9).minute(30).second(0);
+    const end = dayjs(record.issuanceDate).hour(10).minute(0).second(0);
+    const stamp = dayjs(record.issuanceDate).utc().hour(0).minute(0).second(0);
+    const summary = formatSummary(record);
     const description = formatDescription(record);
 
     calendar.createEvent({
-      id: uid,
-      start: startDate,
-      end: endDate,
+      id: id,
+      start: start,
+      end: end,
+      stamp: stamp,
       floating: true,
       summary: summary,
       description: description,
@@ -270,6 +264,8 @@ export function createICS(records: IPORecord[]): string {
   return calendar.toString();
 }
 
-export function getUID(code: string, market: Market): string {
+export function getUID(record: IPORecord): string {
+  const code = record.code;
+  const market = inferMarket(code);
   return `${code}.${market}`;
 }

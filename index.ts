@@ -1,5 +1,5 @@
 import type { IPORecord, InputData } from "./types";
-import { createICS, createJSON, getUID, inferMarket } from "./utils";
+import { createICS, createJSON, getUID } from "./utils";
 
 /**
  * 验证 IPO 记录的发行日是否存在。
@@ -19,7 +19,7 @@ function validateIssuanceDate(record: IPORecord, code: string): void {
  * @throws 存在重复 UID 时抛出 Error
  */
 function checkDuplicateUID(records: IPORecord[]): void {
-  const uids = records.map((r) => getUID(r.code, inferMarket(r.code)));
+  const uids = records.map((r) => getUID(r));
   const seen = new Set<string>();
   for (const uid of uids) {
     if (seen.has(uid)) {

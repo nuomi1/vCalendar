@@ -133,22 +133,50 @@ describe("inferInstrumentType", () => {
 });
 
 describe("4.3 - formatSummary", () => {
-  test("股票格式", () =>
-    expect(formatSummary("测试股份", "001312", "SZ", "深")).toBe(
-      "【深】测试股份 001312.SZ",
-    ));
-  test("科创板", () =>
-    expect(formatSummary("科创股份", "688001", "SH", "科")).toBe(
-      "【科】科创股份 688001.SH",
-    ));
-  test("可转债", () =>
-    expect(formatSummary("转债A", "123456", "SH", "债")).toBe(
-      "【债】转债A 123456.SH",
-    ));
-  test("REITs", () =>
-    expect(formatSummary("REITs基金", "508001", "SH", "REITs")).toBe(
-      "【REITs】REITs基金 508001.SH",
-    ));
+  test("股票格式", () => {
+    const record: IPORecord = {
+      name: "测试股份",
+      code: "001312",
+      issuanceDate: new Date("2026-04-15"),
+      issuancePrice: null,
+      publicationDate: null,
+      listingDate: null,
+    };
+    expect(formatSummary(record)).toBe("【深】测试股份 001312.SZ");
+  });
+  test("科创板", () => {
+    const record: IPORecord = {
+      name: "科创股份",
+      code: "688001",
+      issuanceDate: new Date("2026-04-15"),
+      issuancePrice: null,
+      publicationDate: null,
+      listingDate: null,
+    };
+    expect(formatSummary(record)).toBe("【科】科创股份 688001.SH");
+  });
+  test("可转债", () => {
+    const record: IPORecord = {
+      name: "转债A",
+      code: "123456",
+      issuanceDate: new Date("2026-04-15"),
+      issuancePrice: null,
+      publicationDate: null,
+      listingDate: null,
+    };
+    expect(formatSummary(record)).toBe("【债】转债A 123456.SZ");
+  });
+  test("REITs", () => {
+    const record: IPORecord = {
+      name: "REITs基金",
+      code: "508001",
+      issuanceDate: new Date("2026-04-15"),
+      issuancePrice: null,
+      publicationDate: null,
+      listingDate: null,
+    };
+    expect(formatSummary(record)).toBe("【REITs】REITs基金 508001.SH");
+  });
 });
 
 describe("4.4 - formatDescription", () => {
@@ -215,8 +243,28 @@ describe("formatDate", () => {
 });
 
 describe("6.2 - getUID", () => {
-  test("UID格式", () => expect(getUID("001312", "SZ")).toBe("001312.SZ"));
-  test("SH市场", () => expect(getUID("688001", "SH")).toBe("688001.SH"));
+  test("UID格式", () => {
+    const record: IPORecord = {
+      name: "测试",
+      code: "001312",
+      issuanceDate: new Date("2026-04-15"),
+      issuancePrice: null,
+      publicationDate: null,
+      listingDate: null,
+    };
+    expect(getUID(record)).toBe("001312.SZ");
+  });
+  test("SH市场", () => {
+    const record: IPORecord = {
+      name: "测试",
+      code: "688001",
+      issuanceDate: new Date("2026-04-15"),
+      issuancePrice: null,
+      publicationDate: null,
+      listingDate: null,
+    };
+    expect(getUID(record)).toBe("688001.SH");
+  });
 });
 
 describe("校验 - 发行日缺失", () => {
