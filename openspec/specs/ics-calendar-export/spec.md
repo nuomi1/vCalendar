@@ -3,6 +3,17 @@
 ## Purpose
 TBD - created by archiving change a-share-ipo-subscription-calendar-generator. Update Purpose after archive.
 ## Requirements
+### Requirement: Generate one event per record
+The system MUST generate exactly one calendar event per input record, using issuance date as the event date.
+
+#### Scenario: Valid issuance record
+- **WHEN** a record includes issuance date
+- **THEN** the system creates one calendar event for that record
+
+#### Scenario: Missing issuance date
+- **WHEN** a record does not include issuance date
+- **THEN** the system throws an exception instead of generating an event
+
 ### Requirement: Export subscription calendar events as ICS
 The system MUST export subscription calendar events to standards-compliant ICS payloads containing stable UID, DTSTART, DTEND, SUMMARY, and DESCRIPTION fields for each event.
 
@@ -116,4 +127,11 @@ The system MUST verify ICS output matches expected format through string compari
 #### Scenario: VEVENT field verification
 - **WHEN** VEVENT is generated from IPORecord
 - **THEN** output contains BEGIN:VEVENT, UID, DTSTART, DTEND, SUMMARY, DESCRIPTION, END:VEVENT
+
+### Requirement: Validate issuance date exists per record
+The system MUST throw an exception when a record does not include issuance date.
+
+#### Scenario: Missing issuance date
+- **WHEN** a record does not include issuance date
+- **THEN** the system throws an exception instead of generating an event
 
