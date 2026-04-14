@@ -1,4 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//A-Share IPO Calendar//EN
+PRODID:-//sebbo.net//ical-generator//EN
+NAME:新股申购
+X-WR-CALNAME:新股申购
 END:VCALENDAR

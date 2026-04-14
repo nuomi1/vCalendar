@@ -1,10 +1,5 @@
 import type { IPORecord, InputData } from "./types";
-import {
-  createICS,
-  createJSON,
-  getUID,
-  inferMarket,
-} from "./utils";
+import { createICS, createJSON, getUID, inferMarket } from "./utils";
 
 /**
  * 验证 IPO 记录的发行日是否存在。
@@ -21,10 +16,9 @@ function validateIssuanceDate(record: IPORecord, code: string): void {
 /**
  * 检查是否存在重复的 UID（证券代码+市场）。
  * @param records - IPO 记录数组
- * @param category - 资产类别（当前未使用，保留参数）
  * @throws 存在重复 UID 时抛出 Error
  */
-function checkDuplicateUID(records: IPORecord[], category: string): void {
+function checkDuplicateUID(records: IPORecord[]): void {
   const uids = records.map((r) => getUID(r.code, inferMarket(r.code)));
   const seen = new Set<string>();
   for (const uid of uids) {
@@ -45,8 +39,8 @@ async function exportICS(
   records: IPORecord[],
   filename: string,
 ): Promise<void> {
-  checkDuplicateUID(records, "");
-  const ics = createICS(records, "");
+  checkDuplicateUID(records);
+  const ics = createICS(records);
   await Bun.file(filename).write(ics);
 }
 
@@ -54,28 +48,22 @@ async function exportICS(
  * 将 IPO 记录导出为格式化 JSON 文件。
  * @param records - IPO 记录数组
  * @param filename - 输出文件路径
- * @param category - 资产类别
  */
 async function exportJSON(
   records: IPORecord[],
   filename: string,
-  category: string,
 ): Promise<void> {
-  const json = createJSON(records, category);
+  const json = createJSON(records);
   await Bun.file(filename).write(json);
 }
 
 /**
  * 对 IPO 记录进行数据验证和预处理。
  * @param records - IPO 记录数组
- * @param category - 资产类别
  * @returns 验证后的记录数组
  * @throws 发行日缺失时抛出 Error
  */
-function processRecords(
-  records: IPORecord[],
-  category: "stocks" | "bonds" | "reits",
-): IPORecord[] {
+function processRecords(records: IPORecord[]): IPORecord[] {
   for (const r of records) {
     validateIssuanceDate(r, r.code);
   }
@@ -97,9 +85,9 @@ export async function generateCalendar(
   data: InputData,
   outputDir: string,
 ): Promise<void> {
-  const stocks = processRecords(data.stocks, "stocks");
-  const bonds = processRecords(data.bonds, "bonds");
-  const reits = processRecords(data.reits, "reits");
+  const stocks = processRecords(data.stocks);
+  const bonds = processRecords(data.bonds);
+  const reits = processRecords(data.reits);
 
   const fullDir = outputDir || ".";
 
@@ -107,9 +95,9 @@ export async function generateCalendar(
   await exportICS(bonds, `${fullDir}/zh_CN.bonds.ics`);
   await exportICS(reits, `${fullDir}/zh_CN.reits.ics`);
 
-  await exportJSON(stocks, `${fullDir}/zh_CN.stocks.json`, "stocks");
-  await exportJSON(bonds, `${fullDir}/zh_CN.bonds.json`, "bonds");
-  await exportJSON(reits, `${fullDir}/zh_CN.reits.json`, "reits");
+  await exportJSON(stocks, `${fullDir}/zh_CN.stocks.json`);
+  await exportJSON(bonds, `${fullDir}/zh_CN.bonds.json`);
+  await exportJSON(reits, `${fullDir}/zh_CN.reits.json`);
 
   console.log("Export complete: 6 files generated");
 }
