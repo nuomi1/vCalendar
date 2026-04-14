@@ -199,6 +199,9 @@ describe("4.4 - formatDescription", () => {
       name: "测试",
       code: "001",
       issuanceDate: new Date("2026-04-15"),
+      issuancePrice: null,
+      publicationDate: null,
+      listingDate: null,
     };
     const desc = formatDescription(record);
     expect(desc).toContain("发行价：--");
@@ -215,8 +218,8 @@ describe("4.5 - createJSON", () => {
         code: "001",
         issuanceDate: new Date("2026-04-15"),
         issuancePrice: 10,
-        publicationDate: undefined,
-        listingDate: undefined,
+        publicationDate: null,
+        listingDate: null,
       },
     ];
     const json = createJSON(records);
@@ -327,6 +330,9 @@ describe("ical-generator - ical-generator 输出格式验证", () => {
       name: "测试",
       code: "001312",
       issuanceDate: new Date("2026-04-15"),
+      issuancePrice: null,
+      publicationDate: null,
+      listingDate: null,
     };
     const ics = createICS([record]);
     expect(ics).toContain("DTSTART:20260415T093000");

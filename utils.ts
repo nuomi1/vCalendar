@@ -206,7 +206,7 @@ export function formatSummary(record: IPORecord): string {
  */
 export function formatDescription(record: IPORecord): string {
   const price =
-    record.issuancePrice !== undefined ? `${record.issuancePrice} 元` : "--";
+    record.issuancePrice != null ? `${record.issuancePrice} 元` : "--";
   const pubDate = record.publicationDate
     ? formatDate(record.publicationDate)
     : "--";
