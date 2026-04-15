@@ -129,12 +129,13 @@ The system MUST render missing description fields as `--` in ICS event descripti
 
 ### Requirement: Format SUMMARY with instrument type prefix
 
-The system MUST format SUMMARY as `【类型简称】名称 代码.市场`.
+The system MUST format SUMMARY as `【类型简称】名称 代码.市场`, where market and instrument type are derived from `inference-rules`.
 
 #### Scenario: Stock summary format
 
 - **WHEN** a stock event is generated
 - **THEN** SUMMARY starts with `【上/科/深/创/北】` followed by name, code, and market
+  - (market from `inferMarket(code)`, instrument type from `inferInstrumentType(code)`)
 
 #### Scenario: Bond summary format
 

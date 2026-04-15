@@ -2,7 +2,26 @@
 
 ## Purpose
 
-TBD - created by archiving change a-share-ipo-subscription-calendar-generator. Update Purpose after archive.
+Define the input data model and validation rules for A-share IPO subscription calendar generation.
+
+## Input Model
+
+Instrument records are pre-normalized into three separate arrays: `stocks`, `bonds`, and `reits`.
+
+### Instrument Record Fields
+
+Each instrument record contains these fields:
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `name` | string | Yes | 证券简称 |
+| `code` | string | Yes | 证券代码 |
+| `issuanceDate` | Date | Yes | 发行日 |
+| `issuancePrice` | number \| null | No | 发行价 |
+| `publicationDate` | Date \| null | No | 公布日 |
+| `listingDate` | Date \| null | No | 上市日 |
+
+**Note:** `market` and `instrumentType` are **not** stored in the model. They are derived at export time by calling `inferMarket(code)` and `inferInstrumentType(code)` from the `inference-rules` module.
 
 ## Requirements
 
@@ -34,58 +53,16 @@ The system MUST require issuance date on every input record.
 - **WHEN** a record has no issuance date
 - **THEN** the system throws an exception
 
-### Requirement: Define instrument record model fields
+### Requirement: Reference inference rules for market/instrument type
 
-The system MUST use a consistent model structure for instrument records.
+Market and instrument type derivation is governed by the `inference-rules` specification.
 
-#### Scenario: Instrument record model
+#### Scenario: Market inference
 
-- **WHEN** an instrument record (stock/bond/reits) is provided
-- **THEN** it contains these fields:
-  - `name`: string (required) - 证券简称
-  - `code`: string (required) - 证券代码
-  - `issuanceDate`: date (required) - 发行日
-  - `issuancePrice`: number | null - 发行价
-  - `publicationDate`: Date | null - 公布日
-  - `listingDate`: Date | null - 上市日
+- **WHEN** market is needed during export
+- **THEN** call `inferMarket(code)` from `inference-rules`
 
-Note: `market` and `instrumentType` are derived from code prefix, not stored in the model.
+#### Scenario: Instrument type inference
 
-### Requirement: Infer market and instrument type from security code
-
-The system MUST derive market code and instrument type abbreviation from the security code.
-
-#### Scenario: Shanghai Main Board stock (6-digit code starting with 6)
-
-- **WHEN** a stock code starts with `6` (not 688)
-- **THEN** market is `SH` and instrument type is `上` (上交所主板)
-
-#### Scenario: STAR Market stock (688 prefix)
-
-- **WHEN** a stock code starts with `688`
-- **THEN** market is `SH` and instrument type is `科` (上交所科创板)
-
-#### Scenario: Shenzhen Main Board stock (000/001 prefix)
-
-- **WHEN** a stock code starts with `000` or `001`
-- **THEN** market is `SZ` and instrument type is `深` (深交所主板)
-
-#### Scenario: ChiNext stock (300 prefix)
-
-- **WHEN** a stock code starts with `300`
-- **THEN** market is `SZ` and instrument type is `创` (深交所创业板)
-
-#### Scenario: Beijing Stock Exchange stock (8/4 digit code)
-
-- **WHEN** a stock code starts with `8` or `4`
-- **THEN** market is `BJ` and instrument type is `北` (北交所主板)
-
-#### Scenario: Convertible bond
-
-- **WHEN** a bond record is provided
-- **THEN** market is inferred and instrument type is `债` (可转债)
-
-#### Scenario: REITs
-
-- **WHEN** a reits record is provided
-- **THEN** market is inferred and instrument type is `REITs` (REITs 基金)
+- **WHEN** instrument type is needed during export
+- **THEN** call `inferInstrumentType(code)` from `inference-rules`

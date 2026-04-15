@@ -78,7 +78,11 @@ The system MUST export JSON arrays for each instrument type.
 
 ### Requirement: Preserve event data mapping
 
-The system MUST map each record fields to JSON object with consistent field names.
+The system MUST map each input record to a JSON object with consistent field names.
+
+#### Input/Output Type Mapping
+
+Input records (from `a-share-ipo-ingestion`) use `Date | null` types. When exported to JSON, date fields are converted to `string | null` via `formatDate()`.
 
 #### Scenario: Model fields (stored)
 
@@ -86,17 +90,17 @@ The system MUST map each record fields to JSON object with consistent field name
 - **THEN** the JSON object contains model fields:
   - `name`: string - 证券简称
   - `code`: string - 证券代码
-  - `issuanceDate`: string - 发行日
-  - `issuancePrice`: number? - 发行价 (null if missing)
-  - `publicationDate`: string? - 公布日 (null if missing)
-  - `listingDate`: string? - 上市日 (null if missing)
+  - `issuanceDate`: string | null - 发行日 (Date → string via formatDate())
+  - `issuancePrice`: number | null - 发行价
+  - `publicationDate`: string | null - 公布日 (Date | null → string | null via formatDate())
+  - `listingDate`: string | null - 上市日 (Date | null → string | null via formatDate())
 
 #### Scenario: Derived fields (computed)
 
 - **WHEN** a record is exported to JSON
 - **THEN** the JSON object contains derived fields:
-  - `market`: string - 市场 (derived from code prefix: SH/SZ/BJ)
-  - `instrumentType`: string - 标的类型 (derived from code prefix + array source: 上/科/深/创/北/债/REITs)
+  - `market`: string - 市场 (calls `inferMarket(code)` from `inference-rules`)
+  - `instrumentType`: string - 标的类型 (calls `inferInstrumentType(code)` from `inference-rules`)
 
 #### Scenario: Missing optional fields
 
