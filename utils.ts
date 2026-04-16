@@ -9,7 +9,7 @@ dayjs.extend(utc);
 /**
  * 根据证券代码推断所属交易所市场。
  * @param code - 证券代码
- * @returns 市场标识：'SH' 沪市、'SZ' 深市、'BJ' 北交所
+ * @returns 市场标识：'SH' 上交所、'SZ' 深交所、'BJ' 北交所
  * @throws 无法识别的证券代码时抛出 Error
  */
 export function inferMarket(code: string): Market {
@@ -94,7 +94,7 @@ export function inferMarket(code: string): Market {
 /**
  * 根据证券代码推断证券类型。
  * @param code - 证券代码
- * @returns 证券类型标识：'上' 沪市、'科' 科创板、'深' 深市、'创' 创业板、'北' 北交所、'债' 债券、'REITs' REITs
+ * @returns 证券类型标识：'上' 上交所、'科' 科创板、'深' 深交所、'创' 创业板、'北' 北交所、'债' 债券、'REITs' REITs
  * @throws 无法识别的证券代码时抛出 Error
  */
 export function inferInstrumentType(code: string): InstrumentType {

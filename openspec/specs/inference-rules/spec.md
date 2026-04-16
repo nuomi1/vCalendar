@@ -16,7 +16,7 @@ The system SHALL correctly identify market and instrument type from a 6-digit se
 2. Within each exchange: 股票 (stocks) → 可转债 (bonds) → REITs
 3. Within same instrument type: ascending numeric order
 
-#### Scenario: Shanghai Stock Exchange - 股票
+#### Scenario: 上交所 - 股票
 
 - **WHEN** code startsWith "600"
 - **THEN** inferMarket returns "SH", inferInstrumentType returns "上"
@@ -36,7 +36,7 @@ The system SHALL correctly identify market and instrument type from a 6-digit se
 - **WHEN** code startsWith "689"
 - **THEN** inferMarket returns "SH", inferInstrumentType returns "科"
 
-#### Scenario: Shanghai Stock Exchange - 可转债
+#### Scenario: 上交所 - 可转债
 
 - **WHEN** code startsWith "110"
 - **THEN** inferMarket returns "SH", inferInstrumentType returns "债"
@@ -50,12 +50,12 @@ The system SHALL correctly identify market and instrument type from a 6-digit se
 - **WHEN** code startsWith "118"
 - **THEN** inferMarket returns "SH", inferInstrumentType returns "债"
 
-#### Scenario: Shanghai Stock Exchange - REITs
+#### Scenario: 上交所 - REITs
 
 - **WHEN** code startsWith "508"
 - **THEN** inferMarket returns "SH", inferInstrumentType returns "REITs"
 
-#### Scenario: Shenzhen Stock Exchange - 股票
+#### Scenario: 深交所 - 股票
 
 - **WHEN** code startsWith "000"
 - **THEN** inferMarket returns "SZ", inferInstrumentType returns "深"
@@ -102,7 +102,7 @@ The system SHALL correctly identify market and instrument type from a 6-digit se
 - **WHEN** code startsWith "309"
 - **THEN** inferMarket returns "SZ", inferInstrumentType returns "创"
 
-#### Scenario: Shenzhen Stock Exchange - 可转债
+#### Scenario: 深交所 - 可转债
 
 - **WHEN** code startsWith "123"
 - **THEN** inferMarket returns "SZ", inferInstrumentType returns "债"
@@ -113,7 +113,7 @@ The system SHALL correctly identify market and instrument type from a 6-digit se
 - **WHEN** code startsWith "128"
 - **THEN** inferMarket returns "SZ", inferInstrumentType returns "债"
 
-#### Scenario: Shenzhen Stock Exchange - REITs
+#### Scenario: 深交所 - REITs
 
 - **WHEN** code startsWith "180"
 - **THEN** inferMarket returns "SZ", inferInstrumentType returns "REITs"
@@ -121,17 +121,17 @@ The system SHALL correctly identify market and instrument type from a 6-digit se
 - **WHEN** code startsWith "181"
 - **THEN** inferMarket returns "SZ", inferInstrumentType returns "REITs"
 
-#### Scenario: Beijing Stock Exchange - 股票
+#### Scenario: 北交所 - 股票
 
 - **WHEN** code startsWith "92"
 - **THEN** inferMarket returns "BJ", inferInstrumentType returns "北"
 
-#### Scenario: Beijing Stock Exchange - 可转债
+#### Scenario: 北交所 - 可转债
 
 - **WHEN** code startsWith "810"
 - **THEN** inferMarket returns "BJ", inferInstrumentType returns "债"
 
-#### Scenario: Beijing Stock Exchange - REITs
+#### Scenario: 北交所 - REITs
 
 BJSE does not support REITs. No matching rule required.
 
