@@ -7,9 +7,9 @@ import { createICS, createJSON, getUID } from "./utils";
  * @param code - 证券代码（用于错误信息）
  * @throws 发行日缺失时抛出 Error
  */
-function validateIssuanceDate(record: IPORecord, code: string): void {
+function validateIssuanceDate(record: IPORecord): void {
   if (!record.issuanceDate) {
-    throw new Error(`发行日缺失：${code}`);
+    throw new Error(`发行日缺失：${record.code}`);
   }
 }
 
@@ -19,9 +19,9 @@ function validateIssuanceDate(record: IPORecord, code: string): void {
  * @throws 存在重复 UID 时抛出 Error
  */
 function checkDuplicateUID(records: IPORecord[]): void {
-  const uids = records.map((r) => getUID(r));
   const seen = new Set<string>();
-  for (const uid of uids) {
+  for (const r of records) {
+    const uid = getUID(r);
     if (seen.has(uid)) {
       throw new Error(`UID 重复：${uid}`);
     }
@@ -65,7 +65,7 @@ async function exportJSON(
  */
 function processRecords(records: IPORecord[]): IPORecord[] {
   for (const r of records) {
-    validateIssuanceDate(r, r.code);
+    validateIssuanceDate(r);
   }
   return records;
 }
@@ -74,22 +74,17 @@ function processRecords(records: IPORecord[]): IPORecord[] {
  * 生成 A 股 IPO 日历文件（ICS + JSON）。
  * 同时输出股票、债券、REITs 三个类别的日历。
  * @param data - 包含 stocks、bonds、reits 数组的输入数据
- * @param outputDir - 输出目录路径（默认当前目录）
  * @example
  * await generateCalendar(
- *   { stocks: [...], bonds: [...], reits: [...] },
- *   './output'
+ *   { stocks: [...], bonds: [...], reits: [...] }
  * );
  */
-export async function generateCalendar(
-  data: InputData,
-  outputDir: string,
-): Promise<void> {
+export async function generateCalendar(data: InputData): Promise<void> {
   const stocks = processRecords(data.stocks);
   const bonds = processRecords(data.bonds);
   const reits = processRecords(data.reits);
 
-  const fullDir = outputDir || ".";
+  const fullDir = ".";
 
   await exportICS(stocks, `${fullDir}/zh_CN.stocks.ics`);
   await exportICS(bonds, `${fullDir}/zh_CN.bonds.ics`);
@@ -116,8 +111,9 @@ if (import.meta.main) {
   const sampleBonds: IPORecord[] = [];
   const sampleREITs: IPORecord[] = [];
 
-  generateCalendar(
-    { stocks: sampleStocks, bonds: sampleBonds, reits: sampleREITs },
-    ".",
-  );
+  generateCalendar({
+    stocks: sampleStocks,
+    bonds: sampleBonds,
+    reits: sampleREITs,
+  });
 }
