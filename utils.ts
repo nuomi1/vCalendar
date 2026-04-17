@@ -2,7 +2,15 @@ import stringify from "canonical-json";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { ICalCalendar } from "ical-generator";
-import type { InstrumentType, IPORecord, Market } from "./types";
+import { ofetch } from "ofetch";
+import type {
+  BondIPOData,
+  InstrumentType,
+  IPORecord,
+  Market,
+  REITsIPOData,
+  StockIPOData,
+} from "./types";
 
 dayjs.extend(utc);
 
@@ -187,6 +195,23 @@ export function formatDate(date: Date): string {
 }
 
 /**
+ * 解析日期字符串为 Date 对象。
+ * @param dateStr - 日期字符串
+ * @returns Date 对象
+ */
+function parseDate(dateStr: string): Date {
+  return dayjs(dateStr).toDate();
+}
+
+/**
+ * 获取动态日期过滤起始日期：上个月第一天。
+ * @returns 格式为 YYYY-MM-DD
+ */
+function getDateFilterStart(): string {
+  return dayjs().subtract(1, "month").startOf("month").format("YYYY-MM-DD");
+}
+
+/**
  * 生成日历事件的摘要标题。
  * @param record - IPO 记录
  * @returns 格式化的摘要，如【科】海光信息 688865.SH
@@ -280,4 +305,155 @@ export function getUID(record: IPORecord): string {
   const code = record.code;
   const market = inferMarket(code);
   return `${code}.${market}`;
+}
+
+/**
+ * 将股票 IPO 原始数据转换为 IPORecord。
+ * @param data - 股票 IPO 原始数据
+ * @returns IPORecord
+ */
+function convertStockIPO(data: StockIPOData): IPORecord {
+  return {
+    name: data.SECURITY_NAME,
+    code: data.SECURITY_CODE,
+    issuanceDate: parseDate(data.APPLY_DATE),
+    issuancePrice: data.ISSUE_PRICE,
+    publicationDate: parseDate(data.BALLOT_NUM_DATE),
+    listingDate: data.LISTING_DATE ? parseDate(data.LISTING_DATE) : null,
+  };
+}
+
+/**
+ * 将可转债 IPO 原始数据转换为 IPORecord。
+ * @param data - 可转债 IPO 原始数据
+ * @returns IPORecord
+ */
+function convertBondIPO(data: BondIPOData): IPORecord {
+  return {
+    name: data.SECURITY_NAME_ABBR,
+    code: data.SECURITY_CODE,
+    issuanceDate: parseDate(data.PUBLIC_START_DATE),
+    issuancePrice: data.ISSUE_PRICE,
+    publicationDate: parseDate(data.BOND_START_DATE),
+    listingDate: data.LISTING_DATE ? parseDate(data.LISTING_DATE) : null,
+  };
+}
+
+/**
+ * 将 REITs IPO 原始数据转换为 IPORecord。
+ * @param data - REITs IPO 原始数据
+ * @returns IPORecord
+ */
+function convertREITsIPO(data: REITsIPOData): IPORecord {
+  return {
+    name: data.SECURITY_NAME_ABBR,
+    code: data.SECURITY_CODE,
+    issuanceDate: parseDate(data.SUBSCRIBE_START_DATE),
+    issuancePrice: data.SALE_PRICE,
+    publicationDate: data.RESULT_NOTICE_DATE
+      ? parseDate(data.RESULT_NOTICE_DATE)
+      : null,
+    listingDate: data.LISTING_DATE ? parseDate(data.LISTING_DATE) : null,
+  };
+}
+
+interface EastMoneyResponse<T> {
+  result: {
+    data: T[];
+  };
+}
+
+/**
+ * 从东方财富获取股票 IPO 数据。
+ * @returns IPORecord 数组
+ */
+export async function fetchStockIPO(): Promise<IPORecord[]> {
+  const api_fetch = ofetch.create({
+    baseURL: "https://datacenter-web.eastmoney.com/api",
+    responseType: "json",
+  });
+  const startDate = getDateFilterStart();
+
+  const json = await api_fetch<EastMoneyResponse<StockIPOData>>(
+    "/data/v1/get",
+    {
+      query: {
+        client: "WEB",
+        columns:
+          "APPLY_DATE,BALLOT_NUM_DATE,ISSUE_PRICE,LISTING_DATE,SECURITY_CODE,SECURITY_NAME",
+        filter: `(APPLY_DATE>='${startDate}')`,
+        pageNumber: 1,
+        pageSize: 50,
+        reportName: "RPTA_APP_IPOAPPLY",
+        sortColumns: "APPLY_DATE,SECURITY_CODE",
+        sortTypes: "-1,-1",
+        source: "WEB",
+      },
+    },
+  );
+
+  return json.result.data.map(convertStockIPO);
+}
+
+/**
+ * 从东方财富获取可转债 IPO 数据。
+ * @returns IPORecord 数组
+ */
+export async function fetchBondIPO(): Promise<IPORecord[]> {
+  const api_fetch = ofetch.create({
+    baseURL: "https://datacenter-web.eastmoney.com/api",
+    responseType: "json",
+  });
+  const startDate = getDateFilterStart();
+
+  const json = await api_fetch<EastMoneyResponse<BondIPOData>>("/data/v1/get", {
+    query: {
+      client: "WEB",
+      columns:
+        "BOND_START_DATE,LISTING_DATE,ISSUE_PRICE,PUBLIC_START_DATE,SECURITY_CODE,SECURITY_NAME_ABBR",
+      filter: `(PUBLIC_START_DATE>='${startDate}')`,
+      pageNumber: 1,
+      pageSize: 50,
+      reportName: "RPT_BOND_CB_LIST",
+      sortColumns: "PUBLIC_START_DATE,SECURITY_CODE",
+      sortTypes: "-1,-1",
+      source: "WEB",
+    },
+  });
+
+  return json.result.data.map(convertBondIPO);
+}
+
+/**
+ * 从东方财富获取 REITs IPO 数据。
+ * @returns IPORecord 数组
+ */
+export async function fetchREITsIPO(): Promise<IPORecord[]> {
+  const api_fetch = ofetch.create({
+    baseURL: "https://datacenter-web.eastmoney.com/api",
+    responseType: "json",
+  });
+  const startDate = getDateFilterStart();
+
+  const json = await api_fetch<EastMoneyResponse<REITsIPOData>>(
+    "/data/v1/get",
+    {
+      query: {
+        client: "WEB",
+        columns:
+          "LISTING_DATE,RESULT_NOTICE_DATE,SALE_PRICE,SECURITY_CODE,SECURITY_NAME_ABBR,SUBSCRIBE_START_DATE",
+        filter: `(SUBSCRIBE_START_DATE>='${startDate}')`,
+        pageNumber: 1,
+        pageSize: 50,
+        quoteColumns:
+          "NEW_DISCOUNT_RATIO~09~SECURITY_CODE,NEW_CHANGE_RATE~09~SECURITY_CODE,NEW_DIVIDEND_RATE_TTM~09~SECURITY_CODE",
+        reportName: "RPT_CUSTOM_REITS_APPLY_LIST_MARKET",
+        sortColumns: "SUBSCRIBE_START_DATE",
+        sortTypes: "-1",
+        source: "WEB",
+      },
+    },
+  );
+
+  return json.result.data.map(convertREITsIPO);
 }

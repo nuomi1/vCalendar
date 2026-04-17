@@ -1,5 +1,12 @@
 import type { IPORecord, InputData } from "./types";
-import { createICS, createJSON, getUID } from "./utils";
+import {
+  createICS,
+  createJSON,
+  fetchBondIPO,
+  fetchREITsIPO,
+  fetchStockIPO,
+  getUID,
+} from "./utils";
 
 /**
  * 验证 IPO 记录的发行日是否存在。
@@ -97,23 +104,20 @@ export async function generateCalendar(data: InputData): Promise<void> {
   console.log("Export complete: 6 files generated");
 }
 
-if (import.meta.main) {
-  const sampleStocks: IPORecord[] = [
-    {
-      name: "测试股份",
-      code: "001312",
-      issuanceDate: new Date("2026-04-15"),
-      issuancePrice: 10.5,
-      publicationDate: new Date("2026-04-10"),
-      listingDate: new Date("2026-04-20"),
-    },
-  ];
-  const sampleBonds: IPORecord[] = [];
-  const sampleREITs: IPORecord[] = [];
+async function main() {
+  const stocks = await fetchStockIPO();
+  const bonds = await fetchBondIPO();
+  const reits = await fetchREITsIPO();
 
-  generateCalendar({
-    stocks: sampleStocks,
-    bonds: sampleBonds,
-    reits: sampleREITs,
-  });
+  const data: InputData = {
+    stocks,
+    bonds,
+    reits,
+  };
+
+  await generateCalendar(data);
+}
+
+if (import.meta.main) {
+  await main();
 }

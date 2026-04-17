@@ -47,3 +47,57 @@ export interface InputData {
   /** REITs IPO 记录 */
   reits: IPORecord[];
 }
+
+/**
+ * 股票 IPO 原始数据（东方财富 RPTA_APP_IPOAPPLY）
+ */
+export interface StockIPOData {
+  /** 申购日期 */
+  APPLY_DATE: string;
+  /** 中签号公布日 */
+  BALLOT_NUM_DATE: string;
+  /** 发行价格 */
+  ISSUE_PRICE: number | null;
+  /** 上市日期 */
+  LISTING_DATE: string | null;
+  /** 股票代码 */
+  SECURITY_CODE: string;
+  /** 股票简称 */
+  SECURITY_NAME: string;
+}
+
+/**
+ * 可转债 IPO 原始数据（东方财富 RPT_BOND_CB_LIST）
+ */
+export interface BondIPOData {
+  /** 中签号发布日 */
+  BOND_START_DATE: string;
+  /** 上市时间 */
+  LISTING_DATE: string | null;
+  /** 发行价格 */
+  ISSUE_PRICE: number;
+  /** 申购日期 */
+  PUBLIC_START_DATE: string;
+  /** 债券代码 */
+  SECURITY_CODE: string;
+  /** 债券简称 */
+  SECURITY_NAME_ABBR: string;
+}
+
+/**
+ * REITs IPO 原始数据（东方财富 RPT_CUSTOM_REITS_APPLY_LIST_MARKET）
+ */
+export interface REITsIPOData {
+  /** 上市日 */
+  LISTING_DATE: string | null;
+  /** 发行结果公告日期 */
+  RESULT_NOTICE_DATE: string | null;
+  /** 认购价格(元/份) */
+  SALE_PRICE: number | null;
+  /** 代码 */
+  SECURITY_CODE: string;
+  /** 简称 */
+  SECURITY_NAME_ABBR: string;
+  /** 发售起始日 */
+  SUBSCRIBE_START_DATE: string;
+}
