@@ -1,12 +1,302 @@
 [
   {
+    "code": "603407",
+    "instrumentType": "上",
+    "issuanceDate": "2026-04-27",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "长裕集团",
+    "publicationDate": "2026-04-29"
+  },
+  {
+    "code": "301531",
+    "instrumentType": "创",
+    "issuanceDate": "2026-04-24",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "春光集团",
+    "publicationDate": "2026-04-28"
+  },
+  {
+    "code": "920186",
+    "instrumentType": "北",
+    "issuanceDate": "2026-04-20",
+    "issuancePrice": 16.21,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "中科仪",
+    "publicationDate": "2026-04-23"
+  },
+  {
+    "code": "301599",
+    "instrumentType": "创",
+    "issuanceDate": "2026-04-20",
+    "issuancePrice": 13.91,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "理奇智能",
+    "publicationDate": "2026-04-22"
+  },
+  {
+    "code": "920156",
+    "instrumentType": "北",
+    "issuanceDate": "2026-04-15",
+    "issuancePrice": 20.93,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "海昌智能",
+    "publicationDate": "2026-04-20"
+  },
+  {
+    "code": "688808",
+    "instrumentType": "科",
+    "issuanceDate": "2026-04-14",
+    "issuancePrice": 81.88,
+    "listingDate": null,
+    "market": "SH",
+    "name": "联讯仪器",
+    "publicationDate": "2026-04-16"
+  },
+  {
+    "code": "920125",
+    "instrumentType": "北",
+    "issuanceDate": "2026-04-13",
+    "issuancePrice": 16.57,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "鸿仕达",
+    "publicationDate": "2026-04-16"
+  },
+  {
     "code": "001312",
     "instrumentType": "深",
-    "issuanceDate": "2026-04-15",
-    "issuancePrice": 10.5,
-    "listingDate": "2026-04-20",
+    "issuanceDate": "2026-04-10",
+    "issuancePrice": 18.38,
+    "listingDate": null,
     "market": "SZ",
-    "name": "测试股份",
+    "name": "福恩股份",
+    "publicationDate": "2026-04-14"
+  },
+  {
+    "code": "920191",
+    "instrumentType": "北",
+    "issuanceDate": "2026-04-09",
+    "issuancePrice": 7.71,
+    "listingDate": "2026-04-20",
+    "market": "BJ",
+    "name": "瑞尔竞达",
+    "publicationDate": "2026-04-14"
+  },
+  {
+    "code": "688820",
+    "instrumentType": "科",
+    "issuanceDate": "2026-04-09",
+    "issuancePrice": 19.68,
+    "listingDate": null,
+    "market": "SH",
+    "name": "盛合晶微",
+    "publicationDate": "2026-04-13"
+  },
+  {
+    "code": "301513",
+    "instrumentType": "创",
+    "issuanceDate": "2026-04-08",
+    "issuancePrice": 26.66,
+    "listingDate": "2026-04-17",
+    "market": "SZ",
+    "name": "N尚水",
     "publicationDate": "2026-04-10"
+  },
+  {
+    "code": "920177",
+    "instrumentType": "北",
+    "issuanceDate": "2026-04-07",
+    "issuancePrice": 21.8,
+    "listingDate": "2026-04-16",
+    "market": "BJ",
+    "name": "恒道科技",
+    "publicationDate": "2026-04-10"
+  },
+  {
+    "code": "603293",
+    "instrumentType": "上",
+    "issuanceDate": "2026-04-07",
+    "issuancePrice": 33.49,
+    "listingDate": "2026-04-16",
+    "market": "SH",
+    "name": "埃泰克",
+    "publicationDate": "2026-04-09"
+  },
+  {
+    "code": "301666",
+    "instrumentType": "创",
+    "issuanceDate": "2026-04-03",
+    "issuancePrice": 46.08,
+    "listingDate": "2026-04-16",
+    "market": "SZ",
+    "name": "大普微",
+    "publicationDate": "2026-04-08"
+  },
+  {
+    "code": "920012",
+    "instrumentType": "北",
+    "issuanceDate": "2026-04-01",
+    "issuancePrice": 19.58,
+    "listingDate": "2026-04-13",
+    "market": "BJ",
+    "name": "创达新材",
+    "publicationDate": "2026-04-07"
+  },
+  {
+    "code": "920181",
+    "instrumentType": "北",
+    "issuanceDate": "2026-03-30",
+    "issuancePrice": 28,
+    "listingDate": "2026-04-10",
+    "market": "BJ",
+    "name": "赛英电子",
+    "publicationDate": "2026-04-02"
+  },
+  {
+    "code": "688811",
+    "instrumentType": "科",
+    "issuanceDate": "2026-03-30",
+    "issuancePrice": 6.41,
+    "listingDate": "2026-04-10",
+    "market": "SH",
+    "name": "有研复材",
+    "publicationDate": "2026-04-01"
+  },
+  {
+    "code": "603459",
+    "instrumentType": "上",
+    "issuanceDate": "2026-03-27",
+    "issuancePrice": 17.7,
+    "listingDate": "2026-04-08",
+    "market": "SH",
+    "name": "红板科技",
+    "publicationDate": "2026-03-31"
+  },
+  {
+    "code": "301696",
+    "instrumentType": "创",
+    "issuanceDate": "2026-03-27",
+    "issuancePrice": 24.68,
+    "listingDate": "2026-04-10",
+    "market": "SZ",
+    "name": "三瑞智能",
+    "publicationDate": "2026-03-31"
+  },
+  {
+    "code": "920011",
+    "instrumentType": "北",
+    "issuanceDate": "2026-03-25",
+    "issuancePrice": 15.5,
+    "listingDate": "2026-04-08",
+    "market": "BJ",
+    "name": "晨光电机",
+    "publicationDate": "2026-03-30"
+  },
+  {
+    "code": "920055",
+    "instrumentType": "北",
+    "issuanceDate": "2026-03-23",
+    "issuancePrice": 24.7,
+    "listingDate": "2026-03-31",
+    "market": "BJ",
+    "name": "隆源股份",
+    "publicationDate": "2026-03-26"
+  },
+  {
+    "code": "688813",
+    "instrumentType": "科",
+    "issuanceDate": "2026-03-20",
+    "issuancePrice": 26.28,
+    "listingDate": "2026-03-31",
+    "market": "SH",
+    "name": "泰金新能",
+    "publicationDate": "2026-03-24"
+  },
+  {
+    "code": "301683",
+    "instrumentType": "创",
+    "issuanceDate": "2026-03-20",
+    "issuancePrice": 78.38,
+    "listingDate": "2026-04-01",
+    "market": "SZ",
+    "name": "慧谷新材",
+    "publicationDate": "2026-03-24"
+  },
+  {
+    "code": "001257",
+    "instrumentType": "深",
+    "issuanceDate": "2026-03-20",
+    "issuancePrice": 7.82,
+    "listingDate": "2026-03-31",
+    "market": "SZ",
+    "name": "盛龙股份",
+    "publicationDate": "2026-03-24"
+  },
+  {
+    "code": "920069",
+    "instrumentType": "北",
+    "issuanceDate": "2026-03-18",
+    "issuancePrice": 18.38,
+    "listingDate": "2026-03-27",
+    "market": "BJ",
+    "name": "普昂医疗",
+    "publicationDate": "2026-03-23"
+  },
+  {
+    "code": "920188",
+    "instrumentType": "北",
+    "issuanceDate": "2026-03-16",
+    "issuancePrice": 14.04,
+    "listingDate": "2026-03-30",
+    "market": "BJ",
+    "name": "悦龙科技",
+    "publicationDate": "2026-03-19"
+  },
+  {
+    "code": "688781",
+    "instrumentType": "科",
+    "issuanceDate": "2026-03-16",
+    "issuancePrice": 22.68,
+    "listingDate": "2026-03-25",
+    "market": "SH",
+    "name": "视涯科技",
+    "publicationDate": "2026-03-18"
+  },
+  {
+    "code": "301682",
+    "instrumentType": "创",
+    "issuanceDate": "2026-03-16",
+    "issuancePrice": 69.66,
+    "listingDate": "2026-03-25",
+    "market": "SZ",
+    "name": "宏明电子",
+    "publicationDate": "2026-03-18"
+  },
+  {
+    "code": "920028",
+    "instrumentType": "北",
+    "issuanceDate": "2026-03-11",
+    "issuancePrice": 9.4,
+    "listingDate": "2026-03-20",
+    "market": "BJ",
+    "name": "新恒泰",
+    "publicationDate": "2026-03-16"
+  },
+  {
+    "code": "920078",
+    "instrumentType": "北",
+    "issuanceDate": "2026-03-09",
+    "issuancePrice": 6.98,
+    "listingDate": "2026-03-18",
+    "market": "BJ",
+    "name": "族兴新材",
+    "publicationDate": "2026-03-12"
   }
 ]

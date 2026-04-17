@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "code": "508093",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-04-27",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "北投REIT",
+    "publicationDate": null
+  },
+  {
+    "code": "180503",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-04-08",
+    "issuancePrice": 2.317,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "中航北京昌保租赁住房REIT",
+    "publicationDate": "2026-04-11"
+  },
+  {
+    "code": "508020",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-04-01",
+    "issuancePrice": 4.68,
+    "listingDate": "2026-04-22",
+    "market": "SH",
+    "name": "隧道REIT",
+    "publicationDate": "2026-04-03"
+  }
+]
