@@ -1,0 +1,32 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Update IPO Calendar
+
+on:
+  schedule:
+    - cron: "0 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write # 显式声明写权限
+
+jobs:
+  update_ipo_calendar:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix: ${{ fromJSON(vars.STRATEGY_MATRIX) }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false # 防止 credentials 写回，避免触发 cascade
+      - uses: ./.github/actions/run_ts
+      - name: Set commit message with date
+        id: commit_msg
+        run: |
+          echo "msg=chore: auto-update ipo calendar $(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+        shell: bash
+      - uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: ${{ steps.commit_msg.outputs.msg }}
+          file_pattern: "zh_CN.*.json zh_CN.*.ics"

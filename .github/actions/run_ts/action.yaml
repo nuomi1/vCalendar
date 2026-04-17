@@ -1,0 +1,29 @@
+name: Run TS
+description: 执行 TypeScript 应用（Bun 环境）
+runs:
+  using: "composite"
+  steps:
+    - uses: szenius/set-timezone@v2.0
+      with:
+        timezoneLinux: "Asia/Shanghai"
+        timezoneMacos: "Asia/Shanghai"
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: ${{ matrix.bun }}
+    - uses: actions/cache@v5
+      with:
+        path: |
+          ~/.bun/install/cache
+        key: ${{ runner.os }}-bun-dependencies-${{ hashFiles('**/bun.lock', '**/bun.lockb') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-dependencies
+    - name: Install dependencies
+      run: |
+        bun install
+      shell: bash
+    - name: Run application
+      uses: nick-fields/retry@v4
+      with:
+        command: bun run index.ts
+        max_attempts: 2
+        timeout_minutes: 15
