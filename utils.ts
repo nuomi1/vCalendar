@@ -14,6 +14,72 @@ import type {
 
 dayjs.extend(utc);
 
+// ============================================================================
+// 代码前缀查找表
+// ============================================================================
+
+/**
+ * 代码前缀规则
+ */
+interface CodePrefixRule {
+  /** 代码前缀 */
+  prefix: string;
+  /** 所属市场 */
+  market: Market;
+  /** 证券类型 */
+  instrumentType: InstrumentType;
+}
+
+/**
+ * 代码前缀查找表
+ * 按前缀长度降序排列，确保匹配时优先使用更长的前缀
+ */
+const CODE_PREFIX_RULES: CodePrefixRule[] = [
+  // 上交所 - 主板 (600, 601, 603, 605)
+  { prefix: "600", market: "SH", instrumentType: "上" },
+  { prefix: "601", market: "SH", instrumentType: "上" },
+  { prefix: "603", market: "SH", instrumentType: "上" },
+  { prefix: "605", market: "SH", instrumentType: "上" },
+  // 上交所 - 科创板 (688, 689)
+  { prefix: "688", market: "SH", instrumentType: "科" },
+  { prefix: "689", market: "SH", instrumentType: "科" },
+  // 上交所 - 可转债 (110, 111, 113, 118)
+  { prefix: "110", market: "SH", instrumentType: "债" },
+  { prefix: "111", market: "SH", instrumentType: "债" },
+  { prefix: "113", market: "SH", instrumentType: "债" },
+  { prefix: "118", market: "SH", instrumentType: "债" },
+  // 上交所 - REITs (508)
+  { prefix: "508", market: "SH", instrumentType: "REITs" },
+  // 深交所 - 主板 (000, 001, 002, 003, 004)
+  { prefix: "000", market: "SZ", instrumentType: "深" },
+  { prefix: "001", market: "SZ", instrumentType: "深" },
+  { prefix: "002", market: "SZ", instrumentType: "深" },
+  { prefix: "003", market: "SZ", instrumentType: "深" },
+  { prefix: "004", market: "SZ", instrumentType: "深" },
+  // 深交所 - 创业板 (300-309)
+  { prefix: "300", market: "SZ", instrumentType: "创" },
+  { prefix: "301", market: "SZ", instrumentType: "创" },
+  { prefix: "302", market: "SZ", instrumentType: "创" },
+  { prefix: "303", market: "SZ", instrumentType: "创" },
+  { prefix: "304", market: "SZ", instrumentType: "创" },
+  { prefix: "305", market: "SZ", instrumentType: "创" },
+  { prefix: "306", market: "SZ", instrumentType: "创" },
+  { prefix: "307", market: "SZ", instrumentType: "创" },
+  { prefix: "308", market: "SZ", instrumentType: "创" },
+  { prefix: "309", market: "SZ", instrumentType: "创" },
+  // 深交所 - 可转债 (123, 127, 128)
+  { prefix: "123", market: "SZ", instrumentType: "债" },
+  { prefix: "127", market: "SZ", instrumentType: "债" },
+  { prefix: "128", market: "SZ", instrumentType: "债" },
+  // 深交所 - REITs (180, 181)
+  { prefix: "180", market: "SZ", instrumentType: "REITs" },
+  { prefix: "181", market: "SZ", instrumentType: "REITs" },
+  // 北交所 - 股票 (92)
+  { prefix: "92", market: "BJ", instrumentType: "北" },
+  // 北交所 - 可转债 (810)
+  { prefix: "810", market: "BJ", instrumentType: "债" },
+];
+
 /**
  * 根据证券代码推断所属交易所市场。
  * @param code - 证券代码
@@ -21,82 +87,11 @@ dayjs.extend(utc);
  * @throws 无法识别的证券代码时抛出 Error
  */
 export function inferMarket(code: string): Market {
-  // === 上交所 SH ===
-  // 股票（按数字从小到大：600, 601, 603, 605, 688, 689）
-  if (
-    code.startsWith("600") ||
-    code.startsWith("601") ||
-    code.startsWith("603") ||
-    code.startsWith("605") ||
-    code.startsWith("688") ||
-    code.startsWith("689")
-  ) {
-    return "SH";
+  const rule = CODE_PREFIX_RULES.find((r) => code.startsWith(r.prefix));
+  if (!rule) {
+    throw new Error(`无法识别的证券代码: ${code}`);
   }
-  // 可转债（按数字从小到大：110, 111, 113, 118）
-  if (
-    code.startsWith("110") ||
-    code.startsWith("111") ||
-    code.startsWith("113") ||
-    code.startsWith("118")
-  ) {
-    return "SH";
-  }
-  // REITs（508）
-  if (code.startsWith("508")) {
-    return "SH";
-  }
-
-  // === 深交所 SZ ===
-  // 股票（按数字从小到大：000, 001, 002, 003, 004, 300-309）
-  if (
-    code.startsWith("000") ||
-    code.startsWith("001") ||
-    code.startsWith("002") ||
-    code.startsWith("003") ||
-    code.startsWith("004")
-  ) {
-    return "SZ";
-  }
-  if (
-    code.startsWith("300") ||
-    code.startsWith("301") ||
-    code.startsWith("302") ||
-    code.startsWith("303") ||
-    code.startsWith("304") ||
-    code.startsWith("305") ||
-    code.startsWith("306") ||
-    code.startsWith("307") ||
-    code.startsWith("308") ||
-    code.startsWith("309")
-  ) {
-    return "SZ";
-  }
-  // 可转债（按数字从小到大：123, 127, 128）
-  if (
-    code.startsWith("123") ||
-    code.startsWith("127") ||
-    code.startsWith("128")
-  ) {
-    return "SZ";
-  }
-  // REITs（按数字从小到大：180, 181）
-  if (code.startsWith("180") || code.startsWith("181")) {
-    return "SZ";
-  }
-
-  // === 北交所 BJ ===
-  // 股票（92）
-  if (code.startsWith("92")) {
-    return "BJ";
-  }
-  // 可转债（810）
-  if (code.startsWith("810")) {
-    return "BJ";
-  }
-
-  // ❌ 无匹配
-  throw new Error(`无法识别的证券代码: ${code}`);
+  return rule.market;
 }
 
 /**
@@ -106,83 +101,11 @@ export function inferMarket(code: string): Market {
  * @throws 无法识别的证券代码时抛出 Error
  */
 export function inferInstrumentType(code: string): InstrumentType {
-  // === 上交所 SH ===
-  // 股票（按数字从小到大：600, 601, 603, 605 → 上；688, 689 → 科）
-  if (
-    code.startsWith("600") ||
-    code.startsWith("601") ||
-    code.startsWith("603") ||
-    code.startsWith("605")
-  ) {
-    return "上";
+  const rule = CODE_PREFIX_RULES.find((r) => code.startsWith(r.prefix));
+  if (!rule) {
+    throw new Error(`无法识别的证券代码: ${code}`);
   }
-  if (code.startsWith("688") || code.startsWith("689")) {
-    return "科";
-  }
-  // 可转债（按数字从小到大：110, 111, 113, 118）
-  if (
-    code.startsWith("110") ||
-    code.startsWith("111") ||
-    code.startsWith("113") ||
-    code.startsWith("118")
-  ) {
-    return "债";
-  }
-  // REITs（508）
-  if (code.startsWith("508")) {
-    return "REITs";
-  }
-
-  // === 深交所 SZ ===
-  // 股票（按数字从小到大：000, 001, 002, 003, 004 → 深；300-309 → 创）
-  if (
-    code.startsWith("000") ||
-    code.startsWith("001") ||
-    code.startsWith("002") ||
-    code.startsWith("003") ||
-    code.startsWith("004")
-  ) {
-    return "深";
-  }
-  if (
-    code.startsWith("300") ||
-    code.startsWith("301") ||
-    code.startsWith("302") ||
-    code.startsWith("303") ||
-    code.startsWith("304") ||
-    code.startsWith("305") ||
-    code.startsWith("306") ||
-    code.startsWith("307") ||
-    code.startsWith("308") ||
-    code.startsWith("309")
-  ) {
-    return "创";
-  }
-  // 可转债（按数字从小到大：123, 127, 128）
-  if (
-    code.startsWith("123") ||
-    code.startsWith("127") ||
-    code.startsWith("128")
-  ) {
-    return "债";
-  }
-  // REITs（按数字从小到大：180, 181）
-  if (code.startsWith("180") || code.startsWith("181")) {
-    return "REITs";
-  }
-
-  // === 北交所 BJ ===
-  // 股票（92）
-  if (code.startsWith("92")) {
-    return "北";
-  }
-  // 可转债（810）
-  if (code.startsWith("810")) {
-    return "债";
-  }
-
-  // ❌ 无匹配
-  throw new Error(`无法识别的证券代码: ${code}`);
+  return rule.instrumentType;
 }
 
 /**
@@ -307,6 +230,91 @@ export function getUID(record: IPORecord): string {
   return `${code}.${market}`;
 }
 
+// ============================================================================
+// 东方财富 API 配置
+// ============================================================================
+
+/**
+ * IPO API 查询配置
+ */
+interface IPOQueryConfig {
+  reportName: string;
+  columns: string;
+  filterField: string;
+  sortColumns: string;
+  sortTypes: string;
+  /** REITs 专用字段，可选 */
+  quoteColumns?: string;
+}
+
+/** 股票 IPO API 配置 */
+const STOCK_IPO_CONFIG: IPOQueryConfig = {
+  reportName: "RPTA_APP_IPOAPPLY",
+  columns:
+    "APPLY_DATE,BALLOT_NUM_DATE,ISSUE_PRICE,LISTING_DATE,SECURITY_CODE,SECURITY_NAME",
+  filterField: "APPLY_DATE",
+  sortColumns: "APPLY_DATE,SECURITY_CODE",
+  sortTypes: "-1,-1",
+};
+
+/** 可转债 IPO API 配置 */
+const BOND_IPO_CONFIG: IPOQueryConfig = {
+  reportName: "RPT_BOND_CB_LIST",
+  columns:
+    "BOND_START_DATE,LISTING_DATE,ISSUE_PRICE,PUBLIC_START_DATE,SECURITY_CODE,SECURITY_NAME_ABBR",
+  filterField: "PUBLIC_START_DATE",
+  sortColumns: "PUBLIC_START_DATE,SECURITY_CODE",
+  sortTypes: "-1,-1",
+};
+
+/** REITs IPO API 配置 */
+const REITS_IPO_CONFIG: IPOQueryConfig = {
+  reportName: "RPT_CUSTOM_REITS_APPLY_LIST_MARKET",
+  columns:
+    "LISTING_DATE,RESULT_NOTICE_DATE,SALE_PRICE,SECURITY_CODE,SECURITY_NAME_ABBR,SUBSCRIBE_START_DATE",
+  filterField: "SUBSCRIBE_START_DATE",
+  sortColumns: "SUBSCRIBE_START_DATE",
+  sortTypes: "-1",
+  quoteColumns:
+    "NEW_DISCOUNT_RATIO~09~SECURITY_CODE,NEW_CHANGE_RATE~09~SECURITY_CODE,NEW_DIVIDEND_RATE_TTM~09~SECURITY_CODE",
+};
+
+/**
+ * 复用的 ofetch 实例
+ */
+const eastMoneyAPI = ofetch.create({
+  baseURL: "https://datacenter-web.eastmoney.com/api",
+  responseType: "json",
+});
+
+/**
+ * 构建东方财富 API 查询参数
+ * @param config - IPO 类型特定的配置
+ * @returns 完整的 query 对象
+ */
+function buildIPOQuery(config: IPOQueryConfig): Record<string, unknown> {
+  const startDate = getDateFilterStart();
+  const query: Record<string, unknown> = {
+    client: "WEB",
+    columns: config.columns,
+    filter: `(${config.filterField}>='${startDate}')`,
+    pageNumber: 1,
+    pageSize: 50,
+    reportName: config.reportName,
+    sortColumns: config.sortColumns,
+    sortTypes: config.sortTypes,
+    source: "WEB",
+  };
+  if (config.quoteColumns) {
+    query.quoteColumns = config.quoteColumns;
+  }
+  return query;
+}
+
+// ============================================================================
+// 数据转换函数
+// ============================================================================
+
 /**
  * 将股票 IPO 原始数据转换为 IPORecord。
  * @param data - 股票 IPO 原始数据
@@ -357,6 +365,10 @@ function convertREITsIPO(data: REITsIPOData): IPORecord {
   };
 }
 
+// ============================================================================
+// API 获取函数
+// ============================================================================
+
 interface EastMoneyResponse<T> {
   result: {
     data: T[];
@@ -368,30 +380,10 @@ interface EastMoneyResponse<T> {
  * @returns IPORecord 数组
  */
 export async function fetchStockIPO(): Promise<IPORecord[]> {
-  const api_fetch = ofetch.create({
-    baseURL: "https://datacenter-web.eastmoney.com/api",
-    responseType: "json",
-  });
-  const startDate = getDateFilterStart();
-
-  const json = await api_fetch<EastMoneyResponse<StockIPOData>>(
+  const json = await eastMoneyAPI<EastMoneyResponse<StockIPOData>>(
     "/data/v1/get",
-    {
-      query: {
-        client: "WEB",
-        columns:
-          "APPLY_DATE,BALLOT_NUM_DATE,ISSUE_PRICE,LISTING_DATE,SECURITY_CODE,SECURITY_NAME",
-        filter: `(APPLY_DATE>='${startDate}')`,
-        pageNumber: 1,
-        pageSize: 50,
-        reportName: "RPTA_APP_IPOAPPLY",
-        sortColumns: "APPLY_DATE,SECURITY_CODE",
-        sortTypes: "-1,-1",
-        source: "WEB",
-      },
-    },
+    { query: buildIPOQuery(STOCK_IPO_CONFIG) },
   );
-
   return json.result.data.map(convertStockIPO);
 }
 
@@ -400,27 +392,10 @@ export async function fetchStockIPO(): Promise<IPORecord[]> {
  * @returns IPORecord 数组
  */
 export async function fetchBondIPO(): Promise<IPORecord[]> {
-  const api_fetch = ofetch.create({
-    baseURL: "https://datacenter-web.eastmoney.com/api",
-    responseType: "json",
-  });
-  const startDate = getDateFilterStart();
-
-  const json = await api_fetch<EastMoneyResponse<BondIPOData>>("/data/v1/get", {
-    query: {
-      client: "WEB",
-      columns:
-        "BOND_START_DATE,LISTING_DATE,ISSUE_PRICE,PUBLIC_START_DATE,SECURITY_CODE,SECURITY_NAME_ABBR",
-      filter: `(PUBLIC_START_DATE>='${startDate}')`,
-      pageNumber: 1,
-      pageSize: 50,
-      reportName: "RPT_BOND_CB_LIST",
-      sortColumns: "PUBLIC_START_DATE,SECURITY_CODE",
-      sortTypes: "-1,-1",
-      source: "WEB",
-    },
-  });
-
+  const json = await eastMoneyAPI<EastMoneyResponse<BondIPOData>>(
+    "/data/v1/get",
+    { query: buildIPOQuery(BOND_IPO_CONFIG) },
+  );
   return json.result.data.map(convertBondIPO);
 }
 
@@ -429,31 +404,9 @@ export async function fetchBondIPO(): Promise<IPORecord[]> {
  * @returns IPORecord 数组
  */
 export async function fetchREITsIPO(): Promise<IPORecord[]> {
-  const api_fetch = ofetch.create({
-    baseURL: "https://datacenter-web.eastmoney.com/api",
-    responseType: "json",
-  });
-  const startDate = getDateFilterStart();
-
-  const json = await api_fetch<EastMoneyResponse<REITsIPOData>>(
+  const json = await eastMoneyAPI<EastMoneyResponse<REITsIPOData>>(
     "/data/v1/get",
-    {
-      query: {
-        client: "WEB",
-        columns:
-          "LISTING_DATE,RESULT_NOTICE_DATE,SALE_PRICE,SECURITY_CODE,SECURITY_NAME_ABBR,SUBSCRIBE_START_DATE",
-        filter: `(SUBSCRIBE_START_DATE>='${startDate}')`,
-        pageNumber: 1,
-        pageSize: 50,
-        quoteColumns:
-          "NEW_DISCOUNT_RATIO~09~SECURITY_CODE,NEW_CHANGE_RATE~09~SECURITY_CODE,NEW_DIVIDEND_RATE_TTM~09~SECURITY_CODE",
-        reportName: "RPT_CUSTOM_REITS_APPLY_LIST_MARKET",
-        sortColumns: "SUBSCRIBE_START_DATE",
-        sortTypes: "-1",
-        source: "WEB",
-      },
-    },
+    { query: buildIPOQuery(REITS_IPO_CONFIG) },
   );
-
   return json.result.data.map(convertREITsIPO);
 }

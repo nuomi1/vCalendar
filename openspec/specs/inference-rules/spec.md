@@ -2,19 +2,89 @@
 
 ## Purpose
 
-TBD - Inference rules for deriving market and instrument type from security codes.
+Inference rules for deriving market and instrument type from security codes using a unified lookup table.
+
+## Data Structure
+
+### Code Prefix Lookup Table
+
+A statically-defined array of code prefix rules, sorted by prefix length (longest first) for correct matching priority:
+
+```typescript
+interface CodePrefixRule {
+  /** 代码前缀，精确匹配前 N 位 */
+  prefix: string;
+  /** 所属市场 */
+  market: Market;
+  /** 证券类型 */
+  instrumentType: InstrumentType;
+}
+
+/**
+ * 代码前缀查找表
+ * 按前缀长度降序排列，确保匹配时优先使用更长的前缀
+ */
+const CODE_PREFIX_RULES: CodePrefixRule[] = [
+  // 上交所 - 主板 (600, 601, 603, 605)
+  { prefix: "600", market: "SH", instrumentType: "上" },
+  { prefix: "601", market: "SH", instrumentType: "上" },
+  { prefix: "603", market: "SH", instrumentType: "上" },
+  { prefix: "605", market: "SH", instrumentType: "上" },
+  // 上交所 - 科创板 (688, 689)
+  { prefix: "688", market: "SH", instrumentType: "科" },
+  { prefix: "689", market: "SH", instrumentType: "科" },
+  // 上交所 - 可转债 (110, 111, 113, 118)
+  { prefix: "110", market: "SH", instrumentType: "债" },
+  { prefix: "111", market: "SH", instrumentType: "债" },
+  { prefix: "113", market: "SH", instrumentType: "债" },
+  { prefix: "118", market: "SH", instrumentType: "债" },
+  // 上交所 - REITs (508)
+  { prefix: "508", market: "SH", instrumentType: "REITs" },
+  // 深交所 - 主板 (000, 001, 002, 003, 004)
+  { prefix: "000", market: "SZ", instrumentType: "深" },
+  { prefix: "001", market: "SZ", instrumentType: "深" },
+  { prefix: "002", market: "SZ", instrumentType: "深" },
+  { prefix: "003", market: "SZ", instrumentType: "深" },
+  { prefix: "004", market: "SZ", instrumentType: "深" },
+  // 深交所 - 创业板 (300-309)
+  { prefix: "300", market: "SZ", instrumentType: "创" },
+  { prefix: "301", market: "SZ", instrumentType: "创" },
+  { prefix: "302", market: "SZ", instrumentType: "创" },
+  { prefix: "303", market: "SZ", instrumentType: "创" },
+  { prefix: "304", market: "SZ", instrumentType: "创" },
+  { prefix: "305", market: "SZ", instrumentType: "创" },
+  { prefix: "306", market: "SZ", instrumentType: "创" },
+  { prefix: "307", market: "SZ", instrumentType: "创" },
+  { prefix: "308", market: "SZ", instrumentType: "创" },
+  { prefix: "309", market: "SZ", instrumentType: "创" },
+  // 深交所 - 可转债 (123, 127, 128)
+  { prefix: "123", market: "SZ", instrumentType: "债" },
+  { prefix: "127", market: "SZ", instrumentType: "债" },
+  { prefix: "128", market: "SZ", instrumentType: "债" },
+  // 深交所 - REITs (180, 181)
+  { prefix: "180", market: "SZ", instrumentType: "REITs" },
+  { prefix: "181", market: "SZ", instrumentType: "REITs" },
+  // 北交所 - 股票 (92)
+  { prefix: "92", market: "BJ", instrumentType: "北" },
+  // 北交所 - 可转债 (810)
+  { prefix: "810", market: "BJ", instrumentType: "债" },
+];
+```
+
+**Matching Order**:
+1. 遍历查找表，尝试 `code.startsWith(prefix)` 匹配
+2. 返回第一个匹配项的 `market` 和 `instrumentType`
+3. 无匹配 → 抛出异常
+
+**Why startsWith instead of range tables**:
+- 前缀匹配比数值范围更直观（300-309 实际上是 300, 301, ... 309 的离散前缀）
+- 便于未来添加新代码段（如 310）
 
 ## Requirements
 
 ### Requirement: Complete Security Code Inference Rules
 
 The system SHALL correctly identify market and instrument type from a 6-digit security code WITHOUT requiring a category parameter.
-
-#### Matching Order
-
-1. Exchange order: 上交所 (SH) → 深交所 (SZ) → 北交所 (BJ)
-2. Within each exchange: 股票 (stocks) → 可转债 (bonds) → REITs
-3. Within same instrument type: ascending numeric order
 
 #### Scenario: 上交所 - 股票
 

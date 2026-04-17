@@ -66,3 +66,79 @@ Market and instrument type derivation is governed by the `inference-rules` speci
 
 - **WHEN** instrument type is needed during export
 - **THEN** call `inferInstrumentType(code)` from `inference-rules`
+
+## API Fetching
+
+### Requirement: Reuse ofetch instance
+
+The ofetch instance SHOULD be reused across all API calls to avoid repeated configuration overhead.
+
+#### Implementation
+
+```typescript
+/**
+ * 复用的 ofetch 实例
+ * 避免每个 API 调用都重新创建实例
+ */
+const eastMoneyAPI = ofetch.create({
+  baseURL: "https://datacenter-web.eastmoney.com/api",
+  responseType: "json",
+});
+```
+
+### Requirement: Shared query builder function
+
+A common function SHOULD be used to build API query parameters, with only instrument-specific fields varying.
+
+#### Implementation
+
+```typescript
+interface IPOQueryConfig {
+  reportName: string;
+  columns: string;
+  filterField: string;
+  sortColumns: string;
+  sortTypes: string;
+  /** REITs 专用字段，可选 */
+  quoteColumns?: string;
+}
+
+/**
+ * 构建东方财富 API 查询参数
+ * @param config - IPO 类型特定的配置
+ * @returns 完整的 query 对象
+ * @note startDate 由函数内部通过 getDateFilterStart() 动态获取
+ */
+function buildIPOQuery(config: IPOQueryConfig): Record<string, unknown> {
+  const startDate = getDateFilterStart();
+  const query: Record<string, unknown> = {
+    client: "WEB",
+    columns: config.columns,
+    filter: `(${config.filterField}>='${startDate}')`,
+    pageNumber: 1,
+    pageSize: 50,
+    reportName: config.reportName,
+    sortColumns: config.sortColumns,
+    sortTypes: config.sortTypes,
+    source: "WEB",
+  };
+  if (config.quoteColumns) {
+    query.quoteColumns = config.quoteColumns;
+  }
+  return query;
+}
+```
+
+### Requirement: Type-safe API response wrapper
+
+API responses SHOULD be wrapped in a type-safe interface.
+
+#### Implementation
+
+```typescript
+interface EastMoneyResponse<T> {
+  result: {
+    data: T[];
+  };
+}
+```
