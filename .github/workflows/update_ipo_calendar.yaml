@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          persist-credentials: false # 防止 credentials 写回，避免触发 cascade
+          persist-credentials: true
       - uses: ./.github/actions/run_ts
       - name: Set commit message with date
         id: commit_msg
