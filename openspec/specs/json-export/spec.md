@@ -2,7 +2,7 @@
 
 ## Purpose
 
-TBD - created by archiving change a-share-ipo-subscription-calendar-generator. Update Purpose after archive.
+Define the rules for exporting IPO instrument records as canonical JSON files. JSON output uses the canonical-json library (RFC 8785 compliant) with alphabetical key sorting and 2-space indentation, containing both stored fields (name, code, dates, price) and derived fields (market, instrumentType).
 
 ## Requirements
 

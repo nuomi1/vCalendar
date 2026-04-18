@@ -2,7 +2,7 @@
 
 ## Purpose
 
-TBD - created by archiving change a-share-ipo-subscription-calendar-generator. Update Purpose after archive.
+Define the rules for generating ICS (iCalendar) files from IPO instrument records. ICS files use ical-generator library with 09:30-10:00 non-all-day events on the issuance date, stable UIDs derived from security code and market, and instrument-type-prefixed SUMMARY fields.
 
 ## Requirements
 
