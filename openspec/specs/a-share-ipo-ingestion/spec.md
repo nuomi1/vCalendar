@@ -107,7 +107,7 @@ interface IPOQueryConfig {
  * 构建东方财富 API 查询参数
  * @param config - IPO 类型特定的配置
  * @returns 完整的 query 对象
- * @note startDate 由函数内部通过 getDateFilterStart() 动态获取
+ * @note startDate 由函数内部通过 getDateFilterStart() 动态获取，取上一周第一天（周日）
  */
 function buildIPOQuery(config: IPOQueryConfig): Record<string, unknown> {
   const startDate = getDateFilterStart();

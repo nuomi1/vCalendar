@@ -127,11 +127,11 @@ function parseDate(dateStr: string): Date {
 }
 
 /**
- * 获取动态日期过滤起始日期：上个月第一天。
+ * 获取动态日期过滤起始日期：上一周的第一天（周日为第一天）。
  * @returns 格式为 YYYY-MM-DD
  */
 function getDateFilterStart(): string {
-  return dayjs().subtract(1, "month").startOf("month").format("YYYY-MM-DD");
+  return dayjs().subtract(1, "week").startOf("week").format("YYYY-MM-DD");
 }
 
 /**
