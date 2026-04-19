@@ -38,55 +38,5 @@
     "market": "SH",
     "name": "斯达转债",
     "publicationDate": "2026-04-20"
-  },
-  {
-    "code": "123266",
-    "instrumentType": "债",
-    "issuanceDate": "2026-03-18",
-    "issuancePrice": 100,
-    "listingDate": "2026-04-07",
-    "market": "SZ",
-    "name": "博士转债",
-    "publicationDate": "2026-03-20"
-  },
-  {
-    "code": "118067",
-    "instrumentType": "债",
-    "issuanceDate": "2026-03-18",
-    "issuancePrice": 100,
-    "listingDate": "2026-04-14",
-    "market": "SH",
-    "name": "上26转债",
-    "publicationDate": "2026-03-20"
-  },
-  {
-    "code": "127113",
-    "instrumentType": "债",
-    "issuanceDate": "2026-03-09",
-    "issuancePrice": 100,
-    "listingDate": "2026-03-30",
-    "market": "SZ",
-    "name": "长高转债",
-    "publicationDate": "2026-03-11"
-  },
-  {
-    "code": "113701",
-    "instrumentType": "债",
-    "issuanceDate": "2026-03-03",
-    "issuancePrice": 100,
-    "listingDate": "2026-03-26",
-    "market": "SH",
-    "name": "祥和转债",
-    "publicationDate": "2026-03-05"
-  },
-  {
-    "code": "118066",
-    "instrumentType": "债",
-    "issuanceDate": "2026-03-02",
-    "issuancePrice": 100,
-    "listingDate": "2026-03-20",
-    "market": "SH",
-    "name": "统联转债",
-    "publicationDate": "2026-03-04"
   }
 ]
