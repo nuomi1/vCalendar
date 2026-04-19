@@ -294,7 +294,7 @@ describe("导出 - 文件命名", () => {
 
 describe("导出 - 空输入", () => {
   test("空数组导出空内容", () => {
-    const ics = createICS([]);
+    const ics = createICS([], "股票");
     expect(ics).toContain("BEGIN:VCALENDAR");
     expect(ics).toContain("END:VCALENDAR");
   });
@@ -302,7 +302,7 @@ describe("导出 - 空输入", () => {
 
 describe("ical-generator - ical-generator 输出格式验证", () => {
   test("VCALENDAR 包含正确头部", () => {
-    const ics = createICS([]);
+    const ics = createICS([], "股票");
     expect(ics).toContain("BEGIN:VCALENDAR");
     expect(ics).toContain("VERSION:2.0");
     expect(ics).toContain("PRODID:-//sebbo.net//ical-generator//EN");
@@ -316,7 +316,7 @@ describe("ical-generator - ical-generator 输出格式验证", () => {
       publicationDate: new Date("2026-04-10"),
       listingDate: new Date("2026-04-20"),
     };
-    const ics = createICS([record]);
+    const ics = createICS([record], "股票");
     expect(ics).toContain("BEGIN:VEVENT");
     expect(ics).toContain("UID:001312.SZ");
     expect(ics).toContain("DTSTART:");
@@ -334,12 +334,27 @@ describe("ical-generator - ical-generator 输出格式验证", () => {
       publicationDate: null,
       listingDate: null,
     };
-    const ics = createICS([record]);
+    const ics = createICS([record], "股票");
     expect(ics).toContain("DTSTART:20260415T093000");
     expect(ics).toContain("DTEND:20260415T100000");
   });
   test("空数组生成空 VCALENDAR", () => {
-    const ics = createICS([]);
+    const ics = createICS([], "股票");
     expect(ics).toMatch(/^BEGIN:VCALENDAR[\s\S]*END:VCALENDAR$/);
+  });
+});
+
+describe("日历名称 - 包含新股申购和类型", () => {
+  test("股票日历名称", () => {
+    const ics = createICS([], "股票");
+    expect(ics).toContain("X-WR-CALNAME:新股申购 - 股票");
+  });
+  test("可转债日历名称", () => {
+    const ics = createICS([], "可转债");
+    expect(ics).toContain("X-WR-CALNAME:新股申购 - 可转债");
+  });
+  test("REITs日历名称", () => {
+    const ics = createICS([], "REITs");
+    expect(ics).toContain("X-WR-CALNAME:新股申购 - REITs");
   });
 });

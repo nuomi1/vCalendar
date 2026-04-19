@@ -191,11 +191,12 @@ export function createJSON(records: IPORecord[]): string {
  * 使用 ical-generator 库生成 RFC 5545 兼容的日历。
  * 事件时间固定为 09:30-10:00（非全天事件）。
  * @param records - IPO 记录数组
+ * @param category - 证券类型标识（股票/可转债/REITs），用于日历名称
  * @returns ICS 格式的日历字符串
  */
-export function createICS(records: IPORecord[]): string {
+export function createICS(records: IPORecord[], category: string): string {
   const calendar = new ICalCalendar();
-  calendar.name("新股申购");
+  calendar.name(`新股申购 - ${category}`);
 
   for (const record of records) {
     const id = getUID(record);

@@ -40,14 +40,16 @@ function checkDuplicateUID(records: IPORecord[]): void {
  * 将 IPO 记录导出为 ICS 日历文件。
  * @param records - IPO 记录数组
  * @param filename - 输出文件路径
+ * @param category - 证券类型标识（股票/可转债/REITs）
  * @throws UID 重复时抛出 Error
  */
 async function exportICS(
   records: IPORecord[],
   filename: string,
+  category: string,
 ): Promise<void> {
   checkDuplicateUID(records);
-  const ics = createICS(records);
+  const ics = createICS(records, category);
   await Bun.file(filename).write(ics);
 }
 
@@ -93,9 +95,9 @@ export async function generateCalendar(data: InputData): Promise<void> {
 
   const fullDir = ".";
 
-  await exportICS(stocks, `${fullDir}/zh_CN.stocks.ics`);
-  await exportICS(bonds, `${fullDir}/zh_CN.bonds.ics`);
-  await exportICS(reits, `${fullDir}/zh_CN.reits.ics`);
+  await exportICS(stocks, `${fullDir}/zh_CN.stocks.ics`, "股票");
+  await exportICS(bonds, `${fullDir}/zh_CN.bonds.ics`, "可转债");
+  await exportICS(reits, `${fullDir}/zh_CN.reits.ics`, "REITs");
 
   await exportJSON(stocks, `${fullDir}/zh_CN.stocks.json`);
   await exportJSON(bonds, `${fullDir}/zh_CN.bonds.json`);

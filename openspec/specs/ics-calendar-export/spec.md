@@ -80,6 +80,25 @@ The system MUST use `ical-generator` to create, edit, and serialize VCALENDAR/VE
 - **WHEN** a VCALENDAR is created
 - **THEN** use `ical({ name: '...', prodId: '...' })` to instantiate the calendar
 
+### Requirement: Set calendar name with instrument type
+
+The system MUST set calendar name as `新股申购 - 股票`, `新股申购 - 可转债`, or `新股申购 - REITs` based on the instrument type.
+
+#### Scenario: Calendar name for stocks
+
+- **WHEN** a calendar is created for stock records
+- **THEN** the calendar name is `新股申购 - 股票`
+
+#### Scenario: Calendar name for bonds
+
+- **WHEN** a calendar is created for bond records
+- **THEN** the calendar name is `新股申购 - 可转债`
+
+#### Scenario: Calendar name for REITs
+
+- **WHEN** a calendar is created for REITs records
+- **THEN** the calendar name is `新股申购 - REITs`
+
 #### Scenario: Event creation using createEvent() API
 
 - **WHEN** creating a VEVENT component
