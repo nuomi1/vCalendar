@@ -1,8 +1,8 @@
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//sebbo.net//ical-generator//EN
-NAME:新股申购
-X-WR-CALNAME:新股申购
+NAME:新股申购 - 可转债
+X-WR-CALNAME:新股申购 - 可转债
 BEGIN:VEVENT
 UID:123269.SZ
 SEQUENCE:0
