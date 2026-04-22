@@ -1,5 +1,15 @@
 [
   {
+    "code": "001393",
+    "instrumentType": "深",
+    "issuanceDate": "2026-05-06",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "维通利",
+    "publicationDate": "2026-05-08"
+  },
+  {
     "code": "603407",
     "instrumentType": "上",
     "issuanceDate": "2026-04-27",
@@ -13,7 +23,7 @@
     "code": "301531",
     "instrumentType": "创",
     "issuanceDate": "2026-04-24",
-    "issuancePrice": null,
+    "issuancePrice": 13.3,
     "listingDate": null,
     "market": "SZ",
     "name": "春光集团",
@@ -64,7 +74,7 @@
     "instrumentType": "科",
     "issuanceDate": "2026-04-14",
     "issuancePrice": 81.88,
-    "listingDate": null,
+    "listingDate": "2026-04-24",
     "market": "SH",
     "name": "联讯仪器",
     "publicationDate": "2026-04-16"
@@ -74,7 +84,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-04-13",
     "issuancePrice": 16.57,
-    "listingDate": null,
+    "listingDate": "2026-04-24",
     "market": "BJ",
     "name": "鸿仕达",
     "publicationDate": "2026-04-16"
