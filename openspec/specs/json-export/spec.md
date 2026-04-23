@@ -91,7 +91,7 @@ Input records (from `a-share-ipo-ingestion`) use `Date | null` types. When expor
   - `name`: string - 证券简称
   - `code`: string - 证券代码
   - `issuanceDate`: string | null - 发行日 (Date → string via formatDate())
-  - `issuancePrice`: number | null - 发行价
+  - `issuancePrice`: number | null - 发行价（round via roundPrice()）
   - `publicationDate`: string | null - 公布日 (Date | null → string | null via formatDate())
   - `listingDate`: string | null - 上市日 (Date | null → string | null via formatDate())
 

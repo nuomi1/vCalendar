@@ -12,6 +12,7 @@
     "canonical-json": "^0.4.0",
     "dayjs": "^1.11.20",
     "ical-generator": "^10.2.0",
+    "mathjs": "^15.2.0",
     "ofetch": "^1.5.1"
   }
 }

@@ -2,6 +2,7 @@ import stringify from "canonical-json";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { ICalCalendar } from "ical-generator";
+import * as math from "mathjs";
 import { ofetch } from "ofetch";
 import type {
   BondIPOData,
@@ -148,13 +149,24 @@ export function formatSummary(record: IPORecord): string {
 }
 
 /**
+ * 将价格四舍五入到两位小数。
+ * @param price - 待处理的价格
+ * @returns 四舍五入后的价格
+ */
+export function roundPrice(price: number): number {
+  return math.round(price, 2);
+}
+
+/**
  * 生成日历事件的详细描述。
  * @param record - IPO 记录
  * @returns 多行描述字符串，包含发行价、公布日、上市日
  */
 export function formatDescription(record: IPORecord): string {
   const price =
-    record.issuancePrice != null ? `${record.issuancePrice} 元` : "--";
+    record.issuancePrice != null
+      ? `${roundPrice(record.issuancePrice)} 元`
+      : "--";
   const pubDate = record.publicationDate
     ? formatDate(record.publicationDate)
     : "--";
@@ -177,7 +189,8 @@ export function createJSON(records: IPORecord[]): string {
       market: inferMarket(r.code),
       instrumentType: inferInstrumentType(r.code),
       issuanceDate: formatDate(r.issuanceDate),
-      issuancePrice: r.issuancePrice ?? null,
+      issuancePrice:
+        r.issuancePrice != null ? roundPrice(r.issuancePrice) : null,
       publicationDate: r.publicationDate ? formatDate(r.publicationDate) : null,
       listingDate: r.listingDate ? formatDate(r.listingDate) : null,
     };

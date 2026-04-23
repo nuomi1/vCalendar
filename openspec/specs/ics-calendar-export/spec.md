@@ -146,6 +146,11 @@ The system MUST render missing description fields as `--` in ICS event descripti
 - **WHEN** issuance price is absent in input record
 - **THEN** description includes issuance price field with value `--`
 
+#### Scenario: Issuance price formatting
+
+- **WHEN** issuance price exists in input record
+- **THEN** description shows price with exactly 2 decimal places (e.g., `22.50 元`)
+
 ### Requirement: Format SUMMARY with instrument type prefix
 
 The system MUST format SUMMARY as `【类型简称】名称 代码.市场`, where market and instrument type are derived from `inference-rules`.

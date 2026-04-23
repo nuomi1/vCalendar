@@ -190,7 +190,7 @@ describe("4.4 - formatDescription", () => {
       listingDate: new Date("2026-04-20"),
     };
     const desc = formatDescription(record);
-    expect(desc).toContain("发行价：10.5 元");
+    expect(desc).toContain("发行价：10.50 元");
     expect(desc).toContain("公布日：2026-04-10");
     expect(desc).toContain("上市日：2026-04-20");
   });
