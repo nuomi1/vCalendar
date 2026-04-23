@@ -1,5 +1,15 @@
 [
   {
+    "code": "001365",
+    "instrumentType": "深",
+    "issuanceDate": "2026-05-07",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "天海电子",
+    "publicationDate": "2026-05-11"
+  },
+  {
     "code": "001393",
     "instrumentType": "深",
     "issuanceDate": "2026-05-06",
@@ -10,10 +20,20 @@
     "publicationDate": "2026-05-08"
   },
   {
+    "code": "920178",
+    "instrumentType": "北",
+    "issuanceDate": "2026-04-27",
+    "issuancePrice": 29.47,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "锐翔智能",
+    "publicationDate": "2026-04-30"
+  },
+  {
     "code": "603407",
     "instrumentType": "上",
     "issuanceDate": "2026-04-27",
-    "issuancePrice": null,
+    "issuancePrice": 13.86,
     "listingDate": null,
     "market": "SH",
     "name": "长裕集团",
@@ -64,7 +84,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-04-15",
     "issuancePrice": 20.93,
-    "listingDate": null,
+    "listingDate": "2026-04-27",
     "market": "BJ",
     "name": "海昌智能",
     "publicationDate": "2026-04-20"
