@@ -15,6 +15,9 @@ import type {
 
 dayjs.extend(utc);
 
+/** 价格小数位数 */
+const FRACTION_DIGITS = 2;
+
 // ============================================================================
 // 代码前缀查找表
 // ============================================================================
@@ -154,7 +157,7 @@ export function formatSummary(record: IPORecord): string {
  * @returns 四舍五入后的价格
  */
 export function roundPrice(price: number): number {
-  return math.round(price, 2);
+  return math.round(price, FRACTION_DIGITS);
 }
 
 /**
@@ -165,7 +168,7 @@ export function roundPrice(price: number): number {
 export function formatDescription(record: IPORecord): string {
   const price =
     record.issuancePrice != null
-      ? `${roundPrice(record.issuancePrice)} 元`
+      ? `${roundPrice(record.issuancePrice).toFixed(FRACTION_DIGITS)} 元`
       : "--";
   const pubDate = record.publicationDate
     ? formatDate(record.publicationDate)
