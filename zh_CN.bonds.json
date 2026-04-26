@@ -8,35 +8,5 @@
     "market": "SZ",
     "name": "金杨转债",
     "publicationDate": "2026-04-22"
-  },
-  {
-    "code": "123268",
-    "instrumentType": "债",
-    "issuanceDate": "2026-04-17",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "本川转债",
-    "publicationDate": "2026-04-21"
-  },
-  {
-    "code": "123267",
-    "instrumentType": "债",
-    "issuanceDate": "2026-04-16",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "珂玛转债",
-    "publicationDate": "2026-04-20"
-  },
-  {
-    "code": "113702",
-    "instrumentType": "债",
-    "issuanceDate": "2026-04-16",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SH",
-    "name": "斯达转债",
-    "publicationDate": "2026-04-20"
   }
 ]

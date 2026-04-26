@@ -78,35 +78,5 @@
     "market": "SZ",
     "name": "理奇智能",
     "publicationDate": "2026-04-22"
-  },
-  {
-    "code": "920156",
-    "instrumentType": "北",
-    "issuanceDate": "2026-04-15",
-    "issuancePrice": 20.93,
-    "listingDate": "2026-04-27",
-    "market": "BJ",
-    "name": "海昌智能",
-    "publicationDate": "2026-04-20"
-  },
-  {
-    "code": "688808",
-    "instrumentType": "科",
-    "issuanceDate": "2026-04-14",
-    "issuancePrice": 81.88,
-    "listingDate": "2026-04-24",
-    "market": "SH",
-    "name": "联讯仪器",
-    "publicationDate": "2026-04-16"
-  },
-  {
-    "code": "920125",
-    "instrumentType": "北",
-    "issuanceDate": "2026-04-13",
-    "issuancePrice": 16.57,
-    "listingDate": "2026-04-24",
-    "market": "BJ",
-    "name": "鸿仕达",
-    "publicationDate": "2026-04-16"
   }
 ]
