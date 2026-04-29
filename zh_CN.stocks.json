@@ -1,5 +1,25 @@
 [
   {
+    "code": "603435",
+    "instrumentType": "上",
+    "issuanceDate": "2026-05-13",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "嘉德利",
+    "publicationDate": "2026-05-15"
+  },
+  {
+    "code": "001237",
+    "instrumentType": "深",
+    "issuanceDate": "2026-05-13",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "惠康科技",
+    "publicationDate": "2026-05-15"
+  },
+  {
     "code": "001365",
     "instrumentType": "深",
     "issuanceDate": "2026-05-07",
@@ -10,10 +30,20 @@
     "publicationDate": "2026-05-11"
   },
   {
+    "code": "920096",
+    "instrumentType": "北",
+    "issuanceDate": "2026-05-06",
+    "issuancePrice": 14.43,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "嘉晨智能",
+    "publicationDate": "2026-05-11"
+  },
+  {
     "code": "001393",
     "instrumentType": "深",
     "issuanceDate": "2026-05-06",
-    "issuancePrice": null,
+    "issuancePrice": 30.38,
     "listingDate": null,
     "market": "SZ",
     "name": "维通利",
@@ -66,7 +96,7 @@
     "issuancePrice": 16.21,
     "listingDate": "2026-04-29",
     "market": "BJ",
-    "name": "中科仪",
+    "name": "N中科仪",
     "publicationDate": "2026-04-23"
   },
   {
