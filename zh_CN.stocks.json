@@ -84,7 +84,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-04-22",
     "issuancePrice": 20.58,
-    "listingDate": null,
+    "listingDate": "2026-05-07",
     "market": "BJ",
     "name": "振宏股份",
     "publicationDate": "2026-04-27"
@@ -96,7 +96,7 @@
     "issuancePrice": 16.21,
     "listingDate": "2026-04-29",
     "market": "BJ",
-    "name": "N中科仪",
+    "name": "中科仪",
     "publicationDate": "2026-04-23"
   },
   {
@@ -106,7 +106,7 @@
     "issuancePrice": 13.91,
     "listingDate": "2026-04-30",
     "market": "SZ",
-    "name": "理奇智能",
+    "name": "N理奇",
     "publicationDate": "2026-04-22"
   }
 ]
