@@ -68,45 +68,5 @@
     "market": "SH",
     "name": "长裕集团",
     "publicationDate": "2026-04-29"
-  },
-  {
-    "code": "301531",
-    "instrumentType": "创",
-    "issuanceDate": "2026-04-24",
-    "issuancePrice": 13.3,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "春光集团",
-    "publicationDate": "2026-04-28"
-  },
-  {
-    "code": "920200",
-    "instrumentType": "北",
-    "issuanceDate": "2026-04-22",
-    "issuancePrice": 20.58,
-    "listingDate": "2026-05-07",
-    "market": "BJ",
-    "name": "振宏股份",
-    "publicationDate": "2026-04-27"
-  },
-  {
-    "code": "920186",
-    "instrumentType": "北",
-    "issuanceDate": "2026-04-20",
-    "issuancePrice": 16.21,
-    "listingDate": "2026-04-29",
-    "market": "BJ",
-    "name": "中科仪",
-    "publicationDate": "2026-04-23"
-  },
-  {
-    "code": "301599",
-    "instrumentType": "创",
-    "issuanceDate": "2026-04-20",
-    "issuancePrice": 13.91,
-    "listingDate": "2026-04-30",
-    "market": "SZ",
-    "name": "理奇智能",
-    "publicationDate": "2026-04-22"
   }
 ]
