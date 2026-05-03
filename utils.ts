@@ -389,7 +389,7 @@ function convertREITsIPO(data: REITsIPOData): IPORecord {
 interface EastMoneyResponse<T> {
   result: {
     data: T[];
-  };
+  } | null;
 }
 
 /**
@@ -401,7 +401,7 @@ export async function fetchStockIPO(): Promise<IPORecord[]> {
     "/data/v1/get",
     { query: buildIPOQuery(STOCK_IPO_CONFIG) },
   );
-  return json.result.data.map(convertStockIPO);
+  return json.result?.data.map(convertStockIPO) || [];
 }
 
 /**
@@ -413,7 +413,7 @@ export async function fetchBondIPO(): Promise<IPORecord[]> {
     "/data/v1/get",
     { query: buildIPOQuery(BOND_IPO_CONFIG) },
   );
-  return json.result.data.map(convertBondIPO);
+  return json.result?.data.map(convertBondIPO) || [];
 }
 
 /**
@@ -425,5 +425,5 @@ export async function fetchREITsIPO(): Promise<IPORecord[]> {
     "/data/v1/get",
     { query: buildIPOQuery(REITS_IPO_CONFIG) },
   );
-  return json.result.data.map(convertREITsIPO);
+  return json.result?.data.map(convertREITsIPO) || [];
 }
