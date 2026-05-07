@@ -1,5 +1,15 @@
 [
   {
+    "code": "688635",
+    "instrumentType": "科",
+    "issuanceDate": "2026-05-18",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "长进光子",
+    "publicationDate": "2026-05-20"
+  },
+  {
     "code": "603435",
     "instrumentType": "上",
     "issuanceDate": "2026-05-13",
@@ -64,7 +74,7 @@
     "instrumentType": "上",
     "issuanceDate": "2026-04-27",
     "issuancePrice": 13.86,
-    "listingDate": null,
+    "listingDate": "2026-05-11",
     "market": "SH",
     "name": "长裕集团",
     "publicationDate": "2026-04-29"
