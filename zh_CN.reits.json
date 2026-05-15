@@ -1,5 +1,15 @@
 [
   {
+    "code": "508600",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-05-27",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "地产商业",
+    "publicationDate": null
+  },
+  {
     "code": "508603",
     "instrumentType": "REITs",
     "issuanceDate": "2026-05-25",
@@ -10,10 +20,30 @@
     "publicationDate": null
   },
   {
+    "code": "508602",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-05-25",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "砂之船",
+    "publicationDate": null
+  },
+  {
+    "code": "508601",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-05-25",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "首农商业",
+    "publicationDate": null
+  },
+  {
     "code": "508030",
     "instrumentType": "REITs",
     "issuanceDate": "2026-05-18",
-    "issuancePrice": null,
+    "issuancePrice": 6.62,
     "listingDate": null,
     "market": "SH",
     "name": "中核新能",
