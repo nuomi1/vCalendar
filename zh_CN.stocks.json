@@ -48,35 +48,5 @@
     "market": "SZ",
     "name": "惠康科技",
     "publicationDate": "2026-05-15"
-  },
-  {
-    "code": "001365",
-    "instrumentType": "深",
-    "issuanceDate": "2026-05-07",
-    "issuancePrice": 27.19,
-    "listingDate": "2026-05-18",
-    "market": "SZ",
-    "name": "天海电子",
-    "publicationDate": "2026-05-11"
-  },
-  {
-    "code": "920096",
-    "instrumentType": "北",
-    "issuanceDate": "2026-05-06",
-    "issuancePrice": 14.43,
-    "listingDate": "2026-05-18",
-    "market": "BJ",
-    "name": "嘉晨智能",
-    "publicationDate": "2026-05-11"
-  },
-  {
-    "code": "001393",
-    "instrumentType": "深",
-    "issuanceDate": "2026-05-06",
-    "issuancePrice": 30.38,
-    "listingDate": "2026-05-15",
-    "market": "SZ",
-    "name": "维通利",
-    "publicationDate": "2026-05-08"
   }
 ]
