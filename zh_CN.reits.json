@@ -10,10 +10,20 @@
     "publicationDate": null
   },
   {
+    "code": "508603",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-05-25",
+    "issuancePrice": 3.85,
+    "listingDate": null,
+    "market": "SH",
+    "name": "唯品商业",
+    "publicationDate": null
+  },
+  {
     "code": "508602",
     "instrumentType": "REITs",
     "issuanceDate": "2026-05-25",
-    "issuancePrice": null,
+    "issuancePrice": 5.53,
     "listingDate": null,
     "market": "SH",
     "name": "砂之船",
@@ -23,20 +33,10 @@
     "code": "508601",
     "instrumentType": "REITs",
     "issuanceDate": "2026-05-25",
-    "issuancePrice": null,
+    "issuancePrice": 3.01,
     "listingDate": null,
     "market": "SH",
     "name": "首农商业",
-    "publicationDate": null
-  },
-  {
-    "code": "508603",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-05-25",
-    "issuancePrice": 3.85,
-    "listingDate": null,
-    "market": "SH",
-    "name": "唯品商业",
     "publicationDate": null
   },
   {
