@@ -48,35 +48,5 @@
     "market": "SH",
     "name": "长进光子",
     "publicationDate": "2026-05-20"
-  },
-  {
-    "code": "920220",
-    "instrumentType": "北",
-    "issuanceDate": "2026-05-13",
-    "issuancePrice": 28.29,
-    "listingDate": "2026-05-22",
-    "market": "BJ",
-    "name": "朗信电气",
-    "publicationDate": "2026-05-18"
-  },
-  {
-    "code": "603435",
-    "instrumentType": "上",
-    "issuanceDate": "2026-05-13",
-    "issuancePrice": 15.76,
-    "listingDate": "2026-05-22",
-    "market": "SH",
-    "name": "嘉德利",
-    "publicationDate": "2026-05-15"
-  },
-  {
-    "code": "001237",
-    "instrumentType": "深",
-    "issuanceDate": "2026-05-13",
-    "issuancePrice": 53.26,
-    "listingDate": "2026-05-22",
-    "market": "SZ",
-    "name": "惠康科技",
-    "publicationDate": "2026-05-15"
   }
 ]
