@@ -10,6 +10,16 @@
     "publicationDate": "2026-06-02"
   },
   {
+    "code": "920206",
+    "instrumentType": "北",
+    "issuanceDate": "2026-05-27",
+    "issuancePrice": 30.28,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "彩客科技",
+    "publicationDate": "2026-06-01"
+  },
+  {
     "code": "920211",
     "instrumentType": "北",
     "issuanceDate": "2026-05-25",
@@ -34,7 +44,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-05-18",
     "issuancePrice": 9.21,
-    "listingDate": null,
+    "listingDate": "2026-05-27",
     "market": "BJ",
     "name": "龙辰科技",
     "publicationDate": "2026-05-21"
@@ -44,7 +54,7 @@
     "instrumentType": "科",
     "issuanceDate": "2026-05-18",
     "issuancePrice": 40.98,
-    "listingDate": null,
+    "listingDate": "2026-05-27",
     "market": "SH",
     "name": "长进光子",
     "publicationDate": "2026-05-20"
