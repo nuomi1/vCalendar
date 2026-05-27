@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "code": "123270",
+    "instrumentType": "债",
+    "issuanceDate": "2026-06-01",
+    "issuancePrice": 100,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "盛德转债",
+    "publicationDate": "2026-06-03"
+  }
+]
