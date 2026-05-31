@@ -38,35 +38,5 @@
     "market": "BJ",
     "name": "新睿电子",
     "publicationDate": "2026-05-28"
-  },
-  {
-    "code": "920218",
-    "instrumentType": "北",
-    "issuanceDate": "2026-05-20",
-    "issuancePrice": 12.19,
-    "listingDate": "2026-05-29",
-    "market": "BJ",
-    "name": "新天力",
-    "publicationDate": "2026-05-25"
-  },
-  {
-    "code": "920161",
-    "instrumentType": "北",
-    "issuanceDate": "2026-05-18",
-    "issuancePrice": 9.21,
-    "listingDate": "2026-05-27",
-    "market": "BJ",
-    "name": "龙辰科技",
-    "publicationDate": "2026-05-21"
-  },
-  {
-    "code": "688635",
-    "instrumentType": "科",
-    "issuanceDate": "2026-05-18",
-    "issuancePrice": 40.98,
-    "listingDate": "2026-05-27",
-    "market": "SH",
-    "name": "长进光子",
-    "publicationDate": "2026-05-20"
   }
 ]
