@@ -1,5 +1,25 @@
 [
   {
+    "code": "688797",
+    "instrumentType": "科",
+    "issuanceDate": "2026-06-12",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "臻宝科技",
+    "publicationDate": "2026-06-16"
+  },
+  {
+    "code": "001399",
+    "instrumentType": "深",
+    "issuanceDate": "2026-06-12",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "惠科股份",
+    "publicationDate": "2026-06-16"
+  },
+  {
     "code": "920126",
     "instrumentType": "北",
     "issuanceDate": "2026-06-03",
@@ -44,7 +64,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-05-25",
     "issuancePrice": 25.19,
-    "listingDate": null,
+    "listingDate": "2026-06-05",
     "market": "BJ",
     "name": "新睿电子",
     "publicationDate": "2026-05-28"
