@@ -1,5 +1,15 @@
 [
   {
+    "code": "920072",
+    "instrumentType": "北",
+    "issuanceDate": "2026-06-15",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "科莱瑞迪",
+    "publicationDate": "2026-06-18"
+  },
+  {
     "code": "688797",
     "instrumentType": "科",
     "issuanceDate": "2026-06-12",
@@ -54,7 +64,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-05-27",
     "issuancePrice": 30.28,
-    "listingDate": null,
+    "listingDate": "2026-06-08",
     "market": "BJ",
     "name": "彩客科技",
     "publicationDate": "2026-06-01"
