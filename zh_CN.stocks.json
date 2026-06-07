@@ -48,35 +48,5 @@
     "market": "BJ",
     "name": "金戈新材",
     "publicationDate": "2026-06-04"
-  },
-  {
-    "code": "301669",
-    "instrumentType": "创",
-    "issuanceDate": "2026-05-29",
-    "issuancePrice": 7.08,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "高特电子",
-    "publicationDate": "2026-06-02"
-  },
-  {
-    "code": "920206",
-    "instrumentType": "北",
-    "issuanceDate": "2026-05-27",
-    "issuancePrice": 30.28,
-    "listingDate": "2026-06-08",
-    "market": "BJ",
-    "name": "彩客科技",
-    "publicationDate": "2026-06-01"
-  },
-  {
-    "code": "920211",
-    "instrumentType": "北",
-    "issuanceDate": "2026-05-25",
-    "issuancePrice": 25.19,
-    "listingDate": "2026-06-05",
-    "market": "BJ",
-    "name": "新睿电子",
-    "publicationDate": "2026-05-28"
   }
 ]
