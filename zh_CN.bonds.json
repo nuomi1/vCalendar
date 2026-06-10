@@ -1,5 +1,25 @@
 [
   {
+    "code": "113706",
+    "instrumentType": "债",
+    "issuanceDate": "2026-06-15",
+    "issuancePrice": 100,
+    "listingDate": null,
+    "market": "SH",
+    "name": "金帝转债",
+    "publicationDate": "2026-06-17"
+  },
+  {
+    "code": "113705",
+    "instrumentType": "债",
+    "issuanceDate": "2026-06-15",
+    "issuancePrice": 100,
+    "listingDate": null,
+    "market": "SH",
+    "name": "豪26转债",
+    "publicationDate": "2026-06-17"
+  },
+  {
     "code": "123272",
     "instrumentType": "债",
     "issuanceDate": "2026-06-11",
@@ -64,7 +84,7 @@
     "instrumentType": "债",
     "issuanceDate": "2026-06-01",
     "issuancePrice": 100,
-    "listingDate": null,
+    "listingDate": "2026-06-12",
     "market": "SZ",
     "name": "盛德转债",
     "publicationDate": "2026-06-03"

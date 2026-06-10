@@ -1,5 +1,15 @@
 [
   {
+    "code": "001248",
+    "instrumentType": "深",
+    "issuanceDate": "2026-06-22",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "华润新能源",
+    "publicationDate": "2026-06-24"
+  },
+  {
     "code": "920072",
     "instrumentType": "北",
     "issuanceDate": "2026-06-15",
@@ -13,7 +23,7 @@
     "code": "688797",
     "instrumentType": "科",
     "issuanceDate": "2026-06-12",
-    "issuancePrice": null,
+    "issuancePrice": 44.56,
     "listingDate": null,
     "market": "SH",
     "name": "臻宝科技",
@@ -23,7 +33,7 @@
     "code": "001399",
     "instrumentType": "深",
     "issuanceDate": "2026-06-12",
-    "issuancePrice": null,
+    "issuancePrice": 10.12,
     "listingDate": null,
     "market": "SZ",
     "name": "惠科股份",
