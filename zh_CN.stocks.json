@@ -13,7 +13,7 @@
     "code": "920072",
     "instrumentType": "北",
     "issuanceDate": "2026-06-15",
-    "issuancePrice": null,
+    "issuancePrice": 15.62,
     "listingDate": null,
     "market": "BJ",
     "name": "科莱瑞迪",
@@ -44,7 +44,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-06-03",
     "issuancePrice": 7.79,
-    "listingDate": null,
+    "listingDate": "2026-06-15",
     "market": "BJ",
     "name": "永大股份",
     "publicationDate": "2026-06-08"
