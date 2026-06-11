@@ -37,6 +37,14 @@ interface CodePrefixRule {
 /**
  * 代码前缀查找表
  * 按前缀长度降序排列，确保匹配时优先使用更长的前缀
+ *
+ * 数据来源：
+ * - 上交所：上海证券交易所证券交易业务指南第4号——证券代码段分配指南（2026年第1次修订）
+ *   https://www.sse.com.cn/lawandrules/guide/stock/jyglywznylc/zn/c/c_20260313_10811730.shtml
+ * - 深交所：深圳证券交易所证券代码区间表（2026年3月修订）
+ *   https://www.szse.cn/marketServices/technicalservice/doc/P020260306733846760075.pdf
+ * - 北交所：北京证券交易所 全国中小企业股份转让系统证券代码、证券简称编制指引（2024年4月22日施行）
+ *   https://www.bse.cn/jygl_list/200021626.html
  */
 const CODE_PREFIX_RULES: CodePrefixRule[] = [
   // 上交所 - 主板 (600, 601, 603, 605)
