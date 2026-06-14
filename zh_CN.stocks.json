@@ -38,25 +38,5 @@
     "market": "SZ",
     "name": "惠科股份",
     "publicationDate": "2026-06-16"
-  },
-  {
-    "code": "920126",
-    "instrumentType": "北",
-    "issuanceDate": "2026-06-03",
-    "issuancePrice": 7.79,
-    "listingDate": "2026-06-15",
-    "market": "BJ",
-    "name": "永大股份",
-    "publicationDate": "2026-06-08"
-  },
-  {
-    "code": "920083",
-    "instrumentType": "北",
-    "issuanceDate": "2026-06-01",
-    "issuancePrice": 9.65,
-    "listingDate": "2026-06-11",
-    "market": "BJ",
-    "name": "金戈新材",
-    "publicationDate": "2026-06-04"
   }
 ]
