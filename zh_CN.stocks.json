@@ -1,9 +1,29 @@
 [
   {
+    "code": "301583",
+    "instrumentType": "创",
+    "issuanceDate": "2026-06-29",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "托伦斯",
+    "publicationDate": "2026-07-01"
+  },
+  {
+    "code": "920222",
+    "instrumentType": "北",
+    "issuanceDate": "2026-06-22",
+    "issuancePrice": 10.09,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "益坤电气",
+    "publicationDate": "2026-06-25"
+  },
+  {
     "code": "001248",
     "instrumentType": "深",
     "issuanceDate": "2026-06-22",
-    "issuancePrice": null,
+    "issuancePrice": 10.11,
     "listingDate": null,
     "market": "SZ",
     "name": "华润新能源",
