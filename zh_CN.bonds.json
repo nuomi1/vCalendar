@@ -1,5 +1,25 @@
 [
   {
+    "code": "118072",
+    "instrumentType": "债",
+    "issuanceDate": "2026-06-24",
+    "issuancePrice": 100,
+    "listingDate": null,
+    "market": "SH",
+    "name": "鼎通转债",
+    "publicationDate": "2026-06-26"
+  },
+  {
+    "code": "110101",
+    "instrumentType": "债",
+    "issuanceDate": "2026-06-24",
+    "issuancePrice": 100,
+    "listingDate": null,
+    "market": "SH",
+    "name": "宝钛转债",
+    "publicationDate": "2026-06-26"
+  },
+  {
     "code": "118071",
     "instrumentType": "债",
     "issuanceDate": "2026-06-23",
@@ -48,45 +68,5 @@
     "market": "SH",
     "name": "豪26转债",
     "publicationDate": "2026-06-17"
-  },
-  {
-    "code": "123272",
-    "instrumentType": "债",
-    "issuanceDate": "2026-06-11",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "中汽转债",
-    "publicationDate": "2026-06-15"
-  },
-  {
-    "code": "118069",
-    "instrumentType": "债",
-    "issuanceDate": "2026-06-11",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SH",
-    "name": "爱科转债",
-    "publicationDate": "2026-06-15"
-  },
-  {
-    "code": "113704",
-    "instrumentType": "债",
-    "issuanceDate": "2026-06-10",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SH",
-    "name": "春风转债",
-    "publicationDate": "2026-06-12"
-  },
-  {
-    "code": "113703",
-    "instrumentType": "债",
-    "issuanceDate": "2026-06-08",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SH",
-    "name": "翔26转债",
-    "publicationDate": "2026-06-10"
   }
 ]

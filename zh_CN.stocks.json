@@ -48,25 +48,5 @@
     "market": "BJ",
     "name": "科莱瑞迪",
     "publicationDate": "2026-06-18"
-  },
-  {
-    "code": "688797",
-    "instrumentType": "科",
-    "issuanceDate": "2026-06-12",
-    "issuancePrice": 44.56,
-    "listingDate": null,
-    "market": "SH",
-    "name": "臻宝科技",
-    "publicationDate": "2026-06-16"
-  },
-  {
-    "code": "001399",
-    "instrumentType": "深",
-    "issuanceDate": "2026-06-12",
-    "issuancePrice": 10.12,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "惠科股份",
-    "publicationDate": "2026-06-16"
   }
 ]
