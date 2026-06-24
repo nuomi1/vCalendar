@@ -1,12 +1,32 @@
 [
   {
+    "code": "508609",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-07-30",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "锦江REIT",
+    "publicationDate": null
+  },
+  {
     "code": "508607",
     "instrumentType": "REITs",
     "issuanceDate": "2026-07-23",
     "issuancePrice": null,
     "listingDate": null,
     "market": "SH",
-    "name": "华安陆家嘴商业REIT",
+    "name": "陆家嘴R",
+    "publicationDate": null
+  },
+  {
+    "code": "508606",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-07-09",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "凯德商业",
     "publicationDate": null
   },
   {
