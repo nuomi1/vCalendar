@@ -3,7 +3,7 @@
     "code": "508609",
     "instrumentType": "REITs",
     "issuanceDate": "2026-07-30",
-    "issuancePrice": null,
+    "issuancePrice": 2.67,
     "listingDate": null,
     "market": "SH",
     "name": "锦江REIT",
@@ -20,6 +20,16 @@
     "publicationDate": null
   },
   {
+    "code": "508605",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-07-15",
+    "issuancePrice": 3.59,
+    "listingDate": null,
+    "market": "SH",
+    "name": "华夏保利商业REIT",
+    "publicationDate": null
+  },
+  {
     "code": "508606",
     "instrumentType": "REITs",
     "issuanceDate": "2026-07-09",
@@ -30,20 +40,10 @@
     "publicationDate": null
   },
   {
-    "code": "508605",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-07-06",
-    "issuancePrice": null,
-    "listingDate": null,
-    "market": "SH",
-    "name": "华夏保利商业REIT",
-    "publicationDate": null
-  },
-  {
     "code": "181001",
     "instrumentType": "REITs",
     "issuanceDate": "2026-07-03",
-    "issuancePrice": null,
+    "issuancePrice": 2.83,
     "listingDate": null,
     "market": "SZ",
     "name": "创金合信北京国资公司REIT",
