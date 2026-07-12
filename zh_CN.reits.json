@@ -38,25 +38,5 @@
     "market": "SH",
     "name": "凯德商业",
     "publicationDate": null
-  },
-  {
-    "code": "181001",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-07-03",
-    "issuancePrice": 2.83,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "创金合信北京国资公司REIT",
-    "publicationDate": "2026-07-10"
-  },
-  {
-    "code": "508059",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-07-01",
-    "issuancePrice": 8.01,
-    "listingDate": null,
-    "market": "SH",
-    "name": "华泰三峡新能源REIT",
-    "publicationDate": "2026-07-06"
   }
 ]

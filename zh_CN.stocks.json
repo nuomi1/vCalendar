@@ -58,35 +58,5 @@
     "market": "BJ",
     "name": "龙鑫智能",
     "publicationDate": "2026-07-09"
-  },
-  {
-    "code": "920081",
-    "instrumentType": "北",
-    "issuanceDate": "2026-07-01",
-    "issuancePrice": 38.69,
-    "listingDate": "2026-07-10",
-    "market": "BJ",
-    "name": "欧伦电气",
-    "publicationDate": "2026-07-06"
-  },
-  {
-    "code": "920189",
-    "instrumentType": "北",
-    "issuanceDate": "2026-06-29",
-    "issuancePrice": 8.14,
-    "listingDate": "2026-07-08",
-    "market": "BJ",
-    "name": "康美特",
-    "publicationDate": "2026-07-02"
-  },
-  {
-    "code": "301583",
-    "instrumentType": "创",
-    "issuanceDate": "2026-06-29",
-    "issuancePrice": 22.6,
-    "listingDate": "2026-07-10",
-    "market": "SZ",
-    "name": "托伦斯",
-    "publicationDate": "2026-07-01"
   }
 ]
