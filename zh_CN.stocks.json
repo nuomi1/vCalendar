@@ -78,35 +78,5 @@
     "market": "BJ",
     "name": "维琪科技",
     "publicationDate": "2026-07-16"
-  },
-  {
-    "code": "688806",
-    "instrumentType": "科",
-    "issuanceDate": "2026-07-10",
-    "issuancePrice": 14.46,
-    "listingDate": null,
-    "market": "SH",
-    "name": "泰诺麦博",
-    "publicationDate": "2026-07-14"
-  },
-  {
-    "code": "920079",
-    "instrumentType": "北",
-    "issuanceDate": "2026-07-08",
-    "issuancePrice": 14.36,
-    "listingDate": null,
-    "market": "BJ",
-    "name": "乔路铭",
-    "publicationDate": "2026-07-13"
-  },
-  {
-    "code": "920117",
-    "instrumentType": "北",
-    "issuanceDate": "2026-07-06",
-    "issuancePrice": 17.83,
-    "listingDate": "2026-07-16",
-    "market": "BJ",
-    "name": "龙鑫智能",
-    "publicationDate": "2026-07-09"
   }
 ]
