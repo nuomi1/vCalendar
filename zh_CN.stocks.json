@@ -1,5 +1,25 @@
 [
   {
+    "code": "688828",
+    "instrumentType": "科",
+    "issuanceDate": "2026-07-31",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "国仪公司",
+    "publicationDate": "2026-08-04"
+  },
+  {
+    "code": "301717",
+    "instrumentType": "创",
+    "issuanceDate": "2026-07-31",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "超纯应材",
+    "publicationDate": "2026-08-04"
+  },
+  {
     "code": "301707",
     "instrumentType": "创",
     "issuanceDate": "2026-07-27",
@@ -13,7 +33,7 @@
     "code": "603468",
     "instrumentType": "上",
     "issuanceDate": "2026-07-24",
-    "issuancePrice": null,
+    "issuancePrice": 17.46,
     "listingDate": null,
     "market": "SH",
     "name": "津富士达",
@@ -23,7 +43,7 @@
     "code": "001232",
     "instrumentType": "深",
     "issuanceDate": "2026-07-24",
-    "issuancePrice": null,
+    "issuancePrice": 84.46,
     "listingDate": null,
     "market": "SZ",
     "name": "嘉立创",
@@ -74,7 +94,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-07-15",
     "issuancePrice": 18.89,
-    "listingDate": null,
+    "listingDate": "2026-07-24",
     "market": "BJ",
     "name": "长鹰硬科",
     "publicationDate": "2026-07-20"
