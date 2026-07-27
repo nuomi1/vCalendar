@@ -20,6 +20,16 @@
     "publicationDate": "2026-08-04"
   },
   {
+    "code": "920165",
+    "instrumentType": "北",
+    "issuanceDate": "2026-07-29",
+    "issuancePrice": 19.26,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "珈凯生物",
+    "publicationDate": "2026-08-03"
+  },
+  {
     "code": "920038",
     "instrumentType": "北",
     "issuanceDate": "2026-07-27",
@@ -74,7 +84,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-07-20",
     "issuancePrice": 24.3,
-    "listingDate": null,
+    "listingDate": "2026-07-29",
     "market": "BJ",
     "name": "千岸科技",
     "publicationDate": "2026-07-23"
