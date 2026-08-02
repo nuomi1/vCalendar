@@ -68,35 +68,5 @@
     "market": "SH",
     "name": "特宝转债",
     "publicationDate": "2026-07-30"
-  },
-  {
-    "code": "127115",
-    "instrumentType": "债",
-    "issuanceDate": "2026-07-24",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "炬申转债",
-    "publicationDate": "2026-07-28"
-  },
-  {
-    "code": "110103",
-    "instrumentType": "债",
-    "issuanceDate": "2026-07-24",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SH",
-    "name": "申能转债",
-    "publicationDate": "2026-07-28"
-  },
-  {
-    "code": "123276",
-    "instrumentType": "债",
-    "issuanceDate": "2026-07-20",
-    "issuancePrice": 100,
-    "listingDate": "2026-08-04",
-    "market": "SZ",
-    "name": "久吾转02",
-    "publicationDate": "2026-07-22"
   }
 ]
