@@ -30,6 +30,16 @@
     "publicationDate": "2026-08-11"
   },
   {
+    "code": "920107",
+    "instrumentType": "北",
+    "issuanceDate": "2026-08-05",
+    "issuancePrice": 16.02,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "恒兴股份",
+    "publicationDate": "2026-08-10"
+  },
+  {
     "code": "920138",
     "instrumentType": "北",
     "issuanceDate": "2026-08-03",
@@ -74,7 +84,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-07-27",
     "issuancePrice": 29.06,
-    "listingDate": null,
+    "listingDate": "2026-08-05",
     "market": "BJ",
     "name": "森合高科",
     "publicationDate": "2026-07-30"
