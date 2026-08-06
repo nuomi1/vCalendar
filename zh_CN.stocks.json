@@ -20,10 +20,20 @@
     "publicationDate": "2026-08-18"
   },
   {
+    "code": "920059",
+    "instrumentType": "北",
+    "issuanceDate": "2026-08-10",
+    "issuancePrice": 11.13,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "双英集团",
+    "publicationDate": "2026-08-13"
+  },
+  {
     "code": "688836",
     "instrumentType": "科",
     "issuanceDate": "2026-08-10",
-    "issuancePrice": null,
+    "issuancePrice": 150.8,
     "listingDate": null,
     "market": "SH",
     "name": "宇树科技",
@@ -33,7 +43,7 @@
     "code": "301655",
     "instrumentType": "创",
     "issuanceDate": "2026-08-10",
-    "issuancePrice": null,
+    "issuancePrice": 8.5,
     "listingDate": null,
     "market": "SZ",
     "name": "绿控传动",
