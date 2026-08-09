@@ -1,4 +1,4 @@
-import stringify from "canonical-json";
+import _stringify from "canonical-json";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { ICalCalendar } from "ical-generator";
@@ -169,6 +169,14 @@ export function roundPrice(price: number): number {
 }
 
 /**
+ * 将值序列化为 canonical JSON，2 空格缩进，末尾加换行。
+ * 序列化结果为假值时返回空字符串加换行。
+ */
+export function stringify(value: unknown): string {
+  return (_stringify(value, undefined, 2) || "") + "\n";
+}
+
+/**
  * 生成日历事件的详细描述。
  * @param record - IPO 记录
  * @returns 多行描述字符串，包含发行价、公布日、上市日
@@ -207,7 +215,7 @@ export function createJSON(records: IPORecord[]): string {
     };
     return obj;
   });
-  return stringify(mapped, undefined, 2) || "";
+  return stringify(mapped);
 }
 
 /**
