@@ -48,55 +48,5 @@
     "market": "SZ",
     "name": "天脉转债",
     "publicationDate": "2026-08-05"
-  },
-  {
-    "code": "123278",
-    "instrumentType": "债",
-    "issuanceDate": "2026-07-30",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "合金转债",
-    "publicationDate": "2026-08-03"
-  },
-  {
-    "code": "113709",
-    "instrumentType": "债",
-    "issuanceDate": "2026-07-30",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SH",
-    "name": "振26转债",
-    "publicationDate": "2026-08-03"
-  },
-  {
-    "code": "123277",
-    "instrumentType": "债",
-    "issuanceDate": "2026-07-29",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "玉禾转债",
-    "publicationDate": "2026-07-31"
-  },
-  {
-    "code": "118075",
-    "instrumentType": "债",
-    "issuanceDate": "2026-07-29",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SH",
-    "name": "奥普转债",
-    "publicationDate": "2026-07-31"
-  },
-  {
-    "code": "118074",
-    "instrumentType": "债",
-    "issuanceDate": "2026-07-28",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SH",
-    "name": "特宝转债",
-    "publicationDate": "2026-07-30"
   }
 ]

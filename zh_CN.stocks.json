@@ -78,55 +78,5 @@
     "market": "BJ",
     "name": "杰理科技",
     "publicationDate": "2026-08-06"
-  },
-  {
-    "code": "688828",
-    "instrumentType": "科",
-    "issuanceDate": "2026-07-31",
-    "issuancePrice": 21.22,
-    "listingDate": null,
-    "market": "SH",
-    "name": "国仪公司",
-    "publicationDate": "2026-08-04"
-  },
-  {
-    "code": "301717",
-    "instrumentType": "创",
-    "issuanceDate": "2026-07-31",
-    "issuancePrice": 65.99,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "超纯应材",
-    "publicationDate": "2026-08-04"
-  },
-  {
-    "code": "920165",
-    "instrumentType": "北",
-    "issuanceDate": "2026-07-29",
-    "issuancePrice": 19.26,
-    "listingDate": "2026-08-11",
-    "market": "BJ",
-    "name": "珈凯生物",
-    "publicationDate": "2026-08-03"
-  },
-  {
-    "code": "920038",
-    "instrumentType": "北",
-    "issuanceDate": "2026-07-27",
-    "issuancePrice": 29.06,
-    "listingDate": "2026-08-05",
-    "market": "BJ",
-    "name": "森合高科",
-    "publicationDate": "2026-07-30"
-  },
-  {
-    "code": "301707",
-    "instrumentType": "创",
-    "issuanceDate": "2026-07-27",
-    "issuancePrice": 23.45,
-    "listingDate": "2026-08-07",
-    "market": "SZ",
-    "name": "展芯股份",
-    "publicationDate": "2026-07-29"
   }
 ]
