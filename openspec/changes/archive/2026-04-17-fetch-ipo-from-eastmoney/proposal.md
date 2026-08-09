@@ -12,11 +12,11 @@
 
 ### 数据源
 
-| 类型 | API ReportName | 关键日期字段 |
-|------|---------------|-------------|
-| 股票 | `RPTA_APP_IPOAPPLY` | `APPLY_DATE` → issuanceDate, `BALLOT_NUM_DATE` → publicationDate |
-| 可转债 | `RPT_BOND_CB_LIST` | `PUBLIC_START_DATE` → issuanceDate, issuancePrice 固定 100 |
-| REITs | `RPT_CUSTOM_REITS_APPLY_LIST_MARKET` | `SUBSCRIBE_START_DATE` → issuanceDate, `RESULT_NOTICE_DATE` → publicationDate |
+| 类型   | API ReportName                       | 关键日期字段                                                                  |
+| ------ | ------------------------------------ | ----------------------------------------------------------------------------- |
+| 股票   | `RPTA_APP_IPOAPPLY`                  | `APPLY_DATE` → issuanceDate, `BALLOT_NUM_DATE` → publicationDate              |
+| 可转债 | `RPT_BOND_CB_LIST`                   | `PUBLIC_START_DATE` → issuanceDate, issuancePrice 固定 100                    |
+| REITs  | `RPT_CUSTOM_REITS_APPLY_LIST_MARKET` | `SUBSCRIBE_START_DATE` → issuanceDate, `RESULT_NOTICE_DATE` → publicationDate |
 
 ### 类型定义
 

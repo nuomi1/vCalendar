@@ -29,7 +29,7 @@ runs:
         timezoneMacos: "Asia/Shanghai"
     - uses: oven-sh/setup-bun@v2
       with:
-        bun-version: ${{ matrix.bun }}  # 来自 STRATEGY_MATRIX
+        bun-version: ${{ matrix.bun }} # 来自 STRATEGY_MATRIX
     - uses: actions/cache@v5
       with:
         path: |
@@ -57,22 +57,22 @@ name: Update IPO Calendar
 
 on:
   schedule:
-    - cron: "0 14 * * *"  # 每天 14:00 UTC = 22:00 北京时间
-  workflow_dispatch:       # 手动触发
+    - cron: "0 14 * * *" # 每天 14:00 UTC = 22:00 北京时间
+  workflow_dispatch: # 手动触发
 
 permissions:
-  contents: write          # 显式声明写权限
+  contents: write # 显式声明写权限
 
 jobs:
   update_ipo_calendar:
-    runs-on: ${{ matrix.os }}  # 来自 STRATEGY_MATRIX
+    runs-on: ${{ matrix.os }} # 来自 STRATEGY_MATRIX
     strategy:
       matrix: ${{ fromJSON(vars.STRATEGY_MATRIX) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          persist-credentials: false  # 防止 credentials 写回，避免触发 cascade
+          persist-credentials: false # 防止 credentials 写回，避免触发 cascade
 
       - name: Run TS
         uses: ./.github/actions/run_ts
@@ -94,7 +94,7 @@ jobs:
 需要在 GitHub Repository Variables 中配置：
 
 ```json
-{"os": ["ubuntu-latest"], "bun": ["1.x"]}
+{ "os": ["ubuntu-latest"], "bun": ["1.x"] }
 ```
 
 ## 实现要点
@@ -136,6 +136,7 @@ GitHub Actions 默认权限可能为 contents: read
 ### nick-fields/retry@v4 重试机制
 
 脚本执行可能因网络波动等原因失败，添加 2 次重试，15 分钟超时：
+
 ```yaml
 - uses: nick-fields/retry@v4
   with:
@@ -147,6 +148,7 @@ GitHub Actions 默认权限可能为 contents: read
 ### git-auto-commit-action 自动检测变化
 
 该 action 会自动检测 `file_pattern` 匹配的文件是否有变化：
+
 - 有变化 → commit + push
 - 无变化 → skip（不产生 commit）
 

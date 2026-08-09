@@ -24,7 +24,7 @@ bun run index.ts
 ## API
 
 ```typescript
-import { generateCalendar } from './index';
+import { generateCalendar } from "./index";
 
 // Generate calendar from API (auto-fetches from EastMoney)
 await generateCalendar();
@@ -33,14 +33,23 @@ await generateCalendar();
 ## Programmatic Usage
 
 ```typescript
-import { generateCalendar } from './index';
-import type { InputData } from './types';
+import { generateCalendar } from "./index";
+import type { InputData } from "./types";
 
 // Generate calendar from pre-fetched data
 const data: InputData = {
-  stocks: [{ name: '测试', code: '001312', issuanceDate: new Date('2026-04-15'), issuancePrice: 10.5, publicationDate: null, listingDate: null }],
+  stocks: [
+    {
+      name: "测试",
+      code: "001312",
+      issuanceDate: new Date("2026-04-15"),
+      issuancePrice: 10.5,
+      publicationDate: null,
+      listingDate: null,
+    },
+  ],
   bonds: [],
-  reits: []
+  reits: [],
 };
 
 await generateCalendar(data);

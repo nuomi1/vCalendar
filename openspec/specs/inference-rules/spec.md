@@ -87,11 +87,13 @@ const CODE_PREFIX_RULES: CodePrefixRule[] = [
 ```
 
 **Matching Order**:
+
 1. 遍历查找表，尝试 `code.startsWith(prefix)` 匹配
 2. 返回第一个匹配项的 `market` 和 `instrumentType`
 3. 无匹配 → 抛出异常
 
 **Why startsWith instead of range tables**:
+
 - 前缀匹配比数值范围更直观（300-309 实际上是 300, 301, ... 309 的离散前缀）
 - 便于未来添加新代码段（如 310）
 

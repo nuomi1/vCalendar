@@ -28,6 +28,7 @@
 ## Decisions
 
 1. 统一记录类型
+
    ```
    interface IPORecord {
      name: string;
@@ -60,10 +61,11 @@
    Rationale: 当前需求固定，无需配置灵活性。
 
 5. 使用 Bun API 写入文件
+
    ```typescript
-   Bun.write(Bun.file(filename), content)
+   Bun.write(Bun.file(filename), content);
    // 或
-   Bun.file(filename).write(content)
+   Bun.file(filename).write(content);
    ```
 
    Rationale: Bun 原生 API 性能更好，且项目已使用 Bun。

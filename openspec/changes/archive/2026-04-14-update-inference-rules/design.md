@@ -9,11 +9,13 @@
 ## Goals / Non-Goals
 
 **Goals:**
+
 - 移除 category 参数，仅需 code 即可推断
 - 完整的匹配规则覆盖上交所/深交所/北交所
 - 未匹配规则时显式抛出异常
 
 **Non-Goals:**
+
 - 不修改 ICS/JSON 生成逻辑的核心流程
 - 不添加新的 API 接口
 
@@ -37,14 +39,23 @@
 export function inferMarket(code: string): Market {
   // === 上交所 SH ===
   // 股票（按数字从小到大：600, 601, 603, 605, 688, 689）
-  if (code.startsWith("600") || code.startsWith("601") ||
-      code.startsWith("603") || code.startsWith("605") ||
-      code.startsWith("688") || code.startsWith("689")) {
+  if (
+    code.startsWith("600") ||
+    code.startsWith("601") ||
+    code.startsWith("603") ||
+    code.startsWith("605") ||
+    code.startsWith("688") ||
+    code.startsWith("689")
+  ) {
     return "SH";
   }
   // 可转债（按数字从小到大：110, 111, 113, 118）
-  if (code.startsWith("110") || code.startsWith("111") ||
-      code.startsWith("113") || code.startsWith("118")) {
+  if (
+    code.startsWith("110") ||
+    code.startsWith("111") ||
+    code.startsWith("113") ||
+    code.startsWith("118")
+  ) {
     return "SH";
   }
   // REITs（508）
@@ -54,15 +65,27 @@ export function inferMarket(code: string): Market {
 
   // === 深交所 SZ ===
   // 股票（按数字从小到大：000, 001, 002, 003, 004, 300-309）
-  if (code.startsWith("000") || code.startsWith("001") ||
-      code.startsWith("002") || code.startsWith("003") ||
-      code.startsWith("004")) {
+  if (
+    code.startsWith("000") ||
+    code.startsWith("001") ||
+    code.startsWith("002") ||
+    code.startsWith("003") ||
+    code.startsWith("004")
+  ) {
     return "SZ";
   }
-  if (code.startsWith("300") || code.startsWith("301") || code.startsWith("302") ||
-      code.startsWith("303") || code.startsWith("304") || code.startsWith("305") ||
-      code.startsWith("306") || code.startsWith("307") || code.startsWith("308") ||
-      code.startsWith("309")) {
+  if (
+    code.startsWith("300") ||
+    code.startsWith("301") ||
+    code.startsWith("302") ||
+    code.startsWith("303") ||
+    code.startsWith("304") ||
+    code.startsWith("305") ||
+    code.startsWith("306") ||
+    code.startsWith("307") ||
+    code.startsWith("308") ||
+    code.startsWith("309")
+  ) {
     return "SZ";
   }
   // 可转债（按数字从小到大：123, 127, 128）
@@ -95,16 +118,24 @@ export function inferMarket(code: string): Market {
 export function inferInstrumentType(code: string): InstrumentType {
   // === 上交所 SH ===
   // 股票（按数字从小到大：600, 601, 603, 605 → 上；688, 689 → 科）
-  if (code.startsWith("600") || code.startsWith("601") ||
-      code.startsWith("603") || code.startsWith("605")) {
+  if (
+    code.startsWith("600") ||
+    code.startsWith("601") ||
+    code.startsWith("603") ||
+    code.startsWith("605")
+  ) {
     return "上";
   }
   if (code.startsWith("688") || code.startsWith("689")) {
     return "科";
   }
   // 可转债（按数字从小到大：110, 111, 113, 118）
-  if (code.startsWith("110") || code.startsWith("111") ||
-      code.startsWith("113") || code.startsWith("118")) {
+  if (
+    code.startsWith("110") ||
+    code.startsWith("111") ||
+    code.startsWith("113") ||
+    code.startsWith("118")
+  ) {
     return "债";
   }
   // REITs（508）
@@ -114,15 +145,27 @@ export function inferInstrumentType(code: string): InstrumentType {
 
   // === 深交所 SZ ===
   // 股票（按数字从小到大：000, 001, 002, 003, 004 → 深；300-309 → 创）
-  if (code.startsWith("000") || code.startsWith("001") ||
-      code.startsWith("002") || code.startsWith("003") ||
-      code.startsWith("004")) {
+  if (
+    code.startsWith("000") ||
+    code.startsWith("001") ||
+    code.startsWith("002") ||
+    code.startsWith("003") ||
+    code.startsWith("004")
+  ) {
     return "深";
   }
-  if (code.startsWith("300") || code.startsWith("301") || code.startsWith("302") ||
-      code.startsWith("303") || code.startsWith("304") || code.startsWith("305") ||
-      code.startsWith("306") || code.startsWith("307") || code.startsWith("308") ||
-      code.startsWith("309")) {
+  if (
+    code.startsWith("300") ||
+    code.startsWith("301") ||
+    code.startsWith("302") ||
+    code.startsWith("303") ||
+    code.startsWith("304") ||
+    code.startsWith("305") ||
+    code.startsWith("306") ||
+    code.startsWith("307") ||
+    code.startsWith("308") ||
+    code.startsWith("309")
+  ) {
     return "创";
   }
   // 可转债（按数字从小到大：123, 127, 128）
@@ -155,25 +198,25 @@ export function inferInstrumentType(code: string): InstrumentType {
 
 ```typescript
 // Before
-export function createJSON(records: IPORecord[], category: string): string
+export function createJSON(records: IPORecord[], category: string): string;
 
 // After
-export function createJSON(records: IPORecord[]): string
+export function createJSON(records: IPORecord[]): string;
 ```
 
 ### createICS
 
 ```typescript
 // Before
-export function createICS(records: IPORecord[], category: string): string
+export function createICS(records: IPORecord[], category: string): string;
 
 // After
-export function createICS(records: IPORecord[]): string
+export function createICS(records: IPORecord[]): string;
 ```
 
 ## Risks / Trade-offs
 
-| 风险 | Mitigation |
-|------|-------------|
-| 规则复杂可能导致遗漏边界情况 | 添加全覆盖测试用例 |
-| 异常处理可能导致上游崩溃 | 添加 try-catch 文档 |
+| 风险                         | Mitigation          |
+| ---------------------------- | ------------------- |
+| 规则复杂可能导致遗漏边界情况 | 添加全覆盖测试用例  |
+| 异常处理可能导致上游崩溃     | 添加 try-catch 文档 |

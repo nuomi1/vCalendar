@@ -12,14 +12,14 @@ Instrument records are pre-normalized into three separate arrays: `stocks`, `bon
 
 Each instrument record contains these fields:
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `name` | string | Yes | 证券简称 |
-| `code` | string | Yes | 证券代码 |
-| `issuanceDate` | Date | Yes | 发行日 |
-| `issuancePrice` | number \| null | No | 发行价 |
-| `publicationDate` | Date \| null | No | 公布日 |
-| `listingDate` | Date \| null | No | 上市日 |
+| Field             | Type           | Required | Description |
+| ----------------- | -------------- | -------- | ----------- |
+| `name`            | string         | Yes      | 证券简称    |
+| `code`            | string         | Yes      | 证券代码    |
+| `issuanceDate`    | Date           | Yes      | 发行日      |
+| `issuancePrice`   | number \| null | No       | 发行价      |
+| `publicationDate` | Date \| null   | No       | 公布日      |
+| `listingDate`     | Date \| null   | No       | 上市日      |
 
 **Note:** `market` and `instrumentType` are **not** stored in the model. They are derived at export time by calling `inferMarket(code)` and `inferInstrumentType(code)` from the `inference-rules` module.
 

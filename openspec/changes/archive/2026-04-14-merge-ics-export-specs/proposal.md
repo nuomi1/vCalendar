@@ -24,6 +24,7 @@
 - `ics-calendar-export`: 纳入 `ipo-calendar-event-generation` 中独立的需求（"每个记录生成一个事件" 及缺失发行日验证）
 
 合并后的规格将包含：
+
 - ICS 导出格式（现有）
 - 稳定的 UID 生成（现有）
 - 重复 UID 检查（现有）
