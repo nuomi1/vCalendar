@@ -12,5 +12,7 @@ export default defineConfig({
     typeCheck: true,
   },
   plugins: ["eslint", "import", "oxc", "promise", "typescript", "unicorn"],
-  rules: {},
+  rules: {
+    eqeqeq: ["error", "always", { null: "ignore" }],
+  },
 });
