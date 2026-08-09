@@ -13,7 +13,7 @@
   "dependencies": {
     "canonical-json": "^0.4.0",
     "dayjs": "^1.11.21",
-    "ical-generator": "^11.0.0",
+    "ical-generator": "^11.1.0",
     "mathjs": "^15.2.0",
     "ofetch": "^1.5.1"
   }
