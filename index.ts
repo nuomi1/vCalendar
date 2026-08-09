@@ -1,12 +1,5 @@
 import type { IPORecord, InputData } from "./types";
-import {
-  createICS,
-  createJSON,
-  fetchBondIPO,
-  fetchREITsIPO,
-  fetchStockIPO,
-  getUID,
-} from "./utils";
+import { createICS, createJSON, fetchBondIPO, fetchREITsIPO, fetchStockIPO, getUID } from "./utils";
 
 /**
  * 验证 IPO 记录的发行日是否存在。
@@ -43,11 +36,7 @@ function checkDuplicateUID(records: IPORecord[]): void {
  * @param category - 证券类型标识（股票/可转债/REITs）
  * @throws UID 重复时抛出 Error
  */
-async function exportICS(
-  records: IPORecord[],
-  filename: string,
-  category: string,
-): Promise<void> {
+async function exportICS(records: IPORecord[], filename: string, category: string): Promise<void> {
   checkDuplicateUID(records);
   const ics = createICS(records, category);
   await Bun.file(filename).write(ics);
@@ -58,10 +47,7 @@ async function exportICS(
  * @param records - IPO 记录数组
  * @param filename - 输出文件路径
  */
-async function exportJSON(
-  records: IPORecord[],
-  filename: string,
-): Promise<void> {
+async function exportJSON(records: IPORecord[], filename: string): Promise<void> {
   const json = createJSON(records);
   await Bun.file(filename).write(json);
 }

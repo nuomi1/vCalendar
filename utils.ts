@@ -4,6 +4,7 @@ import utc from "dayjs/plugin/utc";
 import { ICalCalendar } from "ical-generator";
 import * as math from "mathjs";
 import { ofetch } from "ofetch";
+
 import type {
   BondIPOData,
   InstrumentType,
@@ -186,9 +187,7 @@ export function formatDescription(record: IPORecord): string {
     record.issuancePrice != null
       ? `${roundPrice(record.issuancePrice).toFixed(FRACTION_DIGITS)} 元`
       : "--";
-  const pubDate = record.publicationDate
-    ? formatDate(record.publicationDate)
-    : "--";
+  const pubDate = record.publicationDate ? formatDate(record.publicationDate) : "--";
   const listDate = record.listingDate ? formatDate(record.listingDate) : "--";
   return `发行价：${price}\n公布日：${pubDate}\n上市日：${listDate}`;
 }
@@ -208,8 +207,7 @@ export function createJSON(records: IPORecord[]): string {
       market: inferMarket(r.code),
       instrumentType: inferInstrumentType(r.code),
       issuanceDate: formatDate(r.issuanceDate),
-      issuancePrice:
-        r.issuancePrice != null ? roundPrice(r.issuancePrice) : null,
+      issuancePrice: r.issuancePrice != null ? roundPrice(r.issuancePrice) : null,
       publicationDate: r.publicationDate ? formatDate(r.publicationDate) : null,
       listingDate: r.listingDate ? formatDate(r.listingDate) : null,
     };
@@ -283,8 +281,7 @@ interface IPOQueryConfig {
 /** 股票 IPO API 配置 */
 const STOCK_IPO_CONFIG: IPOQueryConfig = {
   reportName: "RPTA_APP_IPOAPPLY",
-  columns:
-    "APPLY_DATE,BALLOT_NUM_DATE,ISSUE_PRICE,LISTING_DATE,SECURITY_CODE,SECURITY_NAME",
+  columns: "APPLY_DATE,BALLOT_NUM_DATE,ISSUE_PRICE,LISTING_DATE,SECURITY_CODE,SECURITY_NAME",
   filterField: "APPLY_DATE",
   sortColumns: "APPLY_DATE,SECURITY_CODE",
   sortTypes: "-1,-1",
@@ -391,9 +388,7 @@ function convertREITsIPO(data: REITsIPOData): IPORecord {
     code: data.SECURITY_CODE,
     issuanceDate: parseDate(data.SUBSCRIBE_START_DATE),
     issuancePrice: data.SALE_PRICE,
-    publicationDate: data.RESULT_NOTICE_DATE
-      ? parseDate(data.RESULT_NOTICE_DATE)
-      : null,
+    publicationDate: data.RESULT_NOTICE_DATE ? parseDate(data.RESULT_NOTICE_DATE) : null,
     listingDate: data.LISTING_DATE ? parseDate(data.LISTING_DATE) : null,
   };
 }
@@ -413,10 +408,9 @@ interface EastMoneyResponse<T> {
  * @returns IPORecord 数组
  */
 export async function fetchStockIPO(): Promise<IPORecord[]> {
-  const json = await eastMoneyAPI<EastMoneyResponse<StockIPOData>>(
-    "/data/v1/get",
-    { query: buildIPOQuery(STOCK_IPO_CONFIG) },
-  );
+  const json = await eastMoneyAPI<EastMoneyResponse<StockIPOData>>("/data/v1/get", {
+    query: buildIPOQuery(STOCK_IPO_CONFIG),
+  });
   return json.result?.data.map(convertStockIPO) || [];
 }
 
@@ -425,10 +419,9 @@ export async function fetchStockIPO(): Promise<IPORecord[]> {
  * @returns IPORecord 数组
  */
 export async function fetchBondIPO(): Promise<IPORecord[]> {
-  const json = await eastMoneyAPI<EastMoneyResponse<BondIPOData>>(
-    "/data/v1/get",
-    { query: buildIPOQuery(BOND_IPO_CONFIG) },
-  );
+  const json = await eastMoneyAPI<EastMoneyResponse<BondIPOData>>("/data/v1/get", {
+    query: buildIPOQuery(BOND_IPO_CONFIG),
+  });
   return json.result?.data.map(convertBondIPO) || [];
 }
 
@@ -437,9 +430,8 @@ export async function fetchBondIPO(): Promise<IPORecord[]> {
  * @returns IPORecord 数组
  */
 export async function fetchREITsIPO(): Promise<IPORecord[]> {
-  const json = await eastMoneyAPI<EastMoneyResponse<REITsIPOData>>(
-    "/data/v1/get",
-    { query: buildIPOQuery(REITS_IPO_CONFIG) },
-  );
+  const json = await eastMoneyAPI<EastMoneyResponse<REITsIPOData>>("/data/v1/get", {
+    query: buildIPOQuery(REITS_IPO_CONFIG),
+  });
   return json.result?.data.map(convertREITsIPO) || [];
 }

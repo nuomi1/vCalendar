@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+
 import type { IPORecord } from "./types";
 import {
   createICS,
@@ -87,8 +88,7 @@ describe("inferInstrumentType", () => {
   });
 
   describe("上交所REITs", () => {
-    test("508 -> REITs", () =>
-      expect(inferInstrumentType("508000")).toBe("REITs"));
+    test("508 -> REITs", () => expect(inferInstrumentType("508000")).toBe("REITs"));
   });
 
   describe("深交所股票", () => {
@@ -109,10 +109,8 @@ describe("inferInstrumentType", () => {
   });
 
   describe("深交所REITs", () => {
-    test("180 -> REITs", () =>
-      expect(inferInstrumentType("180000")).toBe("REITs"));
-    test("181 -> REITs", () =>
-      expect(inferInstrumentType("181000")).toBe("REITs"));
+    test("180 -> REITs", () => expect(inferInstrumentType("180000")).toBe("REITs"));
+    test("181 -> REITs", () => expect(inferInstrumentType("181000")).toBe("REITs"));
   });
 
   describe("北交所股票", () => {
@@ -125,9 +123,7 @@ describe("inferInstrumentType", () => {
 
   describe("未知代码抛异常", () => {
     test("999999 -> 抛异常", () => {
-      expect(() => inferInstrumentType("999999")).toThrow(
-        "无法识别的证券代码: 999999",
-      );
+      expect(() => inferInstrumentType("999999")).toThrow("无法识别的证券代码: 999999");
     });
   });
 });
