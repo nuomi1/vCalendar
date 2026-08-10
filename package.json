@@ -4,7 +4,7 @@
   "module": "index.ts",
   "scripts": {
     "clean": "rm -rf bun.lock node_modules",
-    "fmt": "oxfmt",
+    "fmt": "oxfmt --no-error-on-unmatched-pattern",
     "fmt:check": "oxfmt --check",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
