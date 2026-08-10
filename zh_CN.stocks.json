@@ -10,6 +10,16 @@
     "publicationDate": "2026-08-24"
   },
   {
+    "code": "301697",
+    "instrumentType": "创",
+    "issuanceDate": "2026-08-19",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "贝特利",
+    "publicationDate": "2026-08-21"
+  },
+  {
     "code": "688835",
     "instrumentType": "科",
     "issuanceDate": "2026-08-14",
@@ -18,6 +28,16 @@
     "market": "SH",
     "name": "高凯技术",
     "publicationDate": "2026-08-18"
+  },
+  {
+    "code": "920093",
+    "instrumentType": "北",
+    "issuanceDate": "2026-08-12",
+    "issuancePrice": 14.35,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "信胜科技",
+    "publicationDate": "2026-08-17"
   },
   {
     "code": "920059",
@@ -74,7 +94,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-08-03",
     "issuancePrice": 18.86,
-    "listingDate": null,
+    "listingDate": "2026-08-12",
     "market": "BJ",
     "name": "杰理科技",
     "publicationDate": "2026-08-06"
