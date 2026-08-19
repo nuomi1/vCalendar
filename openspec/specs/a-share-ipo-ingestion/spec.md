@@ -55,7 +55,7 @@ The system MUST require issuance date on every input record.
 
 ### Requirement: Reference inference rules for market/instrument type
 
-Market and instrument type derivation is governed by the `inference-rules` specification.
+Market and instrument type derivation MUST be governed by the `inference-rules` specification.
 
 #### Scenario: Market inference
 
@@ -67,11 +67,9 @@ Market and instrument type derivation is governed by the `inference-rules` speci
 - **WHEN** instrument type is needed during export
 - **THEN** call `inferInstrumentType(code)` from `inference-rules`
 
-## API Fetching
-
 ### Requirement: Reuse ofetch instance
 
-The ofetch instance SHOULD be reused across all API calls to avoid repeated configuration overhead.
+The ofetch instance MUST be reused across all API calls to avoid repeated configuration overhead.
 
 #### Implementation
 
@@ -136,7 +134,7 @@ function buildIPOQuery(config: IPOQueryConfig): Record<string, unknown> {
 
 ### Requirement: Type-safe API response wrapper
 
-API responses SHOULD be wrapped in a type-safe interface.
+API responses MUST be wrapped in a type-safe interface.
 
 #### Implementation
 
