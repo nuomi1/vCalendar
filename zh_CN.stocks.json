@@ -30,6 +30,16 @@
     "publicationDate": "2026-08-28"
   },
   {
+    "code": "920289",
+    "instrumentType": "北",
+    "issuanceDate": "2026-08-24",
+    "issuancePrice": 17.71,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "华汇智能",
+    "publicationDate": "2026-08-27"
+  },
+  {
     "code": "601123",
     "instrumentType": "上",
     "issuanceDate": "2026-08-21",
@@ -106,7 +116,7 @@
     "issuancePrice": 11.13,
     "listingDate": "2026-08-19",
     "market": "BJ",
-    "name": "N双英",
+    "name": "双英集团",
     "publicationDate": "2026-08-13"
   },
   {
@@ -116,7 +126,7 @@
     "issuancePrice": 150.8,
     "listingDate": "2026-08-19",
     "market": "SH",
-    "name": "N宇树-W",
+    "name": "宇树科技",
     "publicationDate": "2026-08-12"
   },
   {
@@ -126,7 +136,7 @@
     "issuancePrice": 8.5,
     "listingDate": "2026-08-20",
     "market": "SZ",
-    "name": "绿控传动",
+    "name": "N绿控",
     "publicationDate": "2026-08-12"
   },
   {
