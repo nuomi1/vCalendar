@@ -94,7 +94,7 @@
     "instrumentType": "科",
     "issuanceDate": "2026-08-14",
     "issuancePrice": 61.36,
-    "listingDate": null,
+    "listingDate": "2026-08-25",
     "market": "SH",
     "name": "高凯技术",
     "publicationDate": "2026-08-18"
@@ -138,35 +138,5 @@
     "market": "SZ",
     "name": "绿控传动",
     "publicationDate": "2026-08-12"
-  },
-  {
-    "code": "688826",
-    "instrumentType": "科",
-    "issuanceDate": "2026-08-07",
-    "issuancePrice": 186.88,
-    "listingDate": "2026-08-18",
-    "market": "SH",
-    "name": "频准激光",
-    "publicationDate": "2026-08-11"
-  },
-  {
-    "code": "920107",
-    "instrumentType": "北",
-    "issuanceDate": "2026-08-05",
-    "issuancePrice": 16.02,
-    "listingDate": "2026-08-17",
-    "market": "BJ",
-    "name": "恒兴股份",
-    "publicationDate": "2026-08-10"
-  },
-  {
-    "code": "920138",
-    "instrumentType": "北",
-    "issuanceDate": "2026-08-03",
-    "issuancePrice": 18.86,
-    "listingDate": "2026-08-12",
-    "market": "BJ",
-    "name": "杰理科技",
-    "publicationDate": "2026-08-06"
   }
 ]
