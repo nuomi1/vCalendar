@@ -1,5 +1,15 @@
 [
   {
+    "code": "601091",
+    "instrumentType": "上",
+    "issuanceDate": "2026-09-08",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "沈鼓集团",
+    "publicationDate": "2026-09-10"
+  },
+  {
     "code": "688837",
     "instrumentType": "科",
     "issuanceDate": "2026-09-03",
@@ -10,10 +20,20 @@
     "publicationDate": "2026-09-07"
   },
   {
+    "code": "920298",
+    "instrumentType": "北",
+    "issuanceDate": "2026-09-02",
+    "issuancePrice": 35.78,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "腾信精密",
+    "publicationDate": "2026-09-07"
+  },
+  {
     "code": "688801",
     "instrumentType": "科",
     "issuanceDate": "2026-09-02",
-    "issuancePrice": null,
+    "issuancePrice": 142.18,
     "listingDate": null,
     "market": "SH",
     "name": "燧原科技",
@@ -94,7 +114,7 @@
     "instrumentType": "创",
     "issuanceDate": "2026-08-20",
     "issuancePrice": 26.33,
-    "listingDate": null,
+    "listingDate": "2026-09-02",
     "market": "SZ",
     "name": "格林生物",
     "publicationDate": "2026-08-24"
