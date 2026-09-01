@@ -1,5 +1,15 @@
 [
   {
+    "code": "301686",
+    "instrumentType": "创",
+    "issuanceDate": "2026-09-10",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "中塑股份",
+    "publicationDate": "2026-09-14"
+  },
+  {
     "code": "601091",
     "instrumentType": "上",
     "issuanceDate": "2026-09-08",
@@ -13,7 +23,7 @@
     "code": "688837",
     "instrumentType": "科",
     "issuanceDate": "2026-09-03",
-    "issuancePrice": null,
+    "issuancePrice": 27.6,
     "listingDate": null,
     "market": "SH",
     "name": "信诺维",
@@ -124,7 +134,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-08-19",
     "issuancePrice": 9.72,
-    "listingDate": null,
+    "listingDate": "2026-09-03",
     "market": "BJ",
     "name": "金钛股份",
     "publicationDate": "2026-08-24"
