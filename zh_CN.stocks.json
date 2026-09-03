@@ -20,6 +20,16 @@
     "publicationDate": "2026-09-10"
   },
   {
+    "code": "920201",
+    "instrumentType": "北",
+    "issuanceDate": "2026-09-07",
+    "issuancePrice": 16.77,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "百瑞吉",
+    "publicationDate": "2026-09-10"
+  },
+  {
     "code": "688837",
     "instrumentType": "科",
     "issuanceDate": "2026-09-03",
@@ -74,7 +84,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-08-26",
     "issuancePrice": 30.7,
-    "listingDate": null,
+    "listingDate": "2026-09-07",
     "market": "BJ",
     "name": "杰锋动力",
     "publicationDate": "2026-08-31"
@@ -84,7 +94,7 @@
     "instrumentType": "上",
     "issuanceDate": "2026-08-26",
     "issuancePrice": 62.65,
-    "listingDate": null,
+    "listingDate": "2026-09-07",
     "market": "SH",
     "name": "天博智能",
     "publicationDate": "2026-08-28"
