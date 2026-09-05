@@ -8,35 +8,5 @@
     "market": "SH",
     "name": "四方转债",
     "publicationDate": "2026-09-07"
-  },
-  {
-    "code": "123284",
-    "instrumentType": "债",
-    "issuanceDate": "2026-08-19",
-    "issuancePrice": 100,
-    "listingDate": "2026-09-03",
-    "market": "SZ",
-    "name": "强达转债",
-    "publicationDate": "2026-08-21"
-  },
-  {
-    "code": "123283",
-    "instrumentType": "债",
-    "issuanceDate": "2026-08-18",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "丰茂转债",
-    "publicationDate": "2026-08-20"
-  },
-  {
-    "code": "123282",
-    "instrumentType": "债",
-    "issuanceDate": "2026-08-17",
-    "issuancePrice": 100,
-    "listingDate": "2026-09-02",
-    "market": "SZ",
-    "name": "震裕转02",
-    "publicationDate": "2026-08-19"
   }
 ]
