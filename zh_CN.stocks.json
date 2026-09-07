@@ -1,5 +1,15 @@
 [
   {
+    "code": "301716",
+    "instrumentType": "创",
+    "issuanceDate": "2026-09-16",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "鸿富诚",
+    "publicationDate": "2026-09-18"
+  },
+  {
     "code": "301686",
     "instrumentType": "创",
     "issuanceDate": "2026-09-10",
@@ -7,6 +17,16 @@
     "listingDate": null,
     "market": "SZ",
     "name": "中塑股份",
+    "publicationDate": "2026-09-14"
+  },
+  {
+    "code": "920229",
+    "instrumentType": "北",
+    "issuanceDate": "2026-09-09",
+    "issuancePrice": 15.67,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "世纪数码",
     "publicationDate": "2026-09-14"
   },
   {
@@ -64,7 +84,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-08-31",
     "issuancePrice": 17.1,
-    "listingDate": null,
+    "listingDate": "2026-09-09",
     "market": "BJ",
     "name": "百迈科",
     "publicationDate": "2026-09-03"
@@ -104,7 +124,7 @@
     "instrumentType": "创",
     "issuanceDate": "2026-08-26",
     "issuancePrice": 15.88,
-    "listingDate": null,
+    "listingDate": "2026-09-09",
     "market": "SZ",
     "name": "洛轴股份",
     "publicationDate": "2026-08-28"
