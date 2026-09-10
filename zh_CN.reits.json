@@ -1,5 +1,15 @@
 [
   {
+    "code": "180505",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-09-22",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "中金杭州安居宁巢REIT",
+    "publicationDate": null
+  },
+  {
     "code": "180307",
     "instrumentType": "REITs",
     "issuanceDate": "2026-09-21",
@@ -13,7 +23,7 @@
     "code": "508095",
     "instrumentType": "REITs",
     "issuanceDate": "2026-09-14",
-    "issuancePrice": null,
+    "issuancePrice": 2.74,
     "listingDate": null,
     "market": "SH",
     "name": "中建住房",
@@ -27,6 +37,6 @@
     "listingDate": null,
     "market": "SH",
     "name": "晋中供热",
-    "publicationDate": null
+    "publicationDate": "2026-09-11"
   }
 ]
