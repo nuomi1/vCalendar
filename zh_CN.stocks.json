@@ -108,55 +108,5 @@
     "market": "BJ",
     "name": "百迈科",
     "publicationDate": "2026-09-03"
-  },
-  {
-    "code": "301689",
-    "instrumentType": "创",
-    "issuanceDate": "2026-08-28",
-    "issuancePrice": 16,
-    "listingDate": "2026-09-10",
-    "market": "SZ",
-    "name": "电科思仪",
-    "publicationDate": "2026-09-01"
-  },
-  {
-    "code": "920269",
-    "instrumentType": "北",
-    "issuanceDate": "2026-08-26",
-    "issuancePrice": 30.7,
-    "listingDate": "2026-09-07",
-    "market": "BJ",
-    "name": "杰锋动力",
-    "publicationDate": "2026-08-31"
-  },
-  {
-    "code": "603448",
-    "instrumentType": "上",
-    "issuanceDate": "2026-08-26",
-    "issuancePrice": 62.65,
-    "listingDate": "2026-09-07",
-    "market": "SH",
-    "name": "天博智能",
-    "publicationDate": "2026-08-28"
-  },
-  {
-    "code": "301699",
-    "instrumentType": "创",
-    "issuanceDate": "2026-08-26",
-    "issuancePrice": 15.88,
-    "listingDate": "2026-09-09",
-    "market": "SZ",
-    "name": "洛轴股份",
-    "publicationDate": "2026-08-28"
-  },
-  {
-    "code": "920289",
-    "instrumentType": "北",
-    "issuanceDate": "2026-08-24",
-    "issuancePrice": 17.71,
-    "listingDate": "2026-09-04",
-    "market": "BJ",
-    "name": "华汇智能",
-    "publicationDate": "2026-08-27"
   }
 ]
