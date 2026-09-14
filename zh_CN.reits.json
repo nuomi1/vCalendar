@@ -1,5 +1,15 @@
 [
   {
+    "code": "180702",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-10-08",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "银华粤海水务水利REIT",
+    "publicationDate": null
+  },
+  {
     "code": "180505",
     "instrumentType": "REITs",
     "issuanceDate": "2026-09-22",

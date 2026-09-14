@@ -1,5 +1,15 @@
 [
   {
+    "code": "301660",
+    "instrumentType": "创",
+    "issuanceDate": "2026-09-24",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "粤芯股份",
+    "publicationDate": "2026-09-29"
+  },
+  {
     "code": "001246",
     "instrumentType": "深",
     "issuanceDate": "2026-09-18",
@@ -10,10 +20,20 @@
     "publicationDate": "2026-09-22"
   },
   {
+    "code": "920202",
+    "instrumentType": "北",
+    "issuanceDate": "2026-09-16",
+    "issuancePrice": 7.55,
+    "listingDate": null,
+    "market": "BJ",
+    "name": "安达股份",
+    "publicationDate": "2026-09-21"
+  },
+  {
     "code": "301716",
     "instrumentType": "创",
     "issuanceDate": "2026-09-16",
-    "issuancePrice": null,
+    "issuancePrice": 76.86,
     "listingDate": null,
     "market": "SZ",
     "name": "鸿富诚",
@@ -74,7 +94,7 @@
     "instrumentType": "科",
     "issuanceDate": "2026-09-03",
     "issuancePrice": 27.6,
-    "listingDate": null,
+    "listingDate": "2026-09-16",
     "market": "SH",
     "name": "信诺维",
     "publicationDate": "2026-09-07"
@@ -84,7 +104,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-09-02",
     "issuancePrice": 35.78,
-    "listingDate": null,
+    "listingDate": "2026-09-16",
     "market": "BJ",
     "name": "腾信精密",
     "publicationDate": "2026-09-07"
