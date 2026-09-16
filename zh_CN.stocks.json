@@ -1,5 +1,15 @@
 [
   {
+    "code": "301569",
+    "instrumentType": "创",
+    "issuanceDate": "2026-09-28",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "联亚药业",
+    "publicationDate": "2026-09-30"
+  },
+  {
     "code": "301660",
     "instrumentType": "创",
     "issuanceDate": "2026-09-24",
@@ -13,7 +23,7 @@
     "code": "001246",
     "instrumentType": "深",
     "issuanceDate": "2026-09-18",
-    "issuancePrice": null,
+    "issuancePrice": 21.23,
     "listingDate": null,
     "market": "SZ",
     "name": "力勤资源",
