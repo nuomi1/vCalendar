@@ -1,5 +1,35 @@
 [
   {
+    "code": "508038",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-10-26",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "嘉泽REIT",
+    "publicationDate": null
+  },
+  {
+    "code": "508610",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-10-22",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "新城吾悦",
+    "publicationDate": null
+  },
+  {
+    "code": "181002",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-10-19",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "华泰华住安住REIT",
+    "publicationDate": null
+  },
+  {
     "code": "180702",
     "instrumentType": "REITs",
     "issuanceDate": "2026-10-08",
@@ -13,7 +43,7 @@
     "code": "180505",
     "instrumentType": "REITs",
     "issuanceDate": "2026-09-22",
-    "issuancePrice": null,
+    "issuancePrice": 3.05,
     "listingDate": null,
     "market": "SZ",
     "name": "中金杭州安居宁巢REIT",
@@ -37,7 +67,7 @@
     "listingDate": null,
     "market": "SH",
     "name": "中建住房",
-    "publicationDate": null
+    "publicationDate": "2026-09-18"
   },
   {
     "code": "508047",
