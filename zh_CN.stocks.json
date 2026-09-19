@@ -108,45 +108,5 @@
     "market": "BJ",
     "name": "百瑞吉",
     "publicationDate": "2026-09-10"
-  },
-  {
-    "code": "688837",
-    "instrumentType": "科",
-    "issuanceDate": "2026-09-03",
-    "issuancePrice": 27.6,
-    "listingDate": "2026-09-16",
-    "market": "SH",
-    "name": "信诺维",
-    "publicationDate": "2026-09-07"
-  },
-  {
-    "code": "920298",
-    "instrumentType": "北",
-    "issuanceDate": "2026-09-02",
-    "issuancePrice": 35.78,
-    "listingDate": "2026-09-16",
-    "market": "BJ",
-    "name": "腾信精密",
-    "publicationDate": "2026-09-07"
-  },
-  {
-    "code": "688801",
-    "instrumentType": "科",
-    "issuanceDate": "2026-09-02",
-    "issuancePrice": 142.18,
-    "listingDate": "2026-09-11",
-    "market": "SH",
-    "name": "燧原科技",
-    "publicationDate": "2026-09-04"
-  },
-  {
-    "code": "920268",
-    "instrumentType": "北",
-    "issuanceDate": "2026-08-31",
-    "issuancePrice": 17.1,
-    "listingDate": "2026-09-09",
-    "market": "BJ",
-    "name": "百迈科",
-    "publicationDate": "2026-09-03"
   }
 ]
