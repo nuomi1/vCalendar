@@ -1,5 +1,15 @@
 [
   {
+    "code": "508606",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-11-03",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "凯德商业",
+    "publicationDate": null
+  },
+  {
     "code": "508038",
     "instrumentType": "REITs",
     "issuanceDate": "2026-10-26",
@@ -20,6 +30,16 @@
     "publicationDate": null
   },
   {
+    "code": "508081",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-10-22",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SH",
+    "name": "华能REIT",
+    "publicationDate": null
+  },
+  {
     "code": "181002",
     "instrumentType": "REITs",
     "issuanceDate": "2026-10-19",
@@ -27,6 +47,16 @@
     "listingDate": null,
     "market": "SZ",
     "name": "华泰华住安住REIT",
+    "publicationDate": null
+  },
+  {
+    "code": "180107",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-10-14",
+    "issuancePrice": null,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "平安西安高科产业园REIT",
     "publicationDate": null
   },
   {
