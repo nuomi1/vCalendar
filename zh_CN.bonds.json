@@ -1,5 +1,25 @@
 [
   {
+    "code": "123288",
+    "instrumentType": "债",
+    "issuanceDate": "2026-09-29",
+    "issuancePrice": 100,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "隆新转债",
+    "publicationDate": "2026-10-08"
+  },
+  {
+    "code": "118077",
+    "instrumentType": "债",
+    "issuanceDate": "2026-09-29",
+    "issuancePrice": 100,
+    "listingDate": null,
+    "market": "SH",
+    "name": "莱特转债",
+    "publicationDate": "2026-10-08"
+  },
+  {
     "code": "123287",
     "instrumentType": "债",
     "issuanceDate": "2026-09-28",
