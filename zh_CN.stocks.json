@@ -98,45 +98,5 @@
     "market": "BJ",
     "name": "凯达重工",
     "publicationDate": "2026-09-17"
-  },
-  {
-    "code": "301686",
-    "instrumentType": "创",
-    "issuanceDate": "2026-09-10",
-    "issuancePrice": 55.28,
-    "listingDate": "2026-09-22",
-    "market": "SZ",
-    "name": "中塑股份",
-    "publicationDate": "2026-09-14"
-  },
-  {
-    "code": "920229",
-    "instrumentType": "北",
-    "issuanceDate": "2026-09-09",
-    "issuancePrice": 15.67,
-    "listingDate": "2026-09-22",
-    "market": "BJ",
-    "name": "世纪数码",
-    "publicationDate": "2026-09-14"
-  },
-  {
-    "code": "601091",
-    "instrumentType": "上",
-    "issuanceDate": "2026-09-08",
-    "issuancePrice": 4.39,
-    "listingDate": "2026-09-17",
-    "market": "SH",
-    "name": "沈鼓集团",
-    "publicationDate": "2026-09-10"
-  },
-  {
-    "code": "920201",
-    "instrumentType": "北",
-    "issuanceDate": "2026-09-07",
-    "issuancePrice": 16.77,
-    "listingDate": "2026-09-24",
-    "market": "BJ",
-    "name": "百瑞吉",
-    "publicationDate": "2026-09-10"
   }
 ]
