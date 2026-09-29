@@ -30,16 +30,6 @@
     "publicationDate": null
   },
   {
-    "code": "508081",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-10-22",
-    "issuancePrice": null,
-    "listingDate": null,
-    "market": "SH",
-    "name": "华能REIT",
-    "publicationDate": null
-  },
-  {
     "code": "181002",
     "instrumentType": "REITs",
     "issuanceDate": "2026-10-19",
@@ -53,10 +43,20 @@
     "code": "180107",
     "instrumentType": "REITs",
     "issuanceDate": "2026-10-14",
-    "issuancePrice": null,
+    "issuancePrice": 2.91,
     "listingDate": null,
     "market": "SZ",
     "name": "平安西安高科产业园REIT",
+    "publicationDate": null
+  },
+  {
+    "code": "508081",
+    "instrumentType": "REITs",
+    "issuanceDate": "2026-10-12",
+    "issuancePrice": 3.2,
+    "listingDate": null,
+    "market": "SH",
+    "name": "华能REIT",
     "publicationDate": null
   },
   {
