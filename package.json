@@ -13,17 +13,17 @@
   "dependencies": {
     "canonical-json": "^0.4.0",
     "dayjs": "^1.11.23",
-    "ical-generator": "^11.1.1",
+    "ical-generator": "^11.1.2",
     "mathjs": "^15.2.0",
     "ofetch": "^1.5.1"
   },
   "devDependencies": {
     "@types/bun": "1.4.2",
     "husky": "^9.1.7",
-    "lint-staged": "^17.5.1",
-    "oxfmt": "^0.70.0",
-    "oxlint": "^1.85.0",
-    "oxlint-tsgolint": "^7.0.2002"
+    "lint-staged": "^17.6.0",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
+    "oxlint-tsgolint": "^7.0.2003"
   },
   "peerDependencies": {
     "typescript": "^7.0.2"
