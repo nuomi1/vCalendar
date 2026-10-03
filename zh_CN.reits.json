@@ -88,15 +88,5 @@
     "market": "SZ",
     "name": "中金菜鸟REIT",
     "publicationDate": "2026-09-24"
-  },
-  {
-    "code": "508095",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-09-14",
-    "issuancePrice": 2.74,
-    "listingDate": null,
-    "market": "SH",
-    "name": "中建住房",
-    "publicationDate": "2026-09-18"
   }
 ]
