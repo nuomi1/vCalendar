@@ -68,25 +68,5 @@
     "market": "SZ",
     "name": "银华粤海水务水利REIT",
     "publicationDate": null
-  },
-  {
-    "code": "180505",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-09-22",
-    "issuancePrice": 3.05,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "中金杭州安居宁巢REIT",
-    "publicationDate": "2026-09-28"
-  },
-  {
-    "code": "180307",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-09-21",
-    "issuancePrice": 2.98,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "中金菜鸟REIT",
-    "publicationDate": "2026-09-24"
   }
 ]

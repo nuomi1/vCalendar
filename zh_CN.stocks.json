@@ -48,35 +48,5 @@
     "market": "SZ",
     "name": "联亚药业",
     "publicationDate": "2026-09-30"
-  },
-  {
-    "code": "301660",
-    "instrumentType": "创",
-    "issuanceDate": "2026-09-24",
-    "issuancePrice": 12.01,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "粤芯半导体",
-    "publicationDate": "2026-09-29"
-  },
-  {
-    "code": "920162",
-    "instrumentType": "北",
-    "issuanceDate": "2026-09-23",
-    "issuancePrice": 17.37,
-    "listingDate": null,
-    "market": "BJ",
-    "name": "莫森泰克",
-    "publicationDate": "2026-09-29"
-  },
-  {
-    "code": "920157",
-    "instrumentType": "北",
-    "issuanceDate": "2026-09-21",
-    "issuancePrice": 13.75,
-    "listingDate": "2026-10-09",
-    "market": "BJ",
-    "name": "宇特光电",
-    "publicationDate": "2026-09-24"
   }
 ]
