@@ -28,45 +28,5 @@
     "market": "SZ",
     "name": "华纬转债",
     "publicationDate": "2026-10-19"
-  },
-  {
-    "code": "123288",
-    "instrumentType": "债",
-    "issuanceDate": "2026-09-29",
-    "issuancePrice": 100,
-    "listingDate": "2026-10-19",
-    "market": "SZ",
-    "name": "隆新转债",
-    "publicationDate": "2026-10-08"
-  },
-  {
-    "code": "118077",
-    "instrumentType": "债",
-    "issuanceDate": "2026-09-29",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SH",
-    "name": "莱特转债",
-    "publicationDate": "2026-10-08"
-  },
-  {
-    "code": "123287",
-    "instrumentType": "债",
-    "issuanceDate": "2026-09-28",
-    "issuancePrice": 100,
-    "listingDate": "2026-10-21",
-    "market": "SZ",
-    "name": "满坤转债",
-    "publicationDate": "2026-09-30"
-  },
-  {
-    "code": "113711",
-    "instrumentType": "债",
-    "issuanceDate": "2026-09-28",
-    "issuancePrice": 100,
-    "listingDate": null,
-    "market": "SH",
-    "name": "常青转债",
-    "publicationDate": "2026-09-30"
   }
 ]
