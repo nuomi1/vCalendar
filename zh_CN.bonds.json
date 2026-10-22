@@ -1,5 +1,15 @@
 [
   {
+    "code": "127120",
+    "instrumentType": "债",
+    "issuanceDate": "2026-10-27",
+    "issuancePrice": 100,
+    "listingDate": null,
+    "market": "SZ",
+    "name": "千红转债",
+    "publicationDate": "2026-10-29"
+  },
+  {
     "code": "127119",
     "instrumentType": "债",
     "issuanceDate": "2026-10-22",
