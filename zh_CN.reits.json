@@ -58,15 +58,5 @@
     "market": "SH",
     "name": "华能REIT",
     "publicationDate": "2026-10-15"
-  },
-  {
-    "code": "180702",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-10-08",
-    "issuancePrice": 3.45,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "银华粤海水务水利REIT",
-    "publicationDate": "2026-10-14"
   }
 ]
