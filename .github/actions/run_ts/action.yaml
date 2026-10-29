@@ -24,6 +24,6 @@ runs:
     - name: Run application
       uses: nick-fields/retry@v4
       with:
-        command: bun run index.ts
+        command: bun run securities/index.ts
         max_attempts: 2
         timeout_minutes: 15
