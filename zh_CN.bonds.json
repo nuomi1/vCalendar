@@ -48,25 +48,5 @@
     "market": "SZ",
     "name": "申菱转债",
     "publicationDate": "2026-10-22"
-  },
-  {
-    "code": "123289",
-    "instrumentType": "债",
-    "issuanceDate": "2026-10-16",
-    "issuancePrice": 100,
-    "listingDate": "2026-11-02",
-    "market": "SZ",
-    "name": "中科转债",
-    "publicationDate": "2026-10-20"
-  },
-  {
-    "code": "127118",
-    "instrumentType": "债",
-    "issuanceDate": "2026-10-15",
-    "issuancePrice": 100,
-    "listingDate": "2026-11-03",
-    "market": "SZ",
-    "name": "华纬转债",
-    "publicationDate": "2026-10-19"
   }
 ]

@@ -38,25 +38,5 @@
     "market": "SZ",
     "name": "皇冠新材",
     "publicationDate": "2026-10-21"
-  },
-  {
-    "code": "920285",
-    "instrumentType": "北",
-    "issuanceDate": "2026-10-14",
-    "issuancePrice": 20.3,
-    "listingDate": "2026-10-23",
-    "market": "BJ",
-    "name": "远大健科",
-    "publicationDate": "2026-10-19"
-  },
-  {
-    "code": "920296",
-    "instrumentType": "北",
-    "issuanceDate": "2026-10-12",
-    "issuancePrice": 11.45,
-    "listingDate": "2026-10-21",
-    "market": "BJ",
-    "name": "文峰光电",
-    "publicationDate": "2026-10-15"
   }
 ]
