@@ -18,25 +18,5 @@
     "market": "SH",
     "name": "嘉泽REIT",
     "publicationDate": "2026-11-02"
-  },
-  {
-    "code": "508610",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-10-22",
-    "issuancePrice": 3.11,
-    "listingDate": null,
-    "market": "SH",
-    "name": "新城吾悦",
-    "publicationDate": "2026-10-29"
-  },
-  {
-    "code": "181002",
-    "instrumentType": "REITs",
-    "issuanceDate": "2026-10-19",
-    "issuancePrice": 2.33,
-    "listingDate": null,
-    "market": "SZ",
-    "name": "华泰华住安住REIT",
-    "publicationDate": "2026-10-22"
   }
 ]
