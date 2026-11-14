@@ -28,25 +28,5 @@
     "market": "BJ",
     "name": "菊乐股份",
     "publicationDate": "2026-11-09"
-  },
-  {
-    "code": "688827",
-    "instrumentType": "科",
-    "issuanceDate": "2026-10-29",
-    "issuancePrice": 45.37,
-    "listingDate": "2026-11-10",
-    "market": "SH",
-    "name": "钶锐锶",
-    "publicationDate": "2026-11-02"
-  },
-  {
-    "code": "920085",
-    "instrumentType": "北",
-    "issuanceDate": "2026-10-28",
-    "issuancePrice": 17.79,
-    "listingDate": "2026-11-06",
-    "market": "BJ",
-    "name": "森峰激光",
-    "publicationDate": "2026-11-02"
   }
 ]
