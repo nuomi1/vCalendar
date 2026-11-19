@@ -23,7 +23,7 @@
     "code": "688845",
     "instrumentType": "科",
     "issuanceDate": "2026-11-23",
-    "issuancePrice": null,
+    "issuancePrice": 18.18,
     "listingDate": null,
     "market": "SH",
     "name": "傲拓科技",
@@ -34,7 +34,7 @@
     "instrumentType": "北",
     "issuanceDate": "2026-11-11",
     "issuancePrice": 23.52,
-    "listingDate": null,
+    "listingDate": "2026-11-23",
     "market": "BJ",
     "name": "华晟智能",
     "publicationDate": "2026-11-16"
