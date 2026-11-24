@@ -1,7 +1,7 @@
 {
   "name": "vcalendar",
   "type": "module",
-  "module": "securities/index.ts",
+  "module": "src/security/index.ts",
   "scripts": {
     "clean": "rm -rf bun.lock node_modules",
     "fmt": "oxfmt --no-error-on-unmatched-pattern",

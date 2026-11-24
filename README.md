@@ -18,7 +18,7 @@ bun install
 ## Run
 
 ```bash
-bun run securities/index.ts
+bun run src/security/index.ts
 ```
 
 > 输出文件（`zh_CN.*.ics` / `zh_CN.*.json`）始终写入当前工作目录，
@@ -27,7 +27,7 @@ bun run securities/index.ts
 ## API
 
 ```typescript
-import { generateCalendar } from "./securities/index";
+import { generateCalendar } from "./src/security/index";
 
 // Generate calendar from API (auto-fetches from EastMoney)
 await generateCalendar();
@@ -36,8 +36,8 @@ await generateCalendar();
 ## Programmatic Usage
 
 ```typescript
-import { generateCalendar } from "./securities/index";
-import type { InputData } from "./securities/types";
+import { generateCalendar } from "./src/security/index";
+import type { InputData } from "./src/security/types";
 
 // Generate calendar from pre-fetched data
 const data: InputData = {
